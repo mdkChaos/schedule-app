@@ -14,9 +14,11 @@ return new class extends Migration
         Schema::create('departments', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
-            $table->unsignedBigInteger('workshop_id');
-            $table->foreign('workshop_id')->references('id')->on('workshops')->onDelete('cascade');
+            $table->foreignId('workshop_id')
+                ->constrained('workshops')
+                ->cascadeOnDelete();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
