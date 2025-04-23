@@ -16,7 +16,8 @@ return new class extends Migration
             $table->string('name')->unique();
             $table->foreignId('factory_id')
                 ->constrained('factories')
-                ->cascadeOnDelete();
+                ->cascadeOnDelete()
+                ->cascadeOnUpdate();
             $table->timestamps();
             $table->softDeletes();
         });
