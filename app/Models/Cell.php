@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Department extends Model
+class Cell extends Model
 {
     use SoftDeletes, HasFactory;
 
@@ -17,21 +17,14 @@ class Department extends Model
      */
     protected $fillable = [
         'name',
-        'workshop_id',
+        'department_id',
     ];
 
     /**
-     * Get the workshop that owns the department.
+     * Get the department that owns the cell.
      */
-    public function workshop()
+    public function department()
     {
-        return $this->belongsTo(Workshop::class);
-    }
-    /**
-     * Get the cells for the department.
-     */
-    public function cells()
-    {
-        return $this->hasMany(Cell::class);
+        return $this->belongsTo(Department::class);
     }
 }
