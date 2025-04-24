@@ -30,4 +30,12 @@ class Brigade extends Model
     {
         return $this->hasMany(User::class);
     }
+
+    /**
+     * Get the brigade users for the brigade.
+     */
+    public function brigadeUsers()
+    {
+        return $this->hasMany(BrigadeUser::class);
+    }
 }
