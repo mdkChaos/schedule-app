@@ -15,9 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name')->unique();
             $table->foreignId('department_id')
-                ->constrained('departments')
-                ->cascadeOnDelete()
-                ->cascadeOnUpdate();
+                ->constrained('departments');
             $table->timestamps();
             $table->softDeletes();
         });

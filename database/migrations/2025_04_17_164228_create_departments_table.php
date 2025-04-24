@@ -15,9 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name')->unique();
             $table->foreignId('workshop_id')
-                ->constrained('workshops')
-                ->cascadeOnDelete()
-                ->cascadeOnUpdate();
+                ->constrained('workshops');
             $table->timestamps();
             $table->softDeletes();
         });
