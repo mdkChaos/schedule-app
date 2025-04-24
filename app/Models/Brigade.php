@@ -6,10 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Cell extends Model
+class Brigade extends Model
 {
     use SoftDeletes, HasFactory;
-
     /**
      * The attributes that are mass assignable.
      *
@@ -17,21 +16,13 @@ class Cell extends Model
      */
     protected $fillable = [
         'name',
-        'department_id',
+        'cell_id',
     ];
-
     /**
-     * Get the department that owns the cell.
+     * Get the cell that owns the brigade.
      */
-    public function department()
+    public function cell()
     {
-        return $this->belongsTo(Department::class);
-    }
-    /**
-     * Get the users for the cell.
-     */
-    public function users()
-    {
-        return $this->hasMany(User::class);
+        return $this->belongsTo(Cell::class);
     }
 }
