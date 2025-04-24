@@ -27,6 +27,7 @@ class Department extends Model
     {
         return $this->belongsTo(Workshop::class);
     }
+
     /**
      * Get the cells for the department.
      */

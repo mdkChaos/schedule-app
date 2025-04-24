@@ -6,24 +6,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Position extends Model
+class Shift extends Model
 {
     use SoftDeletes, HasFactory;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
     protected $fillable = [
         'name',
     ];
-
-    /**
-     * Get the users for the position.
-     */
-    public function users()
-    {
-        return $this->hasMany(User::class);
-    }
 }

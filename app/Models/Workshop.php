@@ -17,7 +17,7 @@ class Workshop extends Model
      */
     protected $fillable = [
         'name',
-        'factory_id', // Додано зовнішній ключ
+        'factory_id',
     ];
 
     /**

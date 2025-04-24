@@ -9,20 +9,25 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Brigade extends Model
 {
     use SoftDeletes, HasFactory;
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
+
     protected $fillable = [
         'name',
         'cell_id',
     ];
+
     /**
      * Get the cell that owns the brigade.
      */
     public function cell()
     {
         return $this->belongsTo(Cell::class);
+    }
+
+    /**
+     * Get the users for the brigade.
+     */
+    public function users()
+    {
+        return $this->hasMany(User::class);
     }
 }
