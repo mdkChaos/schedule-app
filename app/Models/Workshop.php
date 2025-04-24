@@ -10,11 +10,6 @@ class Workshop extends Model
 {
     use SoftDeletes, HasFactory;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
     protected $fillable = [
         'name',
         'factory_id',

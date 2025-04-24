@@ -13,4 +13,12 @@ class Shift extends Model
     protected $fillable = [
         'name',
     ];
+
+    /**
+     * Get the schedules for the shift.
+     */
+    public function schedules()
+    {
+        return $this->hasMany(Schedule::class);
+    }
 }

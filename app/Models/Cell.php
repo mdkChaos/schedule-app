@@ -10,11 +10,6 @@ class Cell extends Model
 {
     use SoftDeletes, HasFactory;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
     protected $fillable = [
         'name',
         'department_id',
@@ -27,6 +22,7 @@ class Cell extends Model
     {
         return $this->belongsTo(Department::class);
     }
+
     /**
      * Get the users for the cell.
      */
