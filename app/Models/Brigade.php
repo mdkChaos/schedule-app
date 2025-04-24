@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Brigade extends Model
 {
@@ -18,15 +20,15 @@ class Brigade extends Model
     /**
      * Get the cell that owns the brigade.
      */
-    public function cell()
+    public function cell(): BelongsTo
     {
         return $this->belongsTo(Cell::class);
     }
 
     /**
-     * Get the users for the brigade.
+     * Get the brigade members for the brigade.
      */
-    public function users()
+    public function users(): HasMany
     {
         return $this->hasMany(User::class);
     }
@@ -34,7 +36,7 @@ class Brigade extends Model
     /**
      * Get the brigade users for the brigade.
      */
-    public function brigadeUsers()
+    public function brigadeUsers(): HasMany
     {
         return $this->hasMany(BrigadeUser::class);
     }

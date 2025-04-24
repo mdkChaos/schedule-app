@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Workshop extends Model
 {
@@ -18,7 +20,7 @@ class Workshop extends Model
     /**
      * Get the factory that owns the workshop.
      */
-    public function factory()
+    public function factory(): BelongsTo
     {
         return $this->belongsTo(Factory::class);
     }
@@ -26,7 +28,7 @@ class Workshop extends Model
     /**
      * Get the departments for the workshop.
      */
-    public function departments()
+    public function departments(): HasMany
     {
         return $this->hasMany(Department::class);
     }

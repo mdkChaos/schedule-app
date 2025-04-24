@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class BrigadeUser extends Model
@@ -20,7 +21,7 @@ class BrigadeUser extends Model
     /**
      * Get the user that owns the brigade user.
      */
-    public function user()
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
@@ -28,7 +29,7 @@ class BrigadeUser extends Model
     /**
      * Get the brigade that owns the brigade user.
      */
-    public function brigade()
+    public function brigade(): BelongsTo
     {
         return $this->belongsTo(Brigade::class);
     }

@@ -94,12 +94,22 @@ class User extends Authenticatable
     }
 
     /**
-     * Get the brigade_user associated with the user.
+     * Get the brigade assignments associated with the user.
      *
      * @return HasMany
      */
-    public function brigadeUser(): HasMany
+    public function brigadeAssignments()
     {
         return $this->hasMany(BrigadeUser::class);
+    }
+
+    /**
+     * Get the current brigade associated with the user.
+     *
+     * @return HasMany
+     */
+    public function currentBrigade()
+    {
+        return $this->hasOne(BrigadeUser::class)->whereNull('end_date');
     }
 }

@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Cell extends Model
 {
@@ -18,7 +20,7 @@ class Cell extends Model
     /**
      * Get the department that owns the cell.
      */
-    public function department()
+    public function department(): BelongsTo
     {
         return $this->belongsTo(Department::class);
     }
@@ -26,7 +28,7 @@ class Cell extends Model
     /**
      * Get the users for the cell.
      */
-    public function users()
+    public function users(): HasMany
     {
         return $this->hasMany(User::class);
     }
