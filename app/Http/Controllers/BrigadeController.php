@@ -13,7 +13,8 @@ class BrigadeController extends Controller
      */
     public function index()
     {
-        //
+        $brigades = Brigade::paginate(10);
+        return view('brigades.index', compact('brigades'));
     }
 
     /**
@@ -21,7 +22,7 @@ class BrigadeController extends Controller
      */
     public function create()
     {
-        //
+        return view('brigades.create');
     }
 
     /**
@@ -29,7 +30,8 @@ class BrigadeController extends Controller
      */
     public function store(StoreBrigadeRequest $request)
     {
-        //
+        Brigade::create($request->validated());
+        return redirect()->route('brigades.index')->with('success', 'Brigade created successfully.');
     }
 
     /**
@@ -37,7 +39,7 @@ class BrigadeController extends Controller
      */
     public function show(Brigade $brigade)
     {
-        //
+        return view('brigades.show', compact('brigade'));
     }
 
     /**
@@ -45,7 +47,7 @@ class BrigadeController extends Controller
      */
     public function edit(Brigade $brigade)
     {
-        //
+        return view('brigades.edit', compact('brigade'));
     }
 
     /**
@@ -53,7 +55,8 @@ class BrigadeController extends Controller
      */
     public function update(UpdateBrigadeRequest $request, Brigade $brigade)
     {
-        //
+        $brigade->update($request->validated());
+        return redirect()->route('brigades.index')->with('success', 'Brigade updated successfully.');
     }
 
     /**
@@ -61,6 +64,36 @@ class BrigadeController extends Controller
      */
     public function destroy(Brigade $brigade)
     {
-        //
+        $brigade->delete();
+        return redirect()->route('brigades.index')->with('success', 'Brigade deleted successfully.');
+    }
+
+    /**
+     * Display a listing of the trashed brigades.
+     */
+    public function trashed()
+    {
+        $brigades = Brigade::onlyTrashed()->paginate(10);
+        return view('brigades.trashed', compact('brigades'));
+    }
+
+    /**
+     * Restore the specified brigade from trash.
+     */
+    public function restore($id)
+    {
+        $brigade = Brigade::withTrashed()->findOrFail($id);
+        $brigade->restore();
+        return redirect()->route('brigades.trashed')->with('success', 'Brigade restored successfully.');
+    }
+
+    /**
+     * Force delete the specified brigade.
+     */
+    public function forceDelete($id)
+    {
+        $brigade = Brigade::withTrashed()->findOrFail($id);
+        $brigade->forceDelete();
+        return redirect()->route('brigades.trashed')->with('success', 'Brigade permanently deleted successfully.');
     }
 }

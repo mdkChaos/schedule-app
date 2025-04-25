@@ -56,7 +56,18 @@
             <div class="col-md-3">
                 <div class="card border-0 shadow-lg h-100 hover-zoom">
                     <div class="card-body text-center">
-                        <span class="display-5 text-danger"><i class="bi bi-people"></i></span>
+                        <span class="display-5 text-secondary"><i class="bi bi-people"></i></span>
+                        <h5 class="card-title fw-semibold mt-3">Бригади</h5>
+                        <p class="card-text text-muted">Керування бригадами.</p>
+                        <a href="{{ route('brigades.index') }}"
+                            class="btn btn-outline-primary rounded-pill px-4">Перейти</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card border-0 shadow-lg h-100 hover-zoom">
+                    <div class="card-body text-center">
+                        <span class="display-5 text-danger"><i class="bi bi-person-badge"></i></span>
                         <h5 class="card-title fw-semibold mt-3">Співробітники</h5>
                         <p class="card-text text-muted">Керування персоналом.</p>
                         <a href="#" class="btn btn-outline-primary rounded-pill px-4">Перейти</a>

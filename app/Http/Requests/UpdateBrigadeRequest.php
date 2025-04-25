@@ -11,7 +11,7 @@ class UpdateBrigadeRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,18 @@ class UpdateBrigadeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required|string|max:255|unique:brigades,name,' . $this->route('brigade')->id,
+        ];
+    }
+
+    /**
+     * Custom error messages.
+     */
+    public function messages(): array
+    {
+        return [
+            'name.required' => 'Brigade name is required.',
+            'name.unique' => 'Brigade with this name already exists.',
         ];
     }
 }

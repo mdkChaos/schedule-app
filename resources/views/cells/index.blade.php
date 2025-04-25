@@ -12,7 +12,7 @@
                 </a>
             </x-slot:left>
             <x-slot:right>
-                <a href="{{ route('cells.create') }}" class="btn btn-primary px-4">
+                <a href="{{ route('cells.create') }}" class="btn btn-outline-primary px-4">
                     <i class="bi bi-plus-lg"></i> Add Cell
                 </a>
                 <a href="{{ route('cells.trashed') }}" class="btn btn-outline-danger">
@@ -50,7 +50,7 @@
                                 <a href="{{ route('cells.show', $cell) }}" class="btn btn-outline-secondary btn-sm me-1">
                                     <i class="bi bi-eye"></i> Переглянути
                                 </a>
-                                <a href="{{ route('cells.edit', $cell) }}" class="btn btn-outline-warning btn-sm me-1">
+                                <a href="{{ route('cells.edit', $cell) }}" class="btn btn-outline-success btn-sm me-1">
                                     <i class="bi bi-pencil"></i> Редагувати
                                 </a>
                                 <form action="{{ route('cells.destroy', $cell) }}" method="POST" class="d-inline">

@@ -42,7 +42,7 @@
                                 <form action="{{ route('workshops.restore', $workshop->id) }}" method="POST"
                                     class="d-inline">
                                     @csrf
-                                    <button type="submit" class="btn btn-success btn-sm me-1">
+                                    <button type="submit" class="btn btn-outline-success me-2">
                                         <i class="bi bi-arrow-clockwise"></i> Відновити
                                     </button>
                                 </form>
@@ -51,7 +51,7 @@
                                     onsubmit="return confirm('Ви впевнені, що хочете остаточно видалити цей цех?')">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm">
+                                    <button type="submit" class="btn btn-outline-danger">
                                         <i class="bi bi-x-circle"></i> Видалити назавжди
                                     </button>
                                 </form>

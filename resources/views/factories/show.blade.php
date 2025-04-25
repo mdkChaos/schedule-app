@@ -11,7 +11,7 @@
                 </a>
             </x-slot:left>
             <x-slot:right>
-                <a href="{{ route('factories.edit', $factory) }}" class="btn btn-outline-warning me-2">
+                <a href="{{ route('factories.edit', $factory) }}" class="btn btn-outline-success me-2">
                     <i class="bi bi-pencil"></i> Редагувати
                 </a>
                 <form action="{{ route('factories.destroy', $factory) }}" method="POST" class="d-inline">
@@ -46,9 +46,6 @@
                                 <strong>Оновлено:</strong> {{ $factory->updated_at->format('d.m.Y H:i') }}
                             </li>
                         </ul>
-                        <a href="{{ route('factories.index') }}" class="btn btn-primary w-100">
-                            <i class="bi bi-list"></i> До списку фабрик
-                        </a>
                     </div>
                 </div>
             </div>

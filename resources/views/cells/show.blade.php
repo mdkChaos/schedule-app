@@ -4,14 +4,14 @@
 
 @section('content')
     <div class="container py-4">
-        <x-page-header :title="$cell->name" :iconClass="'bi bi-diagram-3 text-warning'">
+        <x-page-header :title="$cell->name" :iconClass="'bi bi-grid text-info'">
             <x-slot:left>
                 <a href="{{ route('cells.index') }}" class="btn btn-outline-secondary me-2">
                     <i class="bi bi-arrow-left"></i> До списку
                 </a>
             </x-slot:left>
             <x-slot:right>
-                <a href="{{ route('cells.edit', $cell) }}" class="btn btn-outline-warning me-2">
+                <a href="{{ route('cells.edit', $cell) }}" class="btn btn-outline-success me-2">
                     <i class="bi bi-pencil"></i> Редагувати
                 </a>
                 <form action="{{ route('cells.destroy', $cell) }}" method="POST" class="d-inline">
@@ -55,9 +55,6 @@
                                 <strong>Оновлено:</strong> {{ $cell->updated_at->format('d.m.Y H:i') }}
                             </li>
                         </ul>
-                        <a href="{{ route('cells.index') }}" class="btn btn-primary w-100">
-                            <i class="bi bi-list"></i> До списку комірок
-                        </a>
                     </div>
                 </div>
             </div>

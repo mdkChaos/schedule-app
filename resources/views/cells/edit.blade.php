@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="container py-4">
-        <x-page-header :title="'Редагувати комірку'" :iconClass="'bi bi-pencil-square text-warning'">
+        <x-page-header :title="'Редагувати комірку'" :iconClass="'bi bi-pencil-square text-info'">
             <x-slot:left>
                 <a href="{{ route('cells.index') }}" class="btn btn-outline-secondary">
                     <i class="bi bi-arrow-left"></i> До списку
@@ -51,7 +51,7 @@
                                 <a href="{{ route('cells.index') }}" class="btn btn-outline-secondary">
                                     <i class="bi bi-x-lg"></i> Скасувати
                                 </a>
-                                <button type="submit" class="btn btn-warning">
+                                <button type="submit" class="btn btn-outline-success">
                                     <i class="bi bi-save"></i> Зберегти зміни
                                 </button>
                             </div>

@@ -14,16 +14,7 @@ class Brigade extends Model
 
     protected $fillable = [
         'name',
-        'cell_id',
     ];
-
-    /**
-     * Get the cell that owns the brigade.
-     */
-    public function cell(): BelongsTo
-    {
-        return $this->belongsTo(Cell::class);
-    }
 
     /**
      * Get the brigade members for the brigade.

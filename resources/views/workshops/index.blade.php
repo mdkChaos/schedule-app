@@ -11,7 +11,7 @@
                 </a>
             </x-slot:left>
             <x-slot:right>
-                <a href="{{ route('workshops.create') }}" class="btn btn-primary px-4">
+                <a href="{{ route('workshops.create') }}" class="btn btn-outline-primary px-4">
                     <i class="bi bi-plus-lg"></i> Add Workshop
                 </a>
                 <a href="{{ route('workshops.trashed') }}" class="btn btn-outline-danger">
@@ -51,7 +51,7 @@
                                     <i class="bi bi-eye"></i> Переглянути
                                 </a>
                                 <a href="{{ route('workshops.edit', $workshop) }}"
-                                    class="btn btn-outline-warning btn-sm me-1">
+                                    class="btn btn-outline-success btn-sm me-1">
                                     <i class="bi bi-pencil"></i> Редагувати
                                 </a>
                                 <form action="{{ route('workshops.destroy', $workshop) }}" method="POST" class="d-inline">

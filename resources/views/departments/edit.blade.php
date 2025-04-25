@@ -51,7 +51,7 @@
                                 <a href="{{ route('departments.index') }}" class="btn btn-outline-secondary">
                                     <i class="bi bi-x-lg"></i> Скасувати
                                 </a>
-                                <button type="submit" class="btn btn-warning">
+                                <button type="submit" class="btn btn-outline-success">
                                     <i class="bi bi-save"></i> Зберегти зміни
                                 </button>
                             </div>

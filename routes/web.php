@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BrigadeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FactoryController;
 use App\Http\Controllers\WorkshopController;
@@ -56,3 +57,14 @@ Route::controller(CellController::class)
         Route::delete('{id}/force-delete', 'forceDelete')->name('forceDelete');
     });
 Route::resource('cells', CellController::class);
+
+// Brigade (CRUD + корзина)
+Route::controller(BrigadeController::class)
+    ->prefix('brigades')
+    ->name('brigades.')
+    ->group(function () {
+        Route::get('trashed', 'trashed')->name('trashed');
+        Route::post('{id}/restore', 'restore')->name('restore');
+        Route::delete('{id}/force-delete', 'forceDelete')->name('forceDelete');
+    });
+Route::resource('brigades', BrigadeController::class);

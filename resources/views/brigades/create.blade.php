@@ -1,12 +1,12 @@
+{{-- filepath: /home/andrii/Projects/schedule-app/resources/views/brigades/create.blade.php --}}
 @extends('layouts.admin')
 
-@section('title', 'Create Factory')
-
+@section('title', 'Create Brigade')
 @section('content')
     <div class="container py-4">
-        <x-page-header :title="'Create Factory'" :iconClass="'bi bi-plus-circle text-primary'">
+        <x-page-header :title="'Create Brigade'" :iconClass="'bi bi-plus-circle text-secondary'">
             <x-slot:left>
-                <a href="{{ route('factories.index') }}" class="btn btn-outline-secondary">
+                <a href="{{ route('brigades.index') }}" class="btn btn-outline-secondary">
                     <i class="bi bi-arrow-left"></i> Back to list
                 </a>
             </x-slot:left>
@@ -16,11 +16,11 @@
             <div class="col-md-7 col-lg-6">
                 <div class="card border-0 shadow-lg">
                     <div class="card-body">
-                        <form action="{{ route('factories.store') }}" method="POST" autocomplete="off">
+                        <form action="{{ route('brigades.store') }}" method="POST" autocomplete="off">
                             @csrf
 
                             <div class="mb-3">
-                                <label for="name" class="form-label fw-semibold">Factory Name</label>
+                                <label for="name" class="form-label fw-semibold">Brigade Name</label>
                                 <input type="text" name="name" id="name"
                                     class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}"
                                     required autofocus>
@@ -30,7 +30,7 @@
                             </div>
 
                             <div class="mt-4 d-flex justify-content-end gap-2">
-                                <a href="{{ route('factories.index') }}" class="btn btn-outline-secondary">
+                                <a href="{{ route('brigades.index') }}" class="btn btn-outline-secondary">
                                     <i class="bi bi-x-lg"></i> Cancel
                                 </a>
                                 <button type="submit" class="btn btn-outline-success">

@@ -37,7 +37,7 @@
                                 <a href="{{ route('factories.index') }}" class="btn btn-outline-secondary">
                                     <i class="bi bi-x-lg"></i> Cancel
                                 </a>
-                                <button type="submit" class="btn btn-success">
+                                <button type="submit" class="btn btn-outline-success">
                                     <i class="bi bi-save"></i> Save Changes
                                 </button>
                             </div>

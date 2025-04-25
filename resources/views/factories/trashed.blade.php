@@ -39,7 +39,7 @@
                                 <form action="{{ route('factories.restore', $factory->id) }}" method="POST"
                                     class="d-inline">
                                     @csrf
-                                    <button type="submit" class="btn btn-success btn-sm me-1">
+                                    <button type="submit" class="btn btn-outline-success me-2">
                                         <i class="bi bi-arrow-clockwise"></i> Restore
                                     </button>
                                 </form>
@@ -48,7 +48,7 @@
                                     onsubmit="return confirm('Are you sure you want to permanently delete this factory?')">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm">
+                                    <button type="submit" class="btn btn-outline-danger">
                                         <i class="bi bi-x-circle"></i> Delete permanently
                                     </button>
                                 </form>

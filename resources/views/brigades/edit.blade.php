@@ -1,13 +1,13 @@
 @extends('layouts.admin')
 
-@section('title', 'Create Factory')
+@section('title', 'Редагувати бригаду')
 
 @section('content')
     <div class="container py-4">
-        <x-page-header :title="'Create Factory'" :iconClass="'bi bi-plus-circle text-primary'">
+        <x-page-header :title="'Редагувати бригаду'" :iconClass="'bi bi-pencil-square text-secondary'">
             <x-slot:left>
-                <a href="{{ route('factories.index') }}" class="btn btn-outline-secondary">
-                    <i class="bi bi-arrow-left"></i> Back to list
+                <a href="{{ route('brigades.index') }}" class="btn btn-outline-secondary">
+                    <i class="bi bi-arrow-left"></i> До списку
                 </a>
             </x-slot:left>
         </x-page-header>
@@ -16,25 +16,26 @@
             <div class="col-md-7 col-lg-6">
                 <div class="card border-0 shadow-lg">
                     <div class="card-body">
-                        <form action="{{ route('factories.store') }}" method="POST" autocomplete="off">
+                        <form action="{{ route('brigades.update', $brigade) }}" method="POST" autocomplete="off">
                             @csrf
+                            @method('PUT')
 
                             <div class="mb-3">
-                                <label for="name" class="form-label fw-semibold">Factory Name</label>
+                                <label for="name" class="form-label fw-semibold">Назва бригади</label>
                                 <input type="text" name="name" id="name"
-                                    class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}"
-                                    required autofocus>
+                                    class="form-control @error('name') is-invalid @enderror"
+                                    value="{{ old('name', $brigade->name) }}" required autofocus>
                                 @error('name')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
 
                             <div class="mt-4 d-flex justify-content-end gap-2">
-                                <a href="{{ route('factories.index') }}" class="btn btn-outline-secondary">
-                                    <i class="bi bi-x-lg"></i> Cancel
+                                <a href="{{ route('brigades.index') }}" class="btn btn-outline-secondary">
+                                    <i class="bi bi-x-lg"></i> Скасувати
                                 </a>
                                 <button type="submit" class="btn btn-outline-success">
-                                    <i class="bi bi-check-circle"></i> Create
+                                    <i class="bi bi-save"></i> Зберегти зміни
                                 </button>
                             </div>
                         </form>
