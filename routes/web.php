@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FactoryController;
 use App\Http\Controllers\WorkshopController;
+use App\Http\Controllers\DepartmentController;
 
 // Головна сторінка
 Route::view('/', 'index')->name('index');
@@ -31,3 +32,14 @@ Route::controller(WorkshopController::class)
         Route::delete('{id}/force-delete', 'forceDelete')->name('forceDelete');
     });
 Route::resource('workshops', WorkshopController::class);
+
+// Department (CRUD + корзина)
+Route::controller(DepartmentController::class)
+    ->prefix('departments')
+    ->name('departments.')
+    ->group(function () {
+        Route::get('trashed', 'trashed')->name('trashed');
+        Route::post('{id}/restore', 'restore')->name('restore');
+        Route::delete('{id}/force-delete', 'forceDelete')->name('forceDelete');
+    });
+Route::resource('departments', DepartmentController::class);

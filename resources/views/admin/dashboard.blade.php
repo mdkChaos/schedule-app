@@ -38,7 +38,8 @@
                         <span class="display-5 text-warning"><i class="bi bi-diagram-3"></i></span>
                         <h5 class="card-title fw-semibold mt-3">Відділи</h5>
                         <p class="card-text text-muted">Керування відділами.</p>
-                        <a href="#" class="btn btn-outline-primary rounded-pill px-4">Перейти</a>
+                        <a href="{{ route('departments.index') }}"
+                            class="btn btn-outline-primary rounded-pill px-4">Перейти</a>
                     </div>
                 </div>
             </div>
