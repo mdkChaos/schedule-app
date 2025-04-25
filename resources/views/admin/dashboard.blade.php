@@ -46,6 +46,16 @@
             <div class="col-md-3">
                 <div class="card border-0 shadow-lg h-100 hover-zoom">
                     <div class="card-body text-center">
+                        <span class="display-5 text-info"><i class="bi bi-grid"></i></span>
+                        <h5 class="card-title fw-semibold mt-3">Комірки</h5>
+                        <p class="card-text text-muted">Керування комірками.</p>
+                        <a href="{{ route('cells.index') }}" class="btn btn-outline-primary rounded-pill px-4">Перейти</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card border-0 shadow-lg h-100 hover-zoom">
+                    <div class="card-body text-center">
                         <span class="display-5 text-danger"><i class="bi bi-people"></i></span>
                         <h5 class="card-title fw-semibold mt-3">Співробітники</h5>
                         <p class="card-text text-muted">Керування персоналом.</p>

@@ -14,8 +14,7 @@
                 <a href="{{ route('factories.edit', $factory) }}" class="btn btn-outline-warning me-2">
                     <i class="bi bi-pencil"></i> Редагувати
                 </a>
-                <form action="{{ route('factories.destroy', $factory) }}" method="POST" class="d-inline"
-                    onsubmit="return confirm('Ви впевнені, що хочете видалити цю фабрику?')">
+                <form action="{{ route('factories.destroy', $factory) }}" method="POST" class="d-inline">
                     @csrf
                     @method('DELETE')
                     <button class="btn btn-outline-danger">

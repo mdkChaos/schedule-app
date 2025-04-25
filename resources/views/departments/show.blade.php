@@ -1,4 +1,3 @@
-{{-- filepath: /home/andrii/Projects/schedule-app/resources/views/departments/show.blade.php --}}
 @extends('layouts.admin')
 
 @section('title', $department->name)
@@ -15,8 +14,7 @@
                 <a href="{{ route('departments.edit', $department) }}" class="btn btn-outline-warning me-2">
                     <i class="bi bi-pencil"></i> Редагувати
                 </a>
-                <form action="{{ route('departments.destroy', $department) }}" method="POST" class="d-inline"
-                    onsubmit="return confirm('Ви впевнені, що хочете видалити цей відділ?')">
+                <form action="{{ route('departments.destroy', $department) }}" method="POST" class="d-inline">
                     @csrf
                     @method('DELETE')
                     <button class="btn btn-outline-danger">

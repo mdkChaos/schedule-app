@@ -26,4 +26,17 @@ class UpdateDepartmentRequest extends FormRequest
             'workshop_id' => 'required|exists:workshops,id',
         ];
     }
+
+    /**
+     * Повідомлення про помилки.
+     */
+    public function messages(): array
+    {
+        return [
+            'name.required' => 'Department name is required.',
+            'name.unique' => 'Department with this name already exists.',
+            'workshop_id.required' => 'Workshop is required.',
+            'workshop_id.exists' => 'Workshop must exist in the workshops table.',
+        ];
+    }
 }

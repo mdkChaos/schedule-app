@@ -96,4 +96,13 @@ class WorkshopController extends Controller
         $workshop->forceDelete();
         return redirect()->route('workshops.trashed')->with('success', 'Workshop permanently deleted.');
     }
+
+    /**
+     * Get workshops by factory ID.
+     */
+    public function byFactory($factoryId)
+    {
+        $workshops = Workshop::where('factory_id', $factoryId)->get();
+        return response()->json($workshops);
+    }
 }

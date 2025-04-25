@@ -1,13 +1,13 @@
 @extends('layouts.admin')
 
-@section('title', 'Видалені відділи')
+@section('title', 'Видалені комірки')
 
 @section('content')
     <div class="container py-4">
-        <x-page-header :title="'Видалені відділи'" :iconClass="'bi bi-trash3 text-danger'">
+        <x-page-header :title="'Видалені комірки'" :iconClass="'bi bi-trash3 text-danger'">
             <x-slot:left>
-                <a href="{{ route('departments.index') }}" class="btn btn-outline-secondary">
-                    <i class="bi bi-arrow-left"></i> До списку відділів
+                <a href="{{ route('cells.index') }}" class="btn btn-outline-secondary">
+                    <i class="bi bi-arrow-left"></i> До списку комірок
                 </a>
             </x-slot:left>
         </x-page-header>
@@ -24,30 +24,28 @@
                 <thead class="table-light">
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Назва відділу</th>
-                        <th scope="col">Цех</th>
+                        <th scope="col">Назва комірки</th>
+                        <th scope="col">Відділ</th>
                         <th scope="col">Видалено</th>
                         <th scope="col" class="text-end">Дії</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($deletedDepartments as $department)
+                    @forelse ($deletedCells as $cell)
                         <tr>
-                            <td>{{ $department->id }}</td>
-                            <td>{{ $department->name }}</td>
-                            <td>{{ $department->workshop->name ?? '—' }}</td>
-                            <td>{{ $department->deleted_at->format('d.m.Y H:i') }}</td>
+                            <td>{{ $cell->id }}</td>
+                            <td>{{ $cell->name }}</td>
+                            <td>{{ $cell->department->name ?? '—' }}</td>
+                            <td>{{ $cell->deleted_at->format('d.m.Y H:i') }}</td>
                             <td class="text-end">
-                                <form action="{{ route('departments.restore', $department->id) }}" method="POST"
-                                    class="d-inline">
+                                <form action="{{ route('cells.restore', $cell->id) }}" method="POST" class="d-inline">
                                     @csrf
                                     <button type="submit" class="btn btn-success btn-sm me-1">
                                         <i class="bi bi-arrow-clockwise"></i> Відновити
                                     </button>
                                 </form>
-                                <form action="{{ route('departments.forceDelete', $department->id) }}" method="POST"
-                                    class="d-inline"
-                                    onsubmit="return confirm('Ви впевнені, що хочете остаточно видалити цей відділ?')">
+                                <form action="{{ route('cells.forceDelete', $cell->id) }}" method="POST" class="d-inline"
+                                    onsubmit="return confirm('Ви впевнені, що хочете остаточно видалити цю комірку?')">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger btn-sm">
@@ -58,14 +56,14 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="6" class="text-center text-muted">Видалених відділів не знайдено.</td>
+                            <td colspan="6" class="text-center text-muted">Видалених комірок не знайдено.</td>
                         </tr>
                     @endforelse
                 </tbody>
             </table>
         </div>
         <div class="d-flex justify-content-center mt-4">
-            {{ $deletedDepartments->links() }}
+            {{ $deletedCells->links() }}
         </div>
     </div>
 @endsection

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FactoryController;
 use App\Http\Controllers\WorkshopController;
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\CellController;
 
 // Головна сторінка
 Route::view('/', 'index')->name('index');
@@ -30,6 +31,7 @@ Route::controller(WorkshopController::class)
         Route::get('trashed', 'trashed')->name('trashed');
         Route::post('{id}/restore', 'restore')->name('restore');
         Route::delete('{id}/force-delete', 'forceDelete')->name('forceDelete');
+        Route::get('/factories/{factory}/workshops', 'byFactory');
     });
 Route::resource('workshops', WorkshopController::class);
 
@@ -43,3 +45,14 @@ Route::controller(DepartmentController::class)
         Route::delete('{id}/force-delete', 'forceDelete')->name('forceDelete');
     });
 Route::resource('departments', DepartmentController::class);
+
+// Cell (CRUD + корзина)
+Route::controller(CellController::class)
+    ->prefix('cells')
+    ->name('cells.')
+    ->group(function () {
+        Route::get('trashed', 'trashed')->name('trashed');
+        Route::post('{id}/restore', 'restore')->name('restore');
+        Route::delete('{id}/force-delete', 'forceDelete')->name('forceDelete');
+    });
+Route::resource('cells', CellController::class);

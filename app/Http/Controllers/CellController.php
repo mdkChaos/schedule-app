@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreCellRequest;
+use App\Http\Requests\UpdateCellRequest;
 use App\Models\Cell;
+use App\Models\Department;
 use Illuminate\Http\Request;
 
 class CellController extends Controller
@@ -12,7 +15,8 @@ class CellController extends Controller
      */
     public function index()
     {
-        //
+        $cells = Cell::with('department')->paginate(10);
+        return view('cells.index', compact('cells'));
     }
 
     /**
@@ -20,15 +24,17 @@ class CellController extends Controller
      */
     public function create()
     {
-        //
+        $departments = Department::all();
+        return view('cells.create', compact('departments'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreCellRequest $request)
     {
-        //
+        Cell::create($request->validated());
+        return redirect()->route('cells.index')->with('success', 'Cell created successfully.');
     }
 
     /**
@@ -36,7 +42,7 @@ class CellController extends Controller
      */
     public function show(Cell $cell)
     {
-        //
+        return view('cells.show', compact('cell'));
     }
 
     /**
@@ -44,15 +50,17 @@ class CellController extends Controller
      */
     public function edit(Cell $cell)
     {
-        //
+        $departments = Department::all();
+        return view('cells.edit', compact('cell', 'departments'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Cell $cell)
+    public function update(UpdateCellRequest $request, Cell $cell)
     {
-        //
+        $cell->update($request->validated());
+        return redirect()->route('cells.index')->with('success', 'Cell updated successfully.');
     }
 
     /**
@@ -60,6 +68,33 @@ class CellController extends Controller
      */
     public function destroy(Cell $cell)
     {
-        //
+        $cell->delete();
+        return redirect()->route('cells.index')->with('success', 'Cell deleted successfully.');
+    }
+
+    public function trashed()
+    {
+        $deletedCells = Cell::onlyTrashed()->paginate(10);
+        return view('cells.trashed', compact('deletedCells'));
+    }
+
+    /**
+     * Restore a soft deleted factory.
+     */
+    public function restore($id)
+    {
+        $cell = Cell::onlyTrashed()->findOrFail($id);
+        $cell->restore();
+        return redirect()->route('cells.trashed')->with('success', 'Cell restored successfully.');
+    }
+
+    /**
+     * Permanently delete a factory.
+     */
+    public function forceDelete($id)
+    {
+        $cell = Cell::onlyTrashed()->findOrFail($id);
+        $cell->forceDelete();
+        return redirect()->route('cells.trashed')->with('success', 'Cell permanently deleted.');
     }
 }

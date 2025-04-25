@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateWorkshopRequest extends FormRequest
+class UpdateCellRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,8 +22,8 @@ class UpdateWorkshopRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|max:255|unique:workshops,name,' . $this->route('workshop')->id,
-            'factory_id' => 'required|exists:factories,id',
+            'name' => 'required|string|max:255|unique:cells,name,' . $this->route('cell')->id,
+            'department_id' => 'required|exists:departments,id',
         ];
     }
 
@@ -33,10 +33,10 @@ class UpdateWorkshopRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'name.required' => 'Workshop name is required.',
-            'name.unique' => 'Workshop with this name already exists.',
-            'factory_id.required' => 'Factory is required.',
-            'factory_id.exists' => 'Factory must exist in the factories table.',
+            'name.required' => 'Cell name is required.',
+            'name.unique' => 'Cell with this name already exists.',
+            'department_id.required' => 'Department is required.',
+            'department_id.exists' => 'Department must exist in the departments table.',
         ];
     }
 }
