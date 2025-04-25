@@ -4,15 +4,13 @@
 
 @section('content')
     <div class="container py-4">
-        <div class="d-flex justify-content-between align-items-center mb-4">
-            <h1 class="mb-0 fw-bold">
-                <span class="text-primary"><i class="bi bi-plus-circle"></i></span>
-                Create Factory
-            </h1>
-            <a href="{{ route('factories.index') }}" class="btn btn-outline-secondary">
-                <i class="bi bi-arrow-left"></i> Back to list
-            </a>
-        </div>
+        <x-page-header :title="'Create Factory'" :iconClass="'bi bi-plus-circle text-primary'">
+            <x-slot:left>
+                <a href="{{ route('factories.index') }}" class="btn btn-outline-secondary">
+                    <i class="bi bi-arrow-left"></i> Back to list
+                </a>
+            </x-slot:left>
+        </x-page-header>
 
         <div class="row justify-content-center">
             <div class="col-md-7 col-lg-6">

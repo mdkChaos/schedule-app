@@ -2,9 +2,32 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FactoryController;
+use App\Http\Controllers\WorkshopController;
 
+// Головна сторінка
 Route::view('/', 'index')->name('index');
 
+// Адмін-панель
+Route::view('/admin', 'admin.dashboard')->name('admin.dashboard');
+
+// Factories (CRUD + корзина)
+Route::controller(FactoryController::class)
+    ->prefix('factories')
+    ->name('factories.')
+    ->group(function () {
+        Route::get('trashed', 'trashed')->name('trashed');
+        Route::post('{id}/restore', 'restore')->name('restore');
+        Route::delete('{id}/force-delete', 'forceDelete')->name('forceDelete');
+    });
 Route::resource('factories', FactoryController::class);
 
-Route::view('/admin', 'admin.dashboard')->name('admin.dashboard');
+// Workshops (CRUD + корзина)
+Route::controller(WorkshopController::class)
+    ->prefix('workshops')
+    ->name('workshops.')
+    ->group(function () {
+        Route::get('trashed', 'trashed')->name('trashed');
+        Route::post('{id}/restore', 'restore')->name('restore');
+        Route::delete('{id}/force-delete', 'forceDelete')->name('forceDelete');
+    });
+Route::resource('workshops', WorkshopController::class);

@@ -1,4 +1,3 @@
-{{-- filepath: /home/andrii/Projects/schedule-app/resources/views/layouts/admin.blade.php --}}
 <!DOCTYPE html>
 <html lang="uk">
 

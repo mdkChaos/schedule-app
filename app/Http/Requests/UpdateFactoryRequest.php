@@ -11,7 +11,6 @@ class UpdateFactoryRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        // За потреби заміни на перевірку ролі або policy
         return true;
     }
 

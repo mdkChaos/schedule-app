@@ -27,7 +27,8 @@
                         <span class="display-5 text-success"><i class="bi bi-gear-wide-connected"></i></span>
                         <h5 class="card-title fw-semibold mt-3">Воркшопи</h5>
                         <p class="card-text text-muted">Керування цехами.</p>
-                        <a href="#" class="btn btn-outline-success rounded-pill px-4 disabled">Скоро</a>
+                        <a href="{{ route('workshops.index') }}"
+                            class="btn btn-outline-primary rounded-pill px-4">Перейти</a>
                     </div>
                 </div>
             </div>
@@ -37,7 +38,7 @@
                         <span class="display-5 text-warning"><i class="bi bi-diagram-3"></i></span>
                         <h5 class="card-title fw-semibold mt-3">Відділи</h5>
                         <p class="card-text text-muted">Керування відділами.</p>
-                        <a href="#" class="btn btn-outline-warning rounded-pill px-4 disabled">Скоро</a>
+                        <a href="#" class="btn btn-outline-primary rounded-pill px-4">Перейти</a>
                     </div>
                 </div>
             </div>
@@ -47,7 +48,7 @@
                         <span class="display-5 text-danger"><i class="bi bi-people"></i></span>
                         <h5 class="card-title fw-semibold mt-3">Співробітники</h5>
                         <p class="card-text text-muted">Керування персоналом.</p>
-                        <a href="#" class="btn btn-outline-danger rounded-pill px-4 disabled">Скоро</a>
+                        <a href="#" class="btn btn-outline-primary rounded-pill px-4">Перейти</a>
                     </div>
                 </div>
             </div>

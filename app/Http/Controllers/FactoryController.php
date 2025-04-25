@@ -74,4 +74,30 @@ class FactoryController extends Controller
         $factory->delete();
         return redirect()->route('factories.index')->with('success', 'Factory deleted successfully.');
     }
+
+    public function trashed()
+    {
+        $deletedFactories = Factory::onlyTrashed()->paginate(10);
+        return view('factories.trashed', compact('deletedFactories'));
+    }
+
+    /**
+     * Restore a soft deleted factory.
+     */
+    public function restore($id)
+    {
+        $factory = Factory::onlyTrashed()->findOrFail($id);
+        $factory->restore();
+        return redirect()->route('factories.trashed')->with('success', 'Factory restored successfully.');
+    }
+
+    /**
+     * Permanently delete a factory.
+     */
+    public function forceDelete($id)
+    {
+        $factory = Factory::onlyTrashed()->findOrFail($id);
+        $factory->forceDelete();
+        return redirect()->route('factories.trashed')->with('success', 'Factory permanently deleted.');
+    }
 }

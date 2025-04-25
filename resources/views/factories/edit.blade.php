@@ -4,15 +4,16 @@
 
 @section('content')
     <div class="container py-4">
-        <div class="d-flex justify-content-between align-items-center mb-4">
-            <h1 class="mb-0 fw-bold">
-                <span class="text-primary"><i class="bi bi-pencil-square"></i></span>
-                Edit Factory
-            </h1>
-            <a href="{{ route('factories.index') }}" class="btn btn-outline-secondary">
-                <i class="bi bi-arrow-left"></i> Back to list
-            </a>
-        </div>
+        <x-page-header :title="'Edit Factory'" :iconClass="'bi bi-pencil-square text-primary'">
+            <x-slot:left>
+                <a href="{{ route('factories.index') }}" class="btn btn-outline-secondary">
+                    <i class="bi bi-arrow-left"></i> Back to list
+                </a>
+            </x-slot:left>
+            <x-slot:right>
+                {{-- Якщо потрібні додаткові кнопки, їх можна додати сюди --}}
+            </x-slot:right>
+        </x-page-header>
 
         <div class="row justify-content-center">
             <div class="col-md-7 col-lg-6">
