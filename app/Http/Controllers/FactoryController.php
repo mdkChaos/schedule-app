@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreFactoryRequest;
+use App\Http\Requests\UpdateFactoryRequest;
 use App\Models\Factory;
-use Illuminate\Http\Request;
 
 class FactoryController extends Controller
 {
@@ -12,7 +13,9 @@ class FactoryController extends Controller
      */
     public function index()
     {
-        //
+        // Отримати всі фабрики з пагінацією
+        $factories = Factory::paginate(10);
+        return view('factories.index', compact('factories'));
     }
 
     /**
@@ -20,15 +23,18 @@ class FactoryController extends Controller
      */
     public function create()
     {
-        //
+        // Повернути форму створення фабрики
+        return view('factories.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreFactoryRequest $request)
     {
-        //
+        // Створити нову фабрику
+        Factory::create($request->validated());
+        return redirect()->route('factories.index')->with('success', 'Factory created successfully.');
     }
 
     /**
@@ -36,7 +42,8 @@ class FactoryController extends Controller
      */
     public function show(Factory $factory)
     {
-        //
+        // Показати деталі конкретної фабрики
+        return view('factories.show', compact('factory'));
     }
 
     /**
@@ -44,15 +51,18 @@ class FactoryController extends Controller
      */
     public function edit(Factory $factory)
     {
-        //
+        // Повернути форму редагування фабрики
+        return view('factories.edit', compact('factory'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Factory $factory)
+    public function update(UpdateFactoryRequest $request, Factory $factory)
     {
-        //
+        // Оновити фабрику
+        $factory->update($request->validated());
+        return redirect()->route('factories.index')->with('success', 'Factory updated successfully.');
     }
 
     /**
@@ -60,6 +70,8 @@ class FactoryController extends Controller
      */
     public function destroy(Factory $factory)
     {
-        //
+        // Видалити фабрику
+        $factory->delete();
+        return redirect()->route('factories.index')->with('success', 'Factory deleted successfully.');
     }
 }
