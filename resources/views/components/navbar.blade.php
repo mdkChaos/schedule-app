@@ -14,6 +14,51 @@
                         {{ $itemText }}
                     </a>
                 </li>
+                <li class="nav-item d-flex align-items-center ms-2">
+                    <div class="dropdown">
+                        <button class="btn btn-outline-info btn-sm dropdown-toggle d-flex align-items-center"
+                            type="button" id="localeDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-translate me-1"></i>
+                            @if (app()->getLocale() == 'uk')
+                                UA
+                            @elseif(app()->getLocale() == 'en')
+                                EN
+                            @elseif(app()->getLocale() == 'pl')
+                                PL
+                            @endif
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="localeDropdown">
+                            <li>
+                                <a class="dropdown-item {{ app()->getLocale() == 'uk' ? 'active' : '' }}"
+                                    href="{{ route('lang.switch', 'uk') }}">
+                                    <span class="fi fi-ua me-2"></span> UA
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item {{ app()->getLocale() == 'en' ? 'active' : '' }}"
+                                    href="{{ route('lang.switch', 'en') }}">
+                                    <span class="fi fi-gb me-2"></span> EN
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item {{ app()->getLocale() == 'pl' ? 'active' : '' }}"
+                                    href="{{ route('lang.switch', 'pl') }}">
+                                    <span class="fi fi-pl me-2"></span> PL
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                {{-- <li class="nav-item d-flex align-items-center ms-2">
+                    <form method="get" action="" class="d-flex align-items-center ms-2">
+                        <select class="form-select form-select-sm me-2" name="locale"
+                            onchange="window.location.href='/lang/' + this.value;">
+                            <option value="uk" {{ app()->getLocale() == 'uk' ? 'selected' : '' }}>UA</option>
+                            <option value="en" {{ app()->getLocale() == 'en' ? 'selected' : '' }}>EN</option>
+                            <option value="pl" {{ app()->getLocale() == 'pl' ? 'selected' : '' }}>PL</option>
+                        </select>
+                    </form>
+                </li> --}}
             </ul>
         </div>
     </div>

@@ -13,7 +13,8 @@ class PositionController extends Controller
      */
     public function index()
     {
-        //
+        $positions = Position::paginate(10);
+        return view('positions.index', compact('positions'));
     }
 
     /**
@@ -21,7 +22,7 @@ class PositionController extends Controller
      */
     public function create()
     {
-        //
+        return view('positions.create');
     }
 
     /**
@@ -29,7 +30,8 @@ class PositionController extends Controller
      */
     public function store(StorePositionRequest $request)
     {
-        //
+        $position = Position::create($request->validated());
+        return redirect()->route('positions.index')->with('success', 'Position created successfully.');
     }
 
     /**
@@ -37,7 +39,7 @@ class PositionController extends Controller
      */
     public function show(Position $position)
     {
-        //
+        return view('positions.show', compact('position'));
     }
 
     /**
@@ -45,7 +47,7 @@ class PositionController extends Controller
      */
     public function edit(Position $position)
     {
-        //
+        return view('positions.edit', compact('position'));
     }
 
     /**
@@ -53,7 +55,8 @@ class PositionController extends Controller
      */
     public function update(UpdatePositionRequest $request, Position $position)
     {
-        //
+        $position->update($request->validated());
+        return redirect()->route('positions.index')->with('success', 'Position updated successfully.');
     }
 
     /**
@@ -61,6 +64,36 @@ class PositionController extends Controller
      */
     public function destroy(Position $position)
     {
-        //
+        $position->delete();
+        return redirect()->route('positions.index')->with('success', 'Position deleted successfully.');
+    }
+
+    /**
+     * Display a listing of the trashed resources.
+     */
+    public function trashed()
+    {
+        $positions = Position::onlyTrashed()->paginate(10);
+        return view('positions.trashed', compact('positions'));
+    }
+
+    /**
+     * Restore the specified resource from trash.
+     */
+    public function restore($id)
+    {
+        $position = Position::onlyTrashed()->findOrFail($id);
+        $position->restore();
+        return redirect()->route('positions.trashed')->with('success', 'Position restored successfully.');
+    }
+
+    /**
+     * Force delete the specified resource from storage.
+     */
+    public function forceDelete($id)
+    {
+        $position = Position::onlyTrashed()->findOrFail($id);
+        $position->forceDelete();
+        return redirect()->route('positions.trashed')->with('success', 'Position permanently deleted successfully.');
     }
 }

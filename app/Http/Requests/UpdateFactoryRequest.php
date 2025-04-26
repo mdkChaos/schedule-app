@@ -25,16 +25,6 @@ class UpdateFactoryRequest extends FormRequest
     }
 
     /**
-     * Кастомні назви полів.
-     */
-    public function attributes(): array
-    {
-        return [
-            'name' => 'Factory name',
-        ];
-    }
-
-    /**
      * Повідомлення про помилки.
      */
     public function messages(): array

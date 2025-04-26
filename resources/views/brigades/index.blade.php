@@ -1,4 +1,3 @@
-{{-- filepath: /home/andrii/Projects/schedule-app/resources/views/brigades/index.blade.php --}}
 @extends('layouts.admin')
 
 @section('title', 'Brigades')

@@ -1,4 +1,3 @@
-{{-- filepath: /home/andrii/Projects/schedule-app/resources/views/departments/create.blade.php --}}
 @extends('layouts.admin')
 
 @section('title', 'Create Department')

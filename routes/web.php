@@ -6,12 +6,20 @@ use App\Http\Controllers\FactoryController;
 use App\Http\Controllers\WorkshopController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\CellController;
+use App\Http\Controllers\PositionController;
 
 // Головна сторінка
 Route::view('/', 'index')->name('index');
 
 // Адмін-панель
 Route::view('/admin', 'admin.dashboard')->name('admin.dashboard');
+
+Route::get('lang/{locale}', function ($locale) {
+    if (in_array($locale, ['en', 'uk', 'pl'])) {
+        session(['locale' => $locale]);
+    }
+    return redirect()->back();
+})->name('lang.switch');
 
 // Factories (CRUD + корзина)
 Route::controller(FactoryController::class)
@@ -68,3 +76,14 @@ Route::controller(BrigadeController::class)
         Route::delete('{id}/force-delete', 'forceDelete')->name('forceDelete');
     });
 Route::resource('brigades', BrigadeController::class);
+
+// Position (CRUD + корзина)
+Route::controller(PositionController::class)
+    ->prefix('positions')
+    ->name('positions.')
+    ->group(function () {
+        Route::get('trashed', 'trashed')->name('trashed');
+        Route::post('{id}/restore', 'restore')->name('restore');
+        Route::delete('{id}/force-delete', 'forceDelete')->name('forceDelete');
+    });
+Route::resource('positions', PositionController::class);

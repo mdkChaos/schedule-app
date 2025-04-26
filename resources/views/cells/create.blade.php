@@ -1,4 +1,3 @@
-{{-- filepath: /home/andrii/Projects/schedule-app/resources/views/cells/create.blade.php --}}
 @extends('layouts.admin')
 
 @section('title', 'Create Cell')

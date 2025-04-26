@@ -1,13 +1,13 @@
 @extends('layouts.admin')
 
-@section('title', 'Видалені цехи')
+@section('title', __('message.delete_position'))
 
 @section('content')
     <div class="container py-4">
-        <x-page-header :title="'Видалені цехи'" :iconClass="'bi bi-trash3 text-danger'">
+        <x-page-header :title="__('message.delete_position')" :iconClass="'bi bi-trash3 text-danger'">
             <x-slot:left>
-                <a href="{{ route('workshops.index') }}" class="btn btn-outline-secondary">
-                    <i class="bi bi-arrow-left"></i> До списку цехів
+                <a href="{{ route('positions.index') }}" class="btn btn-outline-secondary">
+                    <i class="bi bi-arrow-left"></i> {{ __('message.back') }}
                 </a>
             </x-slot:left>
         </x-page-header>
@@ -24,48 +24,46 @@
                 <thead class="table-light">
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Назва цеху</th>
-                        <th scope="col">Фабрика</th>
-                        <th scope="col">Видалено</th>
-                        <th scope="col" class="text-end">Дії</th>
+                        <th scope="col">{{ __('message.name') }}</th>
+                        <th scope="col">{{ __('message.deleted') }}</th>
+                        <th scope="col" class="text-end">{{ __('message.actions') }}</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($deletedWorkshops as $workshop)
+                    @forelse ($positions as $position)
                         <tr>
-                            <td>{{ $workshop->id }}</td>
-                            <td>{{ $workshop->name }}</td>
-                            <td>{{ $workshop->factory->name ?? '—' }}</td>
-                            <td>{{ $workshop->deleted_at->format('d.m.Y H:i') }}</td>
+                            <td>{{ $position->id }}</td>
+                            <td>{{ $position->name }}</td>
+                            <td>{{ $position->deleted_at->format('d.m.Y H:i') }}</td>
                             <td class="text-end">
-                                <form action="{{ route('workshops.restore', $workshop->id) }}" method="POST"
+                                <form action="{{ route('positions.restore', $position->id) }}" method="POST"
                                     class="d-inline">
                                     @csrf
                                     <button type="submit" class="btn btn-outline-success me-2">
-                                        <i class="bi bi-arrow-clockwise"></i> Відновити
+                                        <i class="bi bi-arrow-clockwise"></i> {{ __('message.restore') }}
                                     </button>
                                 </form>
-                                <form action="{{ route('workshops.forceDelete', $workshop->id) }}" method="POST"
+                                <form action="{{ route('positions.forceDelete', $position->id) }}" method="POST"
                                     class="d-inline"
-                                    onsubmit="return confirm('Ви впевнені, що хочете остаточно видалити цей цех?')">
+                                    onsubmit="return confirm('Are you sure you want to permanently delete this?')">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-outline-danger">
-                                        <i class="bi bi-x-circle"></i> Видалити назавжди
+                                        <i class="bi bi-x-circle"></i> {{ __('message.delete_permanently') }}
                                     </button>
                                 </form>
                             </td>
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="5" class="text-center text-muted">Видалених цехів не знайдено.</td>
+                            <td colspan="6" class="text-center text-muted">{{ __('message.not_found') }}</td>
                         </tr>
                     @endforelse
                 </tbody>
             </table>
         </div>
         <div class="d-flex justify-content-center mt-4">
-            {{ $deletedWorkshops->links() }}
+            {{ $positions->links() }}
         </div>
     </div>
 @endsection

@@ -1,4 +1,3 @@
-{{-- filepath: /home/andrii/Projects/schedule-app/resources/views/admin/dashboard.blade.php --}}
 @extends('layouts.admin')
 
 @section('title', 'Адмін-панель')
@@ -60,6 +59,17 @@
                         <h5 class="card-title fw-semibold mt-3">Бригади</h5>
                         <p class="card-text text-muted">Керування бригадами.</p>
                         <a href="{{ route('brigades.index') }}"
+                            class="btn btn-outline-primary rounded-pill px-4">Перейти</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card border-0 shadow-lg h-100 hover-zoom">
+                    <div class="card-body text-center">
+                        <span class="display-5 text-dark"><i class="bi bi-person-vcard"></i></span>
+                        <h5 class="card-title fw-semibold mt-3">Посади</h5>
+                        <p class="card-text text-muted">Керування посадами.</p>
+                        <a href="{{ route('positions.index') }}"
                             class="btn btn-outline-primary rounded-pill px-4">Перейти</a>
                     </div>
                 </div>
