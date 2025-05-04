@@ -1,13 +1,13 @@
 @extends('layouts.admin')
 
-@section('title', 'Create Factory')
+@section('title', __('message.create'))
 
 @section('content')
     <div class="container py-4">
-        <x-page-header :title="'Create Factory'" :iconClass="'bi bi-plus-circle text-primary'">
+        <x-page-header :title="__('message.create')" :iconClass="'bi bi-plus-circle text-primary'">
             <x-slot:left>
                 <a href="{{ route('factories.index') }}" class="btn btn-outline-secondary">
-                    <i class="bi bi-arrow-left"></i> Back to list
+                    <i class="bi bi-arrow-left"></i> {{ __('message.back') }}
                 </a>
             </x-slot:left>
         </x-page-header>
@@ -20,7 +20,7 @@
                             @csrf
 
                             <div class="mb-3">
-                                <label for="name" class="form-label fw-semibold">Factory Name</label>
+                                <label for="name" class="form-label fw-semibold">{{ __('message.name') }}</label>
                                 <input type="text" name="name" id="name"
                                     class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}"
                                     required autofocus>
@@ -31,10 +31,10 @@
 
                             <div class="mt-4 d-flex justify-content-end gap-2">
                                 <a href="{{ route('factories.index') }}" class="btn btn-outline-secondary">
-                                    <i class="bi bi-x-lg"></i> Cancel
+                                    <i class="bi bi-x-lg"></i> {{ __('message.cancel') }}
                                 </a>
                                 <button type="submit" class="btn btn-outline-success">
-                                    <i class="bi bi-check-circle"></i> Create
+                                    <i class="bi bi-check-circle"></i> {{ __('message.create') }}
                                 </button>
                             </div>
                         </form>

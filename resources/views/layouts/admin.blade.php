@@ -1,55 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ app()->getLocale() }}" data-bs-theme="ligth">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', __('message.admin_panel'))</title>
-
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    {{-- Bootstrap 5 --}}
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    {{-- Bootstrap Icons --}}
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-
-    {{-- Google Fonts --}}
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
-
-</head>
+{{-- Head --}}
+<x-head :title="__('message.admin_panel')" />
 
 <body class="d-flex flex-column min-vh-100" style="font-family: 'Nunito', Arial, sans-serif;">
+    {{-- Navigation --}}
     <x-navbar :navStyle="'navbar-dark bg-dark'" :logoUrl="route('admin.dashboard')" :logoText="__('message.admin_panel')" :logoStyle="'bi bi-speedometer2'" :itemUrl="route('index')"
-        :itemStyle="'btn-outline-light'" :itemText="'Schedule'" />
+        :itemStyle="'btn-outline-light'" :itemText="__('message.schedule')" />
 
-    <main class="container">
-        @yield('content')
-    </main>
+    {{-- Main --}}
+    <x-main />
 
     {{-- Footer --}}
-    <footer class="bg-white border-top py-3 mt-auto">
-        <div class="container text-center text-muted small">
-            &copy; {{ date('Y') }} Schedule App. {{ __('message.all_rights_reserved') }}.
-        </div>
-    </footer>
+    <x-footer />
 
     {{-- Bootstrap scripts --}}
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-    {{-- Custom scripts --}}
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const alert = document.querySelector('.alert-dismissible');
-            if (alert) {
-                setTimeout(() => {
-                    const bsAlert = bootstrap.Alert.getOrCreateInstance(alert);
-                    bsAlert.close();
-                }, 4000);
-            }
-        });
-    </script>
-    @stack('scripts')
+    {{-- Scripts --}}
+    <x-auto-close-alert />
 </body>
 
 </html>

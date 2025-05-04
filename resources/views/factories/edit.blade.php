@@ -1,17 +1,16 @@
 @extends('layouts.admin')
 
-@section('title', 'Edit Factory')
+@section('title', __('message.edit'))
 
 @section('content')
     <div class="container py-4">
-        <x-page-header :title="'Edit Factory'" :iconClass="'bi bi-pencil-square text-primary'">
+        <x-page-header :title="__('message.edit')" :iconClass="'bi bi-pencil-square text-primary'">
             <x-slot:left>
                 <a href="{{ route('factories.index') }}" class="btn btn-outline-secondary">
-                    <i class="bi bi-arrow-left"></i> Back to list
+                    <i class="bi bi-arrow-left"></i> {{ __('message.back') }}
                 </a>
             </x-slot:left>
             <x-slot:right>
-                {{-- Якщо потрібні додаткові кнопки, їх можна додати сюди --}}
             </x-slot:right>
         </x-page-header>
 
@@ -24,7 +23,7 @@
                             @method('PUT')
 
                             <div class="mb-3">
-                                <label for="name" class="form-label fw-semibold">Factory Name</label>
+                                <label for="name" class="form-label fw-semibold">{{ __('message.name') }}</label>
                                 <input type="text" name="name" id="name"
                                     class="form-control @error('name') is-invalid @enderror"
                                     value="{{ old('name', $factory->name) }}" required autofocus>
@@ -35,10 +34,10 @@
 
                             <div class="mt-4 d-flex justify-content-end gap-2">
                                 <a href="{{ route('factories.index') }}" class="btn btn-outline-secondary">
-                                    <i class="bi bi-x-lg"></i> Cancel
+                                    <i class="bi bi-x-lg"></i> {{ __('message.cancel') }}
                                 </a>
                                 <button type="submit" class="btn btn-outline-success">
-                                    <i class="bi bi-save"></i> Save Changes
+                                    <i class="bi bi-save"></i> {{ __('message.save_changes') }}
                                 </button>
                             </div>
                         </form>

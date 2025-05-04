@@ -1,6 +1,7 @@
 <?php
 return [
     'actions' => 'Actions',
+    'add' => 'Add',
     'add_position' => 'Add Position',
     'admin_panel' => 'Admin Panel',
     'all_rights_reserved' => 'All rights reserved',
@@ -35,6 +36,7 @@ return [
     'positions_management' => 'Positions Management',
     'restore' => 'Restore',
     'save_changes' => 'Save Changes',
+    'schedule' => 'Schedule',
     'trashed' => 'Trashed',
     'view' => 'View',
     'work_schedule' => 'Work Schedule',

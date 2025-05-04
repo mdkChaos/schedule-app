@@ -1,32 +1,27 @@
 @extends('layouts.admin')
 
-@section('title', 'Trashed Factories')
+@section('title', __('message.trashed'))
 
 @section('content')
     <div class="container py-4">
-        <x-page-header :title="'Trashed Factories'" :iconClass="'bi bi-trash3 text-danger'">
+        <x-page-header :title="__('message.trashed')" :iconClass="'bi bi-trash3 text-danger'">
             <x-slot:left>
                 <a href="{{ route('factories.index') }}" class="btn btn-outline-secondary">
-                    <i class="bi bi-arrow-left"></i> Back to list
+                    <i class="bi bi-arrow-left"></i> {{ __('message.back') }}
                 </a>
             </x-slot:left>
         </x-page-header>
 
-        @if (session('success'))
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                {{ session('success') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        @endif
+        <x-message-alert />
 
         <div class="table-responsive shadow-sm rounded">
             <table class="table table-hover align-middle">
                 <thead class="table-light">
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Factory Name</th>
-                        <th scope="col">Deleted At</th>
-                        <th scope="col" class="text-end">Actions</th>
+                        <th scope="col">{{ __('message.name') }}</th>
+                        <th scope="col">{{ __('message.deleted') }}</th>
+                        <th scope="col" class="text-end">{{ __('message.actions') }}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -35,28 +30,13 @@
                             <td>{{ $factory->id }}</td>
                             <td>{{ $factory->name }}</td>
                             <td>{{ $factory->deleted_at->format('d.m.Y H:i') }}</td>
-                            <td class="text-end">
-                                <form action="{{ route('factories.restore', $factory->id) }}" method="POST"
-                                    class="d-inline">
-                                    @csrf
-                                    <button type="submit" class="btn btn-outline-success me-2">
-                                        <i class="bi bi-arrow-clockwise"></i> Restore
-                                    </button>
-                                </form>
-                                <form action="{{ route('factories.forceDelete', $factory->id) }}" method="POST"
-                                    class="d-inline"
-                                    onsubmit="return confirm('Are you sure you want to permanently delete this factory?')">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-outline-danger">
-                                        <i class="bi bi-x-circle"></i> Delete permanently
-                                    </button>
-                                </form>
-                            </td>
+
+                            {{-- Action Buttons --}}
+                            <x-resource-actions-trashed :restoreRoute="route('factories.restore', $factory)" :forceDeleteRoute="route('factories.forceDelete', $factory)" />
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="4" class="text-center text-muted">No trashed factories found.</td>
+                            <td colspan="4" class="text-center text-muted">{{ __('message.not_found') }}</td>
                         </tr>
                     @endforelse
                 </tbody>

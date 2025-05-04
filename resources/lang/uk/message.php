@@ -1,10 +1,11 @@
 <?php
 return [
     'actions' => 'Дії',
+    'add' => 'Додати',
     'add_position' => 'Додати Посаду',
     'admin_panel' => 'Адмін-Панель',
     'all_rights_reserved' => 'Всі права захищені',
-    'back' => 'Назад',
+    'back' => 'Повернутися',
     'brigades' => 'Бригади',
     'brigades_management' => 'Управління Бригадами',
     'cancel' => 'Скасувати',
@@ -35,7 +36,8 @@ return [
     'positions_management' => 'Управління Посадами',
     'restore' => 'Відновити',
     'save_changes' => 'Зберегти Зміни',
-    'trashed' => 'Видалені',
+    'schedule' => 'Графік',
+    'trashed' => 'Кошик',
     'view' => 'Переглянути',
     'work_schedule' => 'Графік Роботи',
     'workshops' => 'Цехи',

@@ -1,6 +1,7 @@
 <?php
 return [
     'actions' => 'Działania',
+    'add' => 'Dodaj',
     'add_position' => 'Dodaj Stanowisko',
     'admin_panel' => 'Panel Administracyjny',
     'all_rights_reserved' => 'Wszystkie prawa zastrzeżone',
@@ -35,6 +36,7 @@ return [
     'positions_management' => 'Zarządzanie Stanowiskami',
     'restore' => 'Przywróć',
     'save_changes' => 'Zapisz Zmiany',
+    'schedule' => 'Harmonogram',
     'trashed' => 'Kosz',
     'view' => 'Zobacz',
     'work_schedule' => 'Harmonogram Pracy',
