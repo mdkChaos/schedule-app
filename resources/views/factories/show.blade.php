@@ -26,7 +26,7 @@
                                 <strong>ID:</strong> {{ $factory->id }}
                             </li>
                             <li class="list-group-item">
-                                <strong>{{ __('message.name') }}:</strong> {{ $factory->name }}
+                                <strong>{{ __('message.factory') }}:</strong> {{ $factory->name }}
                             </li>
                             <li class="list-group-item">
                                 <strong>{{ __('message.created') }}:</strong>

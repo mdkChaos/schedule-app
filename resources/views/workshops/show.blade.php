@@ -26,7 +26,7 @@
                                 <strong>ID:</strong> {{ $workshop->id }}
                             </li>
                             <li class="list-group-item">
-                                <strong>{{ __('message.name') }}:</strong> {{ $workshop->name }}
+                                <strong>{{ __('message.workshop') }}:</strong> {{ $workshop->name }}
                             </li>
                             <li class="list-group-item">
                                 <strong>{{ __('message.factory') }}:</strong> {{ $workshop->factory->name ?? '—' }}

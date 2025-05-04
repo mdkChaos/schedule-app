@@ -5,9 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreDepartmentRequest;
 use App\Http\Requests\UpdateDepartmentRequest;
 use App\Models\Department;
-use App\Models\Factory;
 use App\Models\Workshop;
-use Illuminate\Http\Request;
 
 class DepartmentController extends Controller
 {
@@ -17,6 +15,7 @@ class DepartmentController extends Controller
     public function index()
     {
         $departments = Department::with('workshop')->paginate(10);
+
         return view('departments.index', compact('departments'));
     }
 
@@ -26,6 +25,7 @@ class DepartmentController extends Controller
     public function create()
     {
         $workshops = Workshop::all();
+
         return view('departments.create', compact('workshops'));
     }
 
@@ -35,7 +35,8 @@ class DepartmentController extends Controller
     public function store(StoreDepartmentRequest $request)
     {
         Department::create($request->validated());
-        return redirect()->route('departments.index')->with('success', 'Department created successfully.');
+
+        return redirect()->route('departments.index')->with('success', __('message.created_successfully'));
     }
 
     /**
@@ -52,6 +53,7 @@ class DepartmentController extends Controller
     public function edit(Department $department)
     {
         $workshops = Workshop::all();
+
         return view('departments.edit', compact('department', 'workshops'));
     }
 
@@ -61,7 +63,8 @@ class DepartmentController extends Controller
     public function update(UpdateDepartmentRequest $request, Department $department)
     {
         $department->update($request->validated());
-        return redirect()->route('departments.index')->with('success', 'Department updated successfully.');
+
+        return redirect()->route('departments.index')->with('success', __('message.updated_successfully'));
     }
 
     /**
@@ -70,12 +73,14 @@ class DepartmentController extends Controller
     public function destroy(Department $department)
     {
         $department->delete();
-        return redirect()->route('departments.index')->with('success', 'Department deleted successfully.');
+
+        return redirect()->route('departments.index')->with('success', __('message.deleted_successfully'));
     }
 
     public function trashed()
     {
         $deletedDepartments = Department::onlyTrashed()->paginate(10);
+
         return view('departments.trashed', compact('deletedDepartments'));
     }
 
@@ -86,7 +91,8 @@ class DepartmentController extends Controller
     {
         $department = Department::onlyTrashed()->findOrFail($id);
         $department->restore();
-        return redirect()->route('departments.trashed')->with('success', 'Department restored successfully.');
+
+        return redirect()->route('departments.trashed')->with('success', __('message.restored_successfully'));
     }
 
     /**
@@ -96,6 +102,7 @@ class DepartmentController extends Controller
     {
         $department = Department::onlyTrashed()->findOrFail($id);
         $department->forceDelete();
-        return redirect()->route('departments.trashed')->with('success', 'Department permanently deleted.');
+
+        return redirect()->route('departments.trashed')->with('success', __('message.permanently_deleted'));
     }
 }

@@ -35,7 +35,6 @@ Route::controller(WorkshopController::class)
         Route::get('trashed', 'trashed')->name('trashed');
         Route::post('{id}/restore', 'restore')->name('restore');
         Route::delete('{id}/force-delete', 'forceDelete')->name('forceDelete');
-        Route::get('/factories/{factory}/workshops', 'byFactory');
     });
 Route::resource('workshops', WorkshopController::class);
 

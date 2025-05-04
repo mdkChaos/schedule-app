@@ -17,13 +17,12 @@
         {{-- Message --}}
         <x-message-alert />
 
-        {{-- Table --}}
         <div class="table-responsive shadow-sm rounded">
             <table class="table table-hover align-middle">
                 <thead class="table-light">
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">{{ __('message.name') }}</th>
+                        <th scope="col">{{ __('message.workshop') }}</th>
                         <th scope="col">{{ __('message.factory') }}</th>
                         <th scope="col" class="text-end">{{ __('message.actions') }}</th>
                     </tr>
@@ -34,6 +33,7 @@
                             <td>{{ $workshop->id }}</td>
                             <td>{{ $workshop->name }}</td>
                             <td>{{ $workshop->factory->name ?? '—' }}</td>
+
                             {{-- Action Buttons --}}
                             <td class="text-end">
                                 <x-btn-view :route="route('workshops.show', $workshop)" />
@@ -50,7 +50,7 @@
             </table>
         </div>
 
-        {{-- Пагінація --}}
+        {{-- Pagination --}}
         <div class="d-flex justify-content-center mt-4">
             {{ $workshops->links() }}
         </div>

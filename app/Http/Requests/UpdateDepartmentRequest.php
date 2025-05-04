@@ -22,7 +22,7 @@ class UpdateDepartmentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|max:255|unique:departments,name,' . $this->route('department')->id,
+            'name' => 'required|string|max:255|unique:departments,name,' . $this->department->id,
             'workshop_id' => 'required|exists:workshops,id',
         ];
     }
@@ -34,7 +34,7 @@ class UpdateDepartmentRequest extends FormRequest
     {
         return [
             'name.required' => 'Department name is required.',
-            'name.unique' => 'Department with this name already exists.',
+            'name.unique' => __('message.this_name_already_exists'),
             'workshop_id.required' => 'Workshop is required.',
             'workshop_id.exists' => 'Workshop must exist in the workshops table.',
         ];

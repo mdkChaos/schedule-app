@@ -1,13 +1,11 @@
 @extends('layouts.admin')
 
-@section('title', 'Create Department')
+@section('title', __('message.create'))
 @section('content')
-    <div class="container py-4">
-        <x-page-header :title="'Create Department'" :iconClass="'bi bi-plus-circle text-warning'">
+    <div class="container">
+        <x-page-header :title="__('message.create')" :iconClass="'bi bi-plus-circle text-warning'">
             <x-slot:left>
-                <a href="{{ route('departments.index') }}" class="btn btn-outline-secondary">
-                    <i class="bi bi-arrow-left"></i> Back to list
-                </a>
+                <x-btn-back :route="route('departments.index')" />
             </x-slot:left>
         </x-page-header>
 
@@ -19,10 +17,10 @@
                             @csrf
 
                             <div class="mb-3">
-                                <label for="workshop_id" class="form-label fw-semibold">Workshop</label>
+                                <label for="workshop_id" class="form-label fw-semibold">{{ __('message.workshop') }}</label>
                                 <select name="workshop_id" id="workshop_id"
                                     class="form-select @error('workshop_id') is-invalid @enderror" required>
-                                    <option value="" disabled selected>Choose workshop...</option>
+                                    <option value="" disabled selected>{{ __('message.choose') }}</option>
                                     @foreach ($workshops as $workshop)
                                         <option value="{{ $workshop->id }}"
                                             {{ old('workshop_id') == $workshop->id ? 'selected' : '' }}>
@@ -36,7 +34,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="name" class="form-label fw-semibold">Department Name</label>
+                                <label for="name" class="form-label fw-semibold">{{ __('message.name') }}</label>
                                 <input type="text" name="name" id="name"
                                     class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}"
                                     required autofocus>
@@ -46,12 +44,8 @@
                             </div>
 
                             <div class="mt-4 d-flex justify-content-end gap-2">
-                                <a href="{{ route('departments.index') }}" class="btn btn-outline-secondary">
-                                    <i class="bi bi-x-lg"></i> Cancel
-                                </a>
-                                <button type="submit" class="btn btn-outline-success">
-                                    <i class="bi bi-check-circle"></i> Create
-                                </button>
+                                <x-btn-cancel :route="route('departments.index')" />
+                                <x-btn-create />
                             </div>
                         </form>
                     </div>
