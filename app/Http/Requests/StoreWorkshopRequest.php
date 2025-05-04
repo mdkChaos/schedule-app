@@ -26,4 +26,15 @@ class StoreWorkshopRequest extends FormRequest
             'factory_id' => 'required|exists:factories,id',
         ];
     }
+
+    /**
+     * Повідомлення про помилки.
+     */
+    public function messages(): array
+    {
+        return [
+            'name.required' => 'Workshop name is required.',
+            'name.unique' => __('message.this_name_already_exists'),
+        ];
+    }
 }

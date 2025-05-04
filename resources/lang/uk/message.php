@@ -10,6 +10,7 @@ return [
     'cancel' => 'Скасувати',
     'cells' => 'Комірки',
     'cells_management' => 'Управління Комірками',
+    'choose' => 'Вибрати ...',
     'create' => 'Створити',
     'created' => 'Створено',
     'created_successfully' => 'Успішно створено',

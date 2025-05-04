@@ -1,33 +1,26 @@
 @extends('layouts.admin')
 
-@section('title', 'Видалені цехи')
+@section('title', __('message.trashed'))
 
 @section('content')
-    <div class="container py-4">
-        <x-page-header :title="'Видалені цехи'" :iconClass="'bi bi-trash3 text-danger'">
+    <div class="container">
+        <x-page-header :title="__('message.trashed')" :iconClass="'bi bi-trash3 text-danger'">
             <x-slot:left>
-                <a href="{{ route('workshops.index') }}" class="btn btn-outline-secondary">
-                    <i class="bi bi-arrow-left"></i> До списку цехів
-                </a>
+                <x-btn-back :route="route('workshops.index')" />
             </x-slot:left>
         </x-page-header>
 
-        @if (session('success'))
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                {{ session('success') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        @endif
+        <x-message-alert />
 
         <div class="table-responsive shadow-sm rounded">
             <table class="table table-hover align-middle">
                 <thead class="table-light">
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Назва цеху</th>
-                        <th scope="col">Фабрика</th>
-                        <th scope="col">Видалено</th>
-                        <th scope="col" class="text-end">Дії</th>
+                        <th scope="col">{{ __('message.name') }}</th>
+                        <th scope="col">{{ __('message.factory') }}</th>
+                        <th scope="col">{{ __('message.deleted') }}</th>
+                        <th scope="col" class="text-end">{{ __('message.actions') }}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -37,28 +30,16 @@
                             <td>{{ $workshop->name }}</td>
                             <td>{{ $workshop->factory->name ?? '—' }}</td>
                             <td>{{ $workshop->deleted_at->format('d.m.Y H:i') }}</td>
+
+                            {{-- Action Buttons --}}
                             <td class="text-end">
-                                <form action="{{ route('workshops.restore', $workshop->id) }}" method="POST"
-                                    class="d-inline">
-                                    @csrf
-                                    <button type="submit" class="btn btn-outline-success me-2">
-                                        <i class="bi bi-arrow-clockwise"></i> Відновити
-                                    </button>
-                                </form>
-                                <form action="{{ route('workshops.forceDelete', $workshop->id) }}" method="POST"
-                                    class="d-inline"
-                                    onsubmit="return confirm('Ви впевнені, що хочете остаточно видалити цей цех?')">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-outline-danger">
-                                        <i class="bi bi-x-circle"></i> Видалити назавжди
-                                    </button>
-                                </form>
+                                <x-btn-restore :route="route('workshops.restore', $workshop)" />
+                                <x-btn-force-delete :route="route('workshops.forceDelete', $workshop)" />
                             </td>
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="5" class="text-center text-muted">Видалених цехів не знайдено.</td>
+                            <td colspan="5" class="text-center text-muted">{{ __('message.not_found') }}</td>
                         </tr>
                     @endforelse
                 </tbody>

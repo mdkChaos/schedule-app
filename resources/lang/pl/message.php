@@ -10,6 +10,7 @@ return [
     'cancel' => 'Anuluj',
     'cells' => 'Komórki',
     'cells_management' => 'Zarządzanie Komórkami',
+    'choose' => 'Wybierz ...',
     'create' => 'Utwórz',
     'created' => 'Utworzono',
     'created_successfully' => 'Utworzono pomyślnie',

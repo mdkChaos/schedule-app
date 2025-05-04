@@ -1,14 +1,12 @@
 @extends('layouts.admin')
 
-@section('title', 'Редагувати цех')
+@section('title', __('message.edit'))
 
 @section('content')
-    <div class="container py-4">
-        <x-page-header :title="'Редагувати цех'" :iconClass="'bi bi-pencil-square text-success'">
+    <div class="container">
+        <x-page-header :title="__('message.edit')" :iconClass="'bi bi-pencil-square text-success'">
             <x-slot:left>
-                <a href="{{ route('workshops.index') }}" class="btn btn-outline-secondary">
-                    <i class="bi bi-arrow-left"></i> До списку
-                </a>
+                <x-btn-back :route="route('workshops.index')" />
             </x-slot:left>
         </x-page-header>
 
@@ -21,10 +19,10 @@
                             @method('PUT')
 
                             <div class="mb-3">
-                                <label for="factory_id" class="form-label fw-semibold">Фабрика</label>
+                                <label for="factory_id" class="form-label fw-semibold">{{ __('message.factory') }}</label>
                                 <select name="factory_id" id="factory_id"
                                     class="form-select @error('factory_id') is-invalid @enderror" required>
-                                    <option value="" disabled>Оберіть фабрику...</option>
+                                    <option value="" disabled>{{ __('message.choose') }}</option>
                                     @foreach ($factories as $factory)
                                         <option value="{{ $factory->id }}"
                                             {{ old('factory_id', $workshop->factory_id) == $factory->id ? 'selected' : '' }}>
@@ -38,7 +36,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="name" class="form-label fw-semibold">Назва цеху</label>
+                                <label for="name" class="form-label fw-semibold">{{ __('message.name') }}</label>
                                 <input type="text" name="name" id="name"
                                     class="form-control @error('name') is-invalid @enderror"
                                     value="{{ old('name', $workshop->name) }}" required autofocus>
@@ -48,12 +46,8 @@
                             </div>
 
                             <div class="mt-4 d-flex justify-content-end gap-2">
-                                <a href="{{ route('workshops.index') }}" class="btn btn-outline-secondary">
-                                    <i class="bi bi-x-lg"></i> Скасувати
-                                </a>
-                                <button type="submit" class="btn btn-outline-success">
-                                    <i class="bi bi-save"></i> Зберегти зміни
-                                </button>
+                                <x-btn-cancel :route="route('workshops.index')" />
+                                <x-btn-save />
                             </div>
                         </form>
                     </div>

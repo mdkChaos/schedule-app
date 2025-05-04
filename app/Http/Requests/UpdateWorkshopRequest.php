@@ -22,7 +22,7 @@ class UpdateWorkshopRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|max:255|unique:workshops,name,' . $this->route('workshop')->id,
+            'name' => 'required|string|max:255|unique:workshops,name,' . $this->workshop->id,
             'factory_id' => 'required|exists:factories,id',
         ];
     }
@@ -34,7 +34,7 @@ class UpdateWorkshopRequest extends FormRequest
     {
         return [
             'name.required' => 'Workshop name is required.',
-            'name.unique' => 'Workshop with this name already exists.',
+            'name.unique' => __('message.this_name_already_exists'),
             'factory_id.required' => 'Factory is required.',
             'factory_id.exists' => 'Factory must exist in the factories table.',
         ];

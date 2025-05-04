@@ -15,6 +15,7 @@ class WorkshopController extends Controller
     public function index()
     {
         $workshops = Workshop::with('factory')->paginate(10);
+
         return view('workshops.index', compact('workshops'));
     }
 
@@ -24,6 +25,7 @@ class WorkshopController extends Controller
     public function create()
     {
         $factories = Factory::all();
+
         return view('workshops.create', compact('factories'));
     }
 
@@ -33,7 +35,8 @@ class WorkshopController extends Controller
     public function store(StoreWorkshopRequest $request)
     {
         Workshop::create($request->validated());
-        return redirect()->route('workshops.index')->with('success', 'Workshop created successfully.');
+
+        return redirect()->route('workshops.index')->with('success', __('message.created_successfully'));
     }
 
     /**
@@ -50,6 +53,7 @@ class WorkshopController extends Controller
     public function edit(Workshop $workshop)
     {
         $factories = Factory::all();
+
         return view('workshops.edit', compact('workshop', 'factories'));
     }
 
@@ -59,7 +63,8 @@ class WorkshopController extends Controller
     public function update(UpdateWorkshopRequest $request, Workshop $workshop)
     {
         $workshop->update($request->validated());
-        return redirect()->route('workshops.index')->with('success', 'Workshop updated successfully.');
+
+        return redirect()->route('workshops.index')->with('success', __('message.updated_successfully'));
     }
 
     /**
@@ -68,12 +73,14 @@ class WorkshopController extends Controller
     public function destroy(Workshop $workshop)
     {
         $workshop->delete();
-        return redirect()->route('workshops.index')->with('success', 'Workshop deleted successfully.');
+
+        return redirect()->route('workshops.index')->with('success', __('message.deleted_successfully'));
     }
 
     public function trashed()
     {
         $deletedWorkshops = Workshop::onlyTrashed()->paginate(10);
+
         return view('workshops.trashed', compact('deletedWorkshops'));
     }
 
@@ -84,7 +91,8 @@ class WorkshopController extends Controller
     {
         $workshop = Workshop::onlyTrashed()->findOrFail($id);
         $workshop->restore();
-        return redirect()->route('workshops.trashed')->with('success', 'Workshop restored successfully.');
+
+        return redirect()->route('workshops.trashed')->with('success', __('message.restored_successfully'));
     }
 
     /**
@@ -94,7 +102,8 @@ class WorkshopController extends Controller
     {
         $workshop = Workshop::onlyTrashed()->findOrFail($id);
         $workshop->forceDelete();
-        return redirect()->route('workshops.trashed')->with('success', 'Workshop permanently deleted.');
+
+        return redirect()->route('workshops.trashed')->with('success', __('message.permanently_deleted'));
     }
 
     /**
@@ -103,6 +112,7 @@ class WorkshopController extends Controller
     public function byFactory($factoryId)
     {
         $workshops = Workshop::where('factory_id', $factoryId)->get();
+
         return response()->json($workshops);
     }
 }

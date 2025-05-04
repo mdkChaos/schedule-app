@@ -10,6 +10,7 @@ return [
     'cancel' => 'Cancel',
     'cells' => 'Cells',
     'cells_management' => 'Cells Management',
+    'choose' => 'Choose ...',
     'create' => 'Create',
     'created' => 'Created',
     'created_successfully' => 'Created successfully',
