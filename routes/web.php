@@ -87,3 +87,14 @@ Route::controller(PositionController::class)
         Route::delete('{id}/force-delete', 'forceDelete')->name('forceDelete');
     });
 Route::resource('positions', PositionController::class);
+
+Route::get('/test-flash', function () {
+    session()->flash('success', 'Test flash message!');
+    //dd(session()->all());
+    return redirect('/');
+});
+
+Route::get('/test-session', function () {
+    session(['foo' => 'bar']);
+    return redirect('/');
+});

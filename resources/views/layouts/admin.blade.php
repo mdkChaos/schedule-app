@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', 'Адмін-панель')</title>
+    <title>@yield('title', __('message.admin_panel'))</title>
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -20,7 +20,7 @@
 </head>
 
 <body class="d-flex flex-column min-vh-100" style="font-family: 'Nunito', Arial, sans-serif;">
-    <x-navbar :navStyle="'navbar-dark bg-dark'" :logoUrl="route('admin.dashboard')" :logoText="'Admin Panel'" :logoStyle="'bi bi-speedometer2'" :itemUrl="route('index')"
+    <x-navbar :navStyle="'navbar-dark bg-dark'" :logoUrl="route('admin.dashboard')" :logoText="__('message.admin_panel')" :logoStyle="'bi bi-speedometer2'" :itemUrl="route('index')"
         :itemStyle="'btn-outline-light'" :itemText="'Schedule'" />
 
     <main class="container">
@@ -30,7 +30,7 @@
     {{-- Footer --}}
     <footer class="bg-white border-top py-3 mt-auto">
         <div class="container text-center text-muted small">
-            &copy; {{ date('Y') }} Schedule App. Всі права захищено.
+            &copy; {{ date('Y') }} Schedule App. {{ __('message.all_rights_reserved') }}.
         </div>
     </footer>
 

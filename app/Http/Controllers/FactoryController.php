@@ -34,7 +34,8 @@ class FactoryController extends Controller
     {
         // Створити нову фабрику
         Factory::create($request->validated());
-        return redirect()->route('factories.index')->with('success', 'Factory created successfully.');
+        return redirect()->route('factories.index', ['success' => 'Factory created successfully.']);
+        //return redirect()->route('factories.index')->with('success', 'Factory created successfully.');
     }
 
     /**

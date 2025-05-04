@@ -49,16 +49,6 @@
                         </ul>
                     </div>
                 </li>
-                {{-- <li class="nav-item d-flex align-items-center ms-2">
-                    <form method="get" action="" class="d-flex align-items-center ms-2">
-                        <select class="form-select form-select-sm me-2" name="locale"
-                            onchange="window.location.href='/lang/' + this.value;">
-                            <option value="uk" {{ app()->getLocale() == 'uk' ? 'selected' : '' }}>UA</option>
-                            <option value="en" {{ app()->getLocale() == 'en' ? 'selected' : '' }}>EN</option>
-                            <option value="pl" {{ app()->getLocale() == 'pl' ? 'selected' : '' }}>PL</option>
-                        </select>
-                    </form>
-                </li> --}}
             </ul>
         </div>
     </div>

@@ -33,23 +33,13 @@
     {{-- Footer --}}
     <footer class="bg-white border-top py-3 mt-auto">
         <div class="container text-center text-muted small">
-            &copy; {{ date('Y') }} Schedule App. Всі права захищено.
+            &copy; {{ date('Y') }} Schedule App. {{ __('message.all_rights_reserved') }}.
         </div>
     </footer>
 
-    {{-- Bootstrap scripts --}}
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const alert = document.querySelector('.alert-dismissible');
-            if (alert) {
-                setTimeout(() => {
-                    const bsAlert = bootstrap.Alert.getOrCreateInstance(alert);
-                    bsAlert.close();
-                }, 4000);
-            }
-        });
-    </script>
+    {{-- Scripts --}}
+    <x-auto-close-alert />
+
     @stack('scripts')
 </body>
 
