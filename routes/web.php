@@ -9,18 +9,14 @@ use App\Http\Controllers\CellController;
 use App\Http\Controllers\LocaleController;
 use App\Http\Controllers\PositionController;
 
-// Головна сторінка
 Route::view('/', 'index')->name('index');
 
-// Адмін-панель
 Route::view('/admin', 'admin.dashboard')->name('admin.dashboard');
 
-// Change language
-Route::get('lang/{locale}', [LocaleController::class, 'switch'])->name('lang.switch');
 Route::post('language-switch', [LocaleController::class, 'switchLanguage'])->name('language.switch');
 
 
-// Factories (CRUD + корзина)
+// Factories (CRUD + trashed)
 Route::controller(FactoryController::class)
     ->prefix('factories')
     ->name('factories.')
@@ -31,7 +27,7 @@ Route::controller(FactoryController::class)
     });
 Route::resource('factories', FactoryController::class);
 
-// Workshops (CRUD + корзина)
+// Workshops (CRUD + trashed)
 Route::controller(WorkshopController::class)
     ->prefix('workshops')
     ->name('workshops.')
@@ -43,7 +39,7 @@ Route::controller(WorkshopController::class)
     });
 Route::resource('workshops', WorkshopController::class);
 
-// Department (CRUD + корзина)
+// Department (CRUD + trashed))
 Route::controller(DepartmentController::class)
     ->prefix('departments')
     ->name('departments.')
@@ -54,7 +50,7 @@ Route::controller(DepartmentController::class)
     });
 Route::resource('departments', DepartmentController::class);
 
-// Cell (CRUD + корзина)
+// Cell (CRUD + trashed)
 Route::controller(CellController::class)
     ->prefix('cells')
     ->name('cells.')
@@ -65,7 +61,7 @@ Route::controller(CellController::class)
     });
 Route::resource('cells', CellController::class);
 
-// Brigade (CRUD + корзина)
+// Brigade (CRUD + trashed)
 Route::controller(BrigadeController::class)
     ->prefix('brigades')
     ->name('brigades.')
@@ -76,7 +72,7 @@ Route::controller(BrigadeController::class)
     });
 Route::resource('brigades', BrigadeController::class);
 
-// Position (CRUD + корзина)
+// Position (CRUD + trashed)
 Route::controller(PositionController::class)
     ->prefix('positions')
     ->name('positions.')
