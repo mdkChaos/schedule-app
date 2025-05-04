@@ -1,4 +1,5 @@
 @props(['icon', 'iconColor', 'title', 'text', 'route'])
+
 <div class="col-md-3">
     <div class="card border-0 shadow-lg h-100 hover-zoom">
         <div class="card-body text-center">
