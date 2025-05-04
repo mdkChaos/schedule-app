@@ -3,12 +3,10 @@
 @section('title', __('message.trashed'))
 
 @section('content')
-    <div class="container py-4">
+    <div class="container">
         <x-page-header :title="__('message.trashed')" :iconClass="'bi bi-trash3 text-danger'">
             <x-slot:left>
-                <a href="{{ route('factories.index') }}" class="btn btn-outline-secondary">
-                    <i class="bi bi-arrow-left"></i> {{ __('message.back') }}
-                </a>
+                <x-btn-back :route="route('factories.index')" />
             </x-slot:left>
         </x-page-header>
 
@@ -32,7 +30,12 @@
                             <td>{{ $factory->deleted_at->format('d.m.Y H:i') }}</td>
 
                             {{-- Action Buttons --}}
-                            <x-resource-actions-trashed :restoreRoute="route('factories.restore', $factory)" :forceDeleteRoute="route('factories.forceDelete', $factory)" />
+                            <td class="text-end">
+
+                                <x-btn-restore :route="route('factories.restore', $factory)" />
+                                <x-btn-force-delete :route="route('factories.forceDelete', $factory)" />
+
+                            </td>
                         </tr>
                     @empty
                         <tr>

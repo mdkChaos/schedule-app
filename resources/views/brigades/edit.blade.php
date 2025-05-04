@@ -1,13 +1,13 @@
 @extends('layouts.admin')
 
-@section('title', 'Редагувати бригаду')
+@section('title', __('message.edit'))
 
 @section('content')
     <div class="container py-4">
-        <x-page-header :title="'Редагувати бригаду'" :iconClass="'bi bi-pencil-square text-secondary'">
+        <x-page-header :title="__('message.edit')" :iconClass="'bi bi-pencil-square text-secondary'">
             <x-slot:left>
                 <a href="{{ route('brigades.index') }}" class="btn btn-outline-secondary">
-                    <i class="bi bi-arrow-left"></i> До списку
+                    <i class="bi bi-arrow-left"></i> {{ __('message.back') }}
                 </a>
             </x-slot:left>
         </x-page-header>
@@ -21,7 +21,7 @@
                             @method('PUT')
 
                             <div class="mb-3">
-                                <label for="name" class="form-label fw-semibold">Назва бригади</label>
+                                <label for="name" class="form-label fw-semibold"></label>
                                 <input type="text" name="name" id="name"
                                     class="form-control @error('name') is-invalid @enderror"
                                     value="{{ old('name', $brigade->name) }}" required autofocus>
@@ -32,10 +32,10 @@
 
                             <div class="mt-4 d-flex justify-content-end gap-2">
                                 <a href="{{ route('brigades.index') }}" class="btn btn-outline-secondary">
-                                    <i class="bi bi-x-lg"></i> Скасувати
+                                    <i class="bi bi-x-lg"></i> {{ __('message.cancel') }}
                                 </a>
                                 <button type="submit" class="btn btn-outline-success">
-                                    <i class="bi bi-save"></i> Зберегти зміни
+                                    <i class="bi bi-save"></i> {{ __('message.save') }}
                                 </button>
                             </div>
                         </form>

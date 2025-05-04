@@ -3,26 +3,21 @@
 @section('title', __('message.factories'))
 
 @section('content')
-    <div class="container py-4">
+    <div class="container">
         <x-page-header :title="__('message.factories')" :iconClass="'bi bi-building text-primary'">
             <x-slot:left>
-                <a href="{{ route('admin.dashboard') }}" class="btn btn-outline-secondary">
-                    <i class="bi bi-arrow-left"></i> {{ __('message.admin_panel') }}
-                </a>
+                <x-btn-back :route="route('admin.dashboard')" />
             </x-slot:left>
             <x-slot:right>
-                <a href="{{ route('factories.create') }}" class="btn btn-outline-primary px-4">
-                    <i class="bi bi-plus-lg"></i> {{ __('message.add') }}
-                </a>
-                <a href="{{ route('factories.trashed') }}" class="btn btn-outline-danger">
-                    <i class="bi bi-trash3"></i> {{ __('message.trashed') }}
-                </a>
+                <x-btn-add :route="route('factories.create')" />
+                <x-btn-trashed :route="route('factories.trashed')" />
             </x-slot:right>
         </x-page-header>
 
+        {{-- Message --}}
         <x-message-alert />
 
-        {{-- Таблиця --}}
+        {{-- Table --}}
         <div class="table-responsive shadow-sm rounded">
             <table class="table table-hover align-middle">
                 <thead class="table-light">
@@ -39,7 +34,11 @@
                             <td>{{ $factory->name }}</td>
 
                             {{-- Action Buttons --}}
-                            <x-resource-actions :showRoute="route('factories.show', $factory)" :editRoute="route('factories.edit', $factory)" :deleteRoute="route('factories.destroy', $factory)" />
+                            <td class="text-end">
+                                <x-btn-view :route="route('factories.show', $factory)" />
+                                <x-btn-edit :route="route('factories.edit', $factory)" />
+                                <x-btn-delete :route="route('factories.destroy', $factory)" />
+                            </td>
 
                         </tr>
                     @empty
@@ -51,7 +50,7 @@
             </table>
         </div>
 
-        {{-- Пагінація --}}
+        {{-- Pagination --}}
         <div class="d-flex justify-content-center mt-4">
             {{ $factories->links() }}
         </div>

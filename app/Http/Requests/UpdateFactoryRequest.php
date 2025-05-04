@@ -20,7 +20,7 @@ class UpdateFactoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|max:255|unique:factories,name,' . $this->route('factory')->id,
+            'name' => 'required|string|max:255|unique:factories,name,' . $this->factory->id,
         ];
     }
 
@@ -31,7 +31,7 @@ class UpdateFactoryRequest extends FormRequest
     {
         return [
             'name.required' => 'Factory name is required.',
-            'name.unique' => 'Factory with this name already exists.',
+            'name.unique' => __('message.this_name_already_exists'),
         ];
     }
 }

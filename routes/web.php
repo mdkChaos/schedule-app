@@ -6,6 +6,7 @@ use App\Http\Controllers\FactoryController;
 use App\Http\Controllers\WorkshopController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\CellController;
+use App\Http\Controllers\LocaleController;
 use App\Http\Controllers\PositionController;
 
 // Головна сторінка
@@ -14,12 +15,10 @@ Route::view('/', 'index')->name('index');
 // Адмін-панель
 Route::view('/admin', 'admin.dashboard')->name('admin.dashboard');
 
-Route::get('lang/{locale}', function ($locale) {
-    if (in_array($locale, ['en', 'uk', 'pl'])) {
-        session(['locale' => $locale]);
-    }
-    return redirect()->back();
-})->name('lang.switch');
+// Change language
+Route::get('lang/{locale}', [LocaleController::class, 'switch'])->name('lang.switch');
+Route::post('language-switch', [LocaleController::class, 'switchLanguage'])->name('language.switch');
+
 
 // Factories (CRUD + корзина)
 Route::controller(FactoryController::class)
@@ -87,14 +86,3 @@ Route::controller(PositionController::class)
         Route::delete('{id}/force-delete', 'forceDelete')->name('forceDelete');
     });
 Route::resource('positions', PositionController::class);
-
-Route::get('/test-flash', function () {
-    session()->flash('success', 'Test flash message!');
-    //dd(session()->all());
-    return redirect('/');
-});
-
-Route::get('/test-session', function () {
-    session(['foo' => 'bar']);
-    return redirect('/');
-});

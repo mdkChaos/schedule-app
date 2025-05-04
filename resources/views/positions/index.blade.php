@@ -12,7 +12,7 @@
             </x-slot:left>
             <x-slot:right>
                 <a href="{{ route('positions.create') }}" class="btn btn-outline-primary px-4">
-                    <i class="bi bi-plus-lg"></i> {{ __('message.add_position') }}
+                    <i class="bi bi-plus-lg"></i> {{ __('message.add') }}
                 </a>
                 <a href="{{ route('positions.trashed') }}" class="btn btn-outline-danger">
                     <i class="bi bi-trash3"></i> {{ __('message.trashed') }}

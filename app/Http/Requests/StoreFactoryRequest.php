@@ -25,4 +25,15 @@ class StoreFactoryRequest extends FormRequest
             'name' => 'required|string|max:255|unique:factories,name',
         ];
     }
+
+    /**
+     * Повідомлення про помилки.
+     */
+    public function messages(): array
+    {
+        return [
+            'name.required' => 'Factory name is required.',
+            'name.unique' => __('message.this_name_already_exists'),
+        ];
+    }
 }
