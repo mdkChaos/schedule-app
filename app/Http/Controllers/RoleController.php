@@ -13,7 +13,9 @@ class RoleController extends Controller
      */
     public function index()
     {
-        //
+        $roles = Role::paginate(10);
+
+        return view('roles.index', compact('roles'));
     }
 
     /**
@@ -21,7 +23,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        //
+        return view('roles.create');
     }
 
     /**
@@ -29,7 +31,9 @@ class RoleController extends Controller
      */
     public function store(StoreRoleRequest $request)
     {
-        //
+        $role = Role::create($request->validated());
+
+        return redirect()->route('roles.index')->with('success', __('message.created_successfully'));
     }
 
     /**
@@ -37,7 +41,7 @@ class RoleController extends Controller
      */
     public function show(Role $role)
     {
-        //
+        return view('roles.show', compact('role'));
     }
 
     /**
@@ -45,7 +49,7 @@ class RoleController extends Controller
      */
     public function edit(Role $role)
     {
-        //
+        return view('roles.edit', compact('role'));
     }
 
     /**
@@ -53,7 +57,9 @@ class RoleController extends Controller
      */
     public function update(UpdateRoleRequest $request, Role $role)
     {
-        //
+        $role->update($request->validated());
+
+        return redirect()->route('roles.index')->with('success', __('message.updated_successfully'));
     }
 
     /**
@@ -61,6 +67,40 @@ class RoleController extends Controller
      */
     public function destroy(Role $role)
     {
-        //
+        $role->delete();
+
+        return redirect()->route('roles.index')->with('success', __('message.deleted_successfully'));
+    }
+
+    /**
+     * Display a listing of the trashed resources.
+     */
+    public function trashed()
+    {
+        $roles = Role::onlyTrashed()->paginate(10);
+
+        return view('roles.trashed', compact('roles'));
+    }
+
+    /**
+     * Restore the specified resource from trash.
+     */
+    public function restore($id)
+    {
+        $role = Role::onlyTrashed()->findOrFail($id);
+        $role->restore();
+
+        return redirect()->route('roles.trashed')->with('success', __('message.restored_successfully'));
+    }
+
+    /**
+     * Permanently delete the specified resource from storage.
+     */
+    public function forceDelete($id)
+    {
+        $role = Role::onlyTrashed()->findOrFail($id);
+        $role->forceDelete();
+
+        return redirect()->route('roles.trashed')->with('success', __('message.permanently_deleted'));
     }
 }

@@ -8,6 +8,7 @@ use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\CellController;
 use App\Http\Controllers\LocaleController;
 use App\Http\Controllers\PositionController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\ShiftController;
 
 Route::view('/', 'index')->name('index');
@@ -93,3 +94,14 @@ Route::controller(ShiftController::class)
         Route::delete('{id}/force-delete', 'forceDelete')->name('forceDelete');
     });
 Route::resource('shifts', ShiftController::class);
+
+// Role (CRUD + trashed)
+Route::controller(RoleController::class)
+    ->prefix('roles')
+    ->name('roles.')
+    ->group(function () {
+        Route::get('trashed', 'trashed')->name('trashed');
+        Route::post('{id}/restore', 'restore')->name('restore');
+        Route::delete('{id}/force-delete', 'forceDelete')->name('forceDelete');
+    });
+Route::resource('roles', RoleController::class);
