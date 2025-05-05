@@ -1,13 +1,11 @@
 @extends('layouts.admin')
 
-@section('title', 'Create Cell')
+@section('title', __('message.create'))
 @section('content')
-    <div class="container py-4">
-        <x-page-header :title="'Create Cell'" :iconClass="'bi bi-plus-circle text-info'">
+    <div class="container">
+        <x-page-header :title="__('message.create')" :iconClass="'bi bi-plus-circle text-info'">
             <x-slot:left>
-                <a href="{{ route('cells.index') }}" class="btn btn-outline-secondary">
-                    <i class="bi bi-arrow-left"></i> Back to list
-                </a>
+                <x-btn-back :route="route('cells.index')" />
             </x-slot:left>
         </x-page-header>
 
@@ -19,10 +17,11 @@
                             @csrf
 
                             <div class="mb-3">
-                                <label for="department_id" class="form-label fw-semibold">Department</label>
+                                <label for="department_id"
+                                    class="form-label fw-semibold">{{ __('message.department') }}</label>
                                 <select name="department_id" id="department_id"
                                     class="form-select @error('department_id') is-invalid @enderror" required>
-                                    <option value="" disabled selected>Choose department...</option>
+                                    <option value="" disabled selected>{{ __('message.choose') }}</option>
                                     @foreach ($departments as $department)
                                         <option value="{{ $department->id }}"
                                             {{ old('department_id') == $department->id ? 'selected' : '' }}>
@@ -36,7 +35,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="name" class="form-label fw-semibold">Cell Name</label>
+                                <label for="name" class="form-label fw-semibold">{{ __('message.name') }}</label>
                                 <input type="text" name="name" id="name"
                                     class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}"
                                     required autofocus>
@@ -46,12 +45,8 @@
                             </div>
 
                             <div class="mt-4 d-flex justify-content-end gap-2">
-                                <a href="{{ route('cells.index') }}" class="btn btn-outline-secondary">
-                                    <i class="bi bi-x-lg"></i> Cancel
-                                </a>
-                                <button type="submit" class="btn btn-outline-success">
-                                    <i class="bi bi-check-circle"></i> Create
-                                </button>
+                                <x-btn-cancel :route="route('cells.index')" />
+                                <x-btn-create />
                             </div>
                         </form>
                     </div>

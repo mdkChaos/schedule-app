@@ -6,7 +6,6 @@ use App\Http\Requests\StoreCellRequest;
 use App\Http\Requests\UpdateCellRequest;
 use App\Models\Cell;
 use App\Models\Department;
-use Illuminate\Http\Request;
 
 class CellController extends Controller
 {
@@ -16,6 +15,7 @@ class CellController extends Controller
     public function index()
     {
         $cells = Cell::with('department')->paginate(10);
+
         return view('cells.index', compact('cells'));
     }
 
@@ -25,6 +25,7 @@ class CellController extends Controller
     public function create()
     {
         $departments = Department::all();
+
         return view('cells.create', compact('departments'));
     }
 
@@ -34,7 +35,8 @@ class CellController extends Controller
     public function store(StoreCellRequest $request)
     {
         Cell::create($request->validated());
-        return redirect()->route('cells.index')->with('success', 'Cell created successfully.');
+
+        return redirect()->route('cells.index')->with('success', __('message.created_successfully'));
     }
 
     /**
@@ -51,6 +53,7 @@ class CellController extends Controller
     public function edit(Cell $cell)
     {
         $departments = Department::all();
+
         return view('cells.edit', compact('cell', 'departments'));
     }
 
@@ -60,7 +63,8 @@ class CellController extends Controller
     public function update(UpdateCellRequest $request, Cell $cell)
     {
         $cell->update($request->validated());
-        return redirect()->route('cells.index')->with('success', 'Cell updated successfully.');
+
+        return redirect()->route('cells.index')->with('success', __('message.updated_successfully'));
     }
 
     /**
@@ -69,12 +73,14 @@ class CellController extends Controller
     public function destroy(Cell $cell)
     {
         $cell->delete();
-        return redirect()->route('cells.index')->with('success', 'Cell deleted successfully.');
+
+        return redirect()->route('cells.index')->with('success', __('message.deleted_successfully'));
     }
 
     public function trashed()
     {
         $deletedCells = Cell::onlyTrashed()->paginate(10);
+
         return view('cells.trashed', compact('deletedCells'));
     }
 
@@ -85,7 +91,8 @@ class CellController extends Controller
     {
         $cell = Cell::onlyTrashed()->findOrFail($id);
         $cell->restore();
-        return redirect()->route('cells.trashed')->with('success', 'Cell restored successfully.');
+
+        return redirect()->route('cells.trashed')->with('success', __('message.restored_successfully'));
     }
 
     /**
@@ -95,6 +102,7 @@ class CellController extends Controller
     {
         $cell = Cell::onlyTrashed()->findOrFail($id);
         $cell->forceDelete();
-        return redirect()->route('cells.trashed')->with('success', 'Cell permanently deleted.');
+
+        return redirect()->route('cells.trashed')->with('success', __('message.permanently_deleted'));
     }
 }

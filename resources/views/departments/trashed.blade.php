@@ -32,8 +32,8 @@
                             <td>{{ $department->deleted_at->format('d.m.Y H:i') }}</td>
 
                             <td class="text-end">
-                                <x-btn-restore :route="route('departments.restore', $department->id)" />
-                                <x-btn-force-delete :route="route('departments.forceDelete', $department->id)" />
+                                <x-btn-restore :route="route('departments.restore', $department)" />
+                                <x-btn-force-delete :route="route('departments.forceDelete', $department)" />
                             </td>
                         </tr>
                     @empty

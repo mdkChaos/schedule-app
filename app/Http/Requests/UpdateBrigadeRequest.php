@@ -22,7 +22,7 @@ class UpdateBrigadeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|max:255|unique:brigades,name,' . $this->route('brigade')->id,
+            'name' => 'required|string|max:255|unique:brigades,name,' . $this->brigade->id,
         ];
     }
 
@@ -33,7 +33,7 @@ class UpdateBrigadeRequest extends FormRequest
     {
         return [
             'name.required' => 'Brigade name is required.',
-            'name.unique' => 'Brigade with this name already exists.',
+            'name.unique' => __('message.this_name_already_exists'),
         ];
     }
 }

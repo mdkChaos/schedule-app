@@ -26,4 +26,17 @@ class StoreCellRequest extends FormRequest
             'department_id' => 'required|exists:departments,id',
         ];
     }
+
+    /**
+     * Повідомлення про помилки.
+     */
+    public function messages(): array
+    {
+        return [
+            'name.required' => 'Cell name is required.',
+            'name.unique' => __('message.this_name_already_exists'),
+            'department_id.required' => 'Department is required.',
+            'department_id.exists' => 'Department must exist in the departments table.',
+        ];
+    }
 }

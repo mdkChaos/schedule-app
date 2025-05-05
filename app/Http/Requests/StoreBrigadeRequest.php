@@ -26,4 +26,15 @@ class StoreBrigadeRequest extends FormRequest
 
         ];
     }
+
+    /**
+     * Custom error messages.
+     */
+    public function messages(): array
+    {
+        return [
+            'name.required' => 'Brigade name is required.',
+            'name.unique' => __('message.this_name_already_exists'),
+        ];
+    }
 }

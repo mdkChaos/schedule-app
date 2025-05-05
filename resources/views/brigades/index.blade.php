@@ -3,27 +3,20 @@
 @section('title', __('message.brigades'))
 
 @section('content')
-    <div class="container py-4">
+    <div class="container">
         <x-page-header :title="__('message.brigades')" :iconClass="'bi bi-people text-secondary'">
             <x-slot:left>
-                <a href="{{ route('admin.dashboard') }}" class="btn btn-outline-secondary">
-                    <i class="bi bi-arrow-left"></i> {{ __('message.admin_panel') }}
-                </a>
+                <x-btn-back :route="route('admin.dashboard')" />
             </x-slot:left>
             <x-slot:right>
-                <a href="{{ route('brigades.create') }}" class="btn btn-outline-primary px-4">
-                    <i class="bi bi-plus-lg"></i> {{ __('message.add') }}
-                </a>
-                <a href="{{ route('brigades.trashed') }}" class="btn btn-outline-danger">
-                    <i class="bi bi-trash3"></i> {{ __('message.trashed') }}
-                </a>
+                <x-btn-add :route="route('brigades.create')" />
+                <x-btn-trashed :route="route('brigades.trashed')" />
             </x-slot:right>
         </x-page-header>
 
         {{-- Message --}}
         <x-message-alert />
 
-        {{-- Table --}}
         <div class="table-responsive shadow-sm rounded">
             <table class="table table-hover align-middle">
                 <thead class="table-light">
@@ -39,8 +32,12 @@
                             <td>{{ $brigade->id }}</td>
                             <td>{{ $brigade->name }}</td>
 
-                            {{-- Actions --}}
-                            <x-resource-actions :showRoute="route('brigades.show', $brigade)" :editRoute="route('brigades.edit', $brigade)" :deleteRoute="route('brigades.destroy', $brigade)" />
+                            {{-- Action Buttons --}}
+                            <td class="text-end">
+                                <x-btn-view :route="route('brigades.show', $brigade)" />
+                                <x-btn-edit :route="route('brigades.edit', $brigade)" />
+                                <x-btn-delete :route="route('brigades.destroy', $brigade)" />
+                            </td>
                         </tr>
                     @empty
                         <tr>

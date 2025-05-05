@@ -1,42 +1,30 @@
 @extends('layouts.admin')
 
-@section('title', 'Cells')
+@section('title', __('message.cells'))
 
 @section('content')
-    <div class="container py-4">
-        <x-page-header :title="'Cells'" :iconClass="'bi bi-grid text-info'">
+    <div class="container">
+        <x-page-header :title="__('message.cells')" :iconClass="'bi bi-grid text-info'">
             <x-slot:left>
-                <a href="{{ route('admin.dashboard') }}" class="btn btn-outline-secondary">
-                    <i class="bi bi-arrow-left"></i> Admin Panel
-                </a>
+                <x-btn-back :route="route('admin.dashboard')" />
             </x-slot:left>
             <x-slot:right>
-                <a href="{{ route('cells.create') }}" class="btn btn-outline-primary px-4">
-                    <i class="bi bi-plus-lg"></i> Add Cell
-                </a>
-                <a href="{{ route('cells.trashed') }}" class="btn btn-outline-danger">
-                    <i class="bi bi-trash3"></i> Trashed
-                </a>
+                <x-btn-add :route="route('cells.create')" />
+                <x-btn-trashed :route="route('cells.trashed')" />
             </x-slot:right>
         </x-page-header>
 
-        {{-- Повідомлення --}}
-        @if (session('success'))
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                {{ session('success') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        @endif
+        {{-- Message --}}
+        <x-message-alert />
 
-        {{-- Таблиця --}}
         <div class="table-responsive shadow-sm rounded">
             <table class="table table-hover align-middle">
                 <thead class="table-light">
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Cell</th>
-                        <th scope="col">Department</th>
-                        <th scope="col" class="text-end">Actions</th>
+                        <th scope="col">{{ __('message.cell') }}</th>
+                        <th scope="col">{{ __('message.department') }}</th>
+                        <th scope="col" class="text-end">{{ __('message.actions') }}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -45,32 +33,23 @@
                             <td>{{ $cell->id }}</td>
                             <td>{{ $cell->name }}</td>
                             <td>{{ $cell->department->name ?? '—' }}</td>
+
                             <td class="text-end">
-                                <a href="{{ route('cells.show', $cell) }}" class="btn btn-outline-secondary btn-sm me-1">
-                                    <i class="bi bi-eye"></i> Переглянути
-                                </a>
-                                <a href="{{ route('cells.edit', $cell) }}" class="btn btn-outline-success btn-sm me-1">
-                                    <i class="bi bi-pencil"></i> Редагувати
-                                </a>
-                                <form action="{{ route('cells.destroy', $cell) }}" method="POST" class="d-inline">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-outline-danger btn-sm">
-                                        <i class="bi bi-trash"></i> Видалити
-                                    </button>
-                                </form>
+                                <x-btn-view :route="route('cells.show', $cell)" />
+                                <x-btn-edit :route="route('cells.edit', $cell)" />
+                                <x-btn-delete :route="route('cells.destroy', $cell)" />
                             </td>
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="6" class="text-center text-muted">No cells found.</td>
+                            <td colspan="6" class="text-center text-muted">{{ __('message.not_found') }}</td>
                         </tr>
                     @endforelse
                 </tbody>
             </table>
         </div>
 
-        {{-- Пагінація --}}
+        {{-- Pagination --}}
         <div class="d-flex justify-content-center mt-4">
             {{ $cells->links() }}
         </div>

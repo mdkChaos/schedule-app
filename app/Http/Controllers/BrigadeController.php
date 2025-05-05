@@ -14,6 +14,7 @@ class BrigadeController extends Controller
     public function index()
     {
         $brigades = Brigade::paginate(10);
+
         return view('brigades.index', compact('brigades'));
     }
 
@@ -31,7 +32,8 @@ class BrigadeController extends Controller
     public function store(StoreBrigadeRequest $request)
     {
         Brigade::create($request->validated());
-        return redirect()->route('brigades.index')->with('success', 'Brigade created successfully.');
+
+        return redirect()->route('brigades.index')->with('success', __('message.created_successfully'));
     }
 
     /**
@@ -56,7 +58,8 @@ class BrigadeController extends Controller
     public function update(UpdateBrigadeRequest $request, Brigade $brigade)
     {
         $brigade->update($request->validated());
-        return redirect()->route('brigades.index')->with('success', 'Brigade updated successfully.');
+
+        return redirect()->route('brigades.index')->with('success', __('message.updated_successfully'));
     }
 
     /**
@@ -65,7 +68,7 @@ class BrigadeController extends Controller
     public function destroy(Brigade $brigade)
     {
         $brigade->delete();
-        return redirect()->route('brigades.index')->with('success', 'Brigade deleted successfully.');
+        return redirect()->route('brigades.index')->with('success', __('message.deleted_successfully'));
     }
 
     /**
@@ -74,6 +77,7 @@ class BrigadeController extends Controller
     public function trashed()
     {
         $brigades = Brigade::onlyTrashed()->paginate(10);
+
         return view('brigades.trashed', compact('brigades'));
     }
 
@@ -84,7 +88,8 @@ class BrigadeController extends Controller
     {
         $brigade = Brigade::withTrashed()->findOrFail($id);
         $brigade->restore();
-        return redirect()->route('brigades.trashed')->with('success', 'Brigade restored successfully.');
+
+        return redirect()->route('brigades.trashed')->with('success', __('message.restored_successfully'));
     }
 
     /**
@@ -94,6 +99,7 @@ class BrigadeController extends Controller
     {
         $brigade = Brigade::withTrashed()->findOrFail($id);
         $brigade->forceDelete();
-        return redirect()->route('brigades.trashed')->with('success', 'Brigade permanently deleted successfully.');
+
+        return redirect()->route('brigades.trashed')->with('success', __('message.permanently_deleted'));
     }
 }

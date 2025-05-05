@@ -2,12 +2,10 @@
 
 @section('title', __('message.create'))
 @section('content')
-    <div class="container py-4">
+    <div class="container">
         <x-page-header :title="__('message.create')" :iconClass="'bi bi-plus-circle text-secondary'">
             <x-slot:left>
-                <a href="{{ route('brigades.index') }}" class="btn btn-outline-secondary">
-                    <i class="bi bi-arrow-left"></i> {{ __('message.back') }}
-                </a>
+                <x-btn-back :route="route('brigades.index')" />
             </x-slot:left>
         </x-page-header>
 
@@ -29,12 +27,8 @@
                             </div>
 
                             <div class="mt-4 d-flex justify-content-end gap-2">
-                                <a href="{{ route('brigades.index') }}" class="btn btn-outline-secondary">
-                                    <i class="bi bi-x-lg"></i> {{ __('message.cancel') }}
-                                </a>
-                                <button type="submit" class="btn btn-outline-success">
-                                    <i class="bi bi-check-circle"></i> {{ __('message.create') }}
-                                </button>
+                                <x-btn-cancel :route="route('brigades.index')" />
+                                <x-btn-create />
                             </div>
                         </form>
                     </div>
