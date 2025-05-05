@@ -21,25 +21,28 @@
                         <h5 class="card-title mb-4 text-secondary text-center fw-semibold">
                             <i class="bi bi-info-circle"></i> {{ __('message.details') }}
                         </h5>
-                        <ul class="list-group list-group-flush mb-3">
-                            <li class="list-group-item">
-                                <strong>ID:</strong> {{ $workshop->id }}
-                            </li>
-                            <li class="list-group-item">
-                                <strong>{{ __('message.workshop') }}:</strong> {{ $workshop->name }}
-                            </li>
-                            <li class="list-group-item">
-                                <strong>{{ __('message.factory') }}:</strong> {{ $workshop->factory->name ?? '—' }}
-                            </li>
-                            <li class="list-group-item">
-                                <strong>{{ __('message.created') }}:</strong>
-                                {{ $workshop->created_at->format('d.m.Y H:i') }}
-                            </li>
-                            <li class="list-group-item">
-                                <strong>{{ __('message.updated') }}:</strong>
-                                {{ $workshop->updated_at->format('d.m.Y H:i') }}
-                            </li>
-                        </ul>
+                        <dl class="row mb-0">
+                            <div class="row align-items-center border-bottom py-2">
+                                <dt class="col-sm-4">ID</dt>
+                                <dd class="col-sm-8 mb-0">{{ $workshop->id }}</dd>
+                            </div>
+                            <div class="row align-items-center border-bottom py-2">
+                                <dt class="col-sm-4">{{ __('message.workshop') }}</dt>
+                                <dd class="col-sm-8 mb-0">{{ $workshop->name }}</dd>
+                            </div>
+                            <div class="row align-items-center border-bottom py-2">
+                                <dt class="col-sm-4">{{ __('message.factory') }}</dt>
+                                <dd class="col-sm-8 mb-0">{{ $workshop->factory->name ?? '—' }}</dd>
+                            </div>
+                            <div class="row align-items-center border-bottom py-2">
+                                <dt class="col-sm-4">{{ __('message.created') }}</dt>
+                                <dd class="col-sm-8 mb-0">{{ $workshop->created_at->format('d.m.Y H:i') }}</dd>
+                            </div>
+                            <div class="row align-items-center py-2">
+                                <dt class="col-sm-4">{{ __('message.updated') }}</dt>
+                                <dd class="col-sm-8 mb-0">{{ $workshop->updated_at->format('d.m.Y H:i') }}</dd>
+                            </div>
+                        </dl>
                     </div>
                 </div>
             </div>

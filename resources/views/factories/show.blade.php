@@ -21,22 +21,24 @@
                         <h5 class="card-title mb-4 text-secondary text-center fw-semibold">
                             <i class="bi bi-info-circle"></i> {{ __('message.details') }}
                         </h5>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">
-                                <strong>ID:</strong> {{ $factory->id }}
-                            </li>
-                            <li class="list-group-item">
-                                <strong>{{ __('message.factory') }}:</strong> {{ $factory->name }}
-                            </li>
-                            <li class="list-group-item">
-                                <strong>{{ __('message.created') }}:</strong>
-                                {{ $factory->created_at->format('d.m.Y H:i') }}
-                            </li>
-                            <li class="list-group-item">
-                                <strong>{{ __('message.updated') }}:</strong>
-                                {{ $factory->updated_at->format('d.m.Y H:i') }}
-                            </li>
-                        </ul>
+                        <dl class="row mb-0">
+                            <div class="row align-items-center border-bottom py-2">
+                                <dt class="col-sm-4">ID</dt>
+                                <dd class="col-sm-8 mb-0">{{ $factory->id }}</dd>
+                            </div>
+                            <div class="row align-items-center border-bottom py-2">
+                                <dt class="col-sm-4">{{ __('message.factory') }}</dt>
+                                <dd class="col-sm-8 mb-0">{{ $factory->name }}</dd>
+                            </div>
+                            <div class="row align-items-center border-bottom py-2">
+                                <dt class="col-sm-4">{{ __('message.created') }}</dt>
+                                <dd class="col-sm-8 mb-0">{{ $factory->created_at->format('d.m.Y H:i') }}</dd>
+                            </div>
+                            <div class="row align-items-center py-2">
+                                <dt class="col-sm-4">{{ __('message.updated') }}</dt>
+                                <dd class="col-sm-8 mb-0">{{ $factory->updated_at->format('d.m.Y H:i') }}</dd>
+                            </div>
+                        </dl>
                     </div>
                 </div>
             </div>

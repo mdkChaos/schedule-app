@@ -31,19 +31,8 @@
 
             <x-dashboard-card icon="bi bi-shield-lock" iconColor="primary" :title="__('message.roles')" :text="__('message.roles_management')"
                 :route="route('roles.index')" />
-            {{-- <x-dashboard-card icon="bi bi-person-badge" iconColor="danger" :title="__('message.employees')" :text="__('message.employees_management')"
-                :route="route('employees.index')" /> --}}
-
-            <div class="col-md-3">
-                <div class="card border-0 shadow-lg h-100 hover-zoom">
-                    <div class="card-body text-center">
-                        <span class="display-5 text-danger"><i class="bi bi-person-badge"></i></span>
-                        <h5 class="card-title fw-semibold mt-3">{{ __('message.employees') }}</h5>
-                        <p class="card-text text-muted">{{ __('message.employees_management') }}</p>
-                        <a href="#" class="btn btn-outline-primary rounded-pill px-4">{{ __('message.go_to') }}</a>
-                    </div>
-                </div>
-            </div>
+            <x-dashboard-card icon="bi bi-person-badge" iconColor="danger" :title="__('message.employees')" :text="__('message.employees_management')"
+                :route="route('employees.index')" />
         </div>
     </div>
     <style>

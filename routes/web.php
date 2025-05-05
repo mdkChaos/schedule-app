@@ -10,6 +10,7 @@ use App\Http\Controllers\LocaleController;
 use App\Http\Controllers\PositionController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\ShiftController;
+use App\Http\Controllers\EmployeeController;
 
 Route::view('/', 'index')->name('index');
 
@@ -105,3 +106,14 @@ Route::controller(RoleController::class)
         Route::delete('{id}/force-delete', 'forceDelete')->name('forceDelete');
     });
 Route::resource('roles', RoleController::class);
+
+// Employee (CRUD + trashed)
+Route::controller(EmployeeController::class)
+    ->prefix('employees')
+    ->name('employees.')
+    ->group(function () {
+        Route::get('trashed', 'trashed')->name('trashed');
+        Route::post('{id}/restore', 'restore')->name('restore');
+        Route::delete('{id}/force-delete', 'forceDelete')->name('forceDelete');
+    });
+Route::resource('employees', EmployeeController::class);

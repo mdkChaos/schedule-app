@@ -21,29 +21,32 @@
                         <h5 class="card-title mb-4 text-secondary text-center fw-semibold">
                             <i class="bi bi-info-circle"></i> {{ __('message.details') }}
                         </h5>
-                        <ul class="list-group list-group-flush mb-3">
-                            <li class="list-group-item">
-                                <strong>ID:</strong> {{ $department->id }}
-                            </li>
-                            <li class="list-group-item">
-                                <strong>{{ __('message.department') }}:</strong> {{ $department->name }}
-                            </li>
-                            <li class="list-group-item">
-                                <strong>{{ __('message.workshop') }}:</strong> {{ $department->workshop->name ?? '—' }}
-                            </li>
-                            <li class="list-group-item">
-                                <strong>{{ __('message.factory') }}:</strong>
-                                {{ $department->workshop->factory->name ?? '—' }}
-                            </li>
-                            <li class="list-group-item">
-                                <strong>{{ __('message.created') }}:</strong>
-                                {{ $department->created_at->format('d.m.Y H:i') }}
-                            </li>
-                            <li class="list-group-item">
-                                <strong>{{ __('message.updated') }}:</strong>
-                                {{ $department->updated_at->format('d.m.Y H:i') }}
-                            </li>
-                        </ul>
+                        <dl class="row mb-0">
+                            <div class="row align-items-center border-bottom py-2">
+                                <dt class="col-sm-4">ID</dt>
+                                <dd class="col-sm-8 mb-0">{{ $department->id }}</dd>
+                            </div>
+                            <div class="row align-items-center border-bottom py-2">
+                                <dt class="col-sm-4">{{ __('message.department') }}</dt>
+                                <dd class="col-sm-8 mb-0">{{ $department->name }}</dd>
+                            </div>
+                            <div class="row align-items-center border-bottom py-2">
+                                <dt class="col-sm-4">{{ __('message.workshop') }}</dt>
+                                <dd class="col-sm-8 mb-0">{{ $department->workshop->name ?? '—' }}</dd>
+                            </div>
+                            <div class="row align-items-center border-bottom py-2">
+                                <dt class="col-sm-4">{{ __('message.factory') }}</dt>
+                                <dd class="col-sm-8 mb-0">{{ $department->workshop->factory->name ?? '—' }}</dd>
+                            </div>
+                            <div class="row align-items-center border-bottom py-2">
+                                <dt class="col-sm-4">{{ __('message.created') }}</dt>
+                                <dd class="col-sm-8 mb-0">{{ $department->created_at->format('d.m.Y H:i') }}</dd>
+                            </div>
+                            <div class="row align-items-center py-2">
+                                <dt class="col-sm-4">{{ __('message.updated') }}</dt>
+                                <dd class="col-sm-8 mb-0">{{ $department->updated_at->format('d.m.Y H:i') }}</dd>
+                            </div>
+                        </dl>
                     </div>
                 </div>
             </div>
