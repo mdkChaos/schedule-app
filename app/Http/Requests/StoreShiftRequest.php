@@ -11,7 +11,7 @@ class StoreShiftRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,22 @@ class StoreShiftRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required|string|max:255|unique:shifts,name',
+        ];
+    }
+
+    /**
+     * Get custom error messages for the defined validation rules.
+     *
+     * @return array<string, string>
+     */
+    public function messages(): array
+    {
+        return [
+            'name.required' => __('message.name') . ' ' . __('validation.required'),
+            'name.string' => __('message.name') . ' ' . __('validation.string'),
+            'name.max' => __('message.name') . ' ' . __('validation.max.string', ['max' => 255]),
+            'name.unique' => __('message.this_name_already_exists'),
         ];
     }
 }

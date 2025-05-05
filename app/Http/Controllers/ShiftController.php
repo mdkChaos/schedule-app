@@ -13,7 +13,9 @@ class ShiftController extends Controller
      */
     public function index()
     {
-        //
+        $shifts = Shift::paginate(10);
+
+        return view('shifts.index', compact('shifts'));
     }
 
     /**
@@ -21,7 +23,7 @@ class ShiftController extends Controller
      */
     public function create()
     {
-        //
+        return view('shifts.create');
     }
 
     /**
@@ -29,7 +31,9 @@ class ShiftController extends Controller
      */
     public function store(StoreShiftRequest $request)
     {
-        //
+        Shift::create($request->validated());
+
+        return redirect()->route('shifts.index')->with('success', __('message.created_successfully'));
     }
 
     /**
@@ -37,7 +41,7 @@ class ShiftController extends Controller
      */
     public function show(Shift $shift)
     {
-        //
+        return view('shifts.show', compact('shift'));
     }
 
     /**
@@ -45,7 +49,7 @@ class ShiftController extends Controller
      */
     public function edit(Shift $shift)
     {
-        //
+        return view('shifts.edit', compact('shift'));
     }
 
     /**
@@ -53,7 +57,9 @@ class ShiftController extends Controller
      */
     public function update(UpdateShiftRequest $request, Shift $shift)
     {
-        //
+        $shift->update($request->validated());
+
+        return redirect()->route('shifts.index')->with('success', __('message.updated_successfully'));
     }
 
     /**
@@ -61,6 +67,40 @@ class ShiftController extends Controller
      */
     public function destroy(Shift $shift)
     {
-        //
+        $shift->delete();
+
+        return redirect()->route('shifts.index')->with('success', __('message.deleted_successfully'));
+    }
+
+    /**
+     * Display a listing of the trashed resources.
+     */
+    public function trashed()
+    {
+        $shifts = Shift::onlyTrashed()->paginate(10);
+
+        return view('shifts.trashed', compact('shifts'));
+    }
+
+    /**
+     * Restore the specified trashed resource.
+     */
+    public function restore($id)
+    {
+        $shift = Shift::withTrashed()->findOrFail($id);
+        $shift->restore();
+
+        return redirect()->route('shifts.trashed')->with('success', __('message.restored_successfully'));
+    }
+
+    /**
+     * Permanently delete the specified trashed resource.
+     */
+    public function forceDelete($id)
+    {
+        $shift = Shift::withTrashed()->findOrFail($id);
+        $shift->forceDelete();
+
+        return redirect()->route('shifts.trashed')->with('success', __('message.permanently_deleted'));
     }
 }

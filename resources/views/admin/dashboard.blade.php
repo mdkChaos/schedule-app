@@ -26,6 +26,9 @@
             <x-dashboard-card icon="bi bi-person-vcard" iconColor="dark" :title="__('message.positions')" :text="__('message.positions_management')"
                 :route="route('positions.index')" />
 
+            <x-dashboard-card icon="bi bi-calendar" iconColor="danger" :title="__('message.shifts')" :text="__('message.shifts_management')"
+                :route="route('shifts.index')" />
+
             {{-- <x-dashboard-card icon="bi bi-person-badge" iconColor="danger" :title="__('message.employees')" :text="__('message.employees_management')"
                 :route="route('employees.index')" /> --}}
 
