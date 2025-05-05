@@ -50,8 +50,6 @@
         </div>
 
         {{-- Pagination --}}
-        <div class="d-flex justify-content-center mt-4">
-            {{ $cells->links() }}
-        </div>
+        {{ $cells->links() }}
     </div>
 @endsection

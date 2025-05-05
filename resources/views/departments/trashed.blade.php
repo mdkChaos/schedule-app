@@ -44,8 +44,7 @@
                 </tbody>
             </table>
         </div>
-        <div class="d-flex justify-content-center mt-4">
-            {{ $deletedDepartments->links() }}
-        </div>
+        {{-- Pagination --}}
+        {{ $deletedDepartments->links() }}
     </div>
 @endsection

@@ -1,23 +1,17 @@
 @extends('layouts.admin')
 
-@section('title', __('message.delete_position'))
+@section('title', __('message.trashed'))
 
 @section('content')
-    <div class="container py-4">
-        <x-page-header :title="__('message.delete_position')" :iconClass="'bi bi-trash3 text-danger'">
+    <div class="container">
+        <x-page-header :title="__('message.trashed')" :iconClass="'bi bi-trash3 text-danger'">
             <x-slot:left>
-                <a href="{{ route('positions.index') }}" class="btn btn-outline-secondary">
-                    <i class="bi bi-arrow-left"></i> {{ __('message.back') }}
-                </a>
+                <x-btn-back :route="route('positions.index')" />
             </x-slot:left>
         </x-page-header>
 
-        @if (session('success'))
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                {{ session('success') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        @endif
+        {{-- Message --}}
+        <x-message-alert />
 
         <div class="table-responsive shadow-sm rounded">
             <table class="table table-hover align-middle">
@@ -35,23 +29,10 @@
                             <td>{{ $position->id }}</td>
                             <td>{{ $position->name }}</td>
                             <td>{{ $position->deleted_at->format('d.m.Y H:i') }}</td>
+
                             <td class="text-end">
-                                <form action="{{ route('positions.restore', $position->id) }}" method="POST"
-                                    class="d-inline">
-                                    @csrf
-                                    <button type="submit" class="btn btn-outline-success me-2">
-                                        <i class="bi bi-arrow-clockwise"></i> {{ __('message.restore') }}
-                                    </button>
-                                </form>
-                                <form action="{{ route('positions.forceDelete', $position->id) }}" method="POST"
-                                    class="d-inline"
-                                    onsubmit="return confirm('Are you sure you want to permanently delete this?')">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-outline-danger">
-                                        <i class="bi bi-x-circle"></i> {{ __('message.delete_permanently') }}
-                                    </button>
-                                </form>
+                                <x-btn-restore :route="route('positions.restore', $position)" />
+                                <x-btn-force-delete :route="route('positions.forceDelete', $position)" />
                             </td>
                         </tr>
                     @empty
@@ -62,8 +43,8 @@
                 </tbody>
             </table>
         </div>
-        <div class="d-flex justify-content-center mt-4">
-            {{ $positions->links() }}
-        </div>
+
+        {{-- Pagination --}}
+        {{ $positions->links() }}
     </div>
 @endsection

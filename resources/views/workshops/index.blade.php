@@ -51,8 +51,6 @@
         </div>
 
         {{-- Pagination --}}
-        <div class="d-flex justify-content-center mt-4">
-            {{ $workshops->links() }}
-        </div>
+        {{ $workshops->links() }}
     </div>
 @endsection

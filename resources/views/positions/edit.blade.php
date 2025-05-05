@@ -1,14 +1,12 @@
 @extends('layouts.admin')
 
-@section('title', __('message.edit_position'))
+@section('title', __('message.edit'))
 
 @section('content')
-    <div class="container py-4">
-        <x-page-header :title="__('message.edit_position')" :iconClass="'bi bi-pencil-square text-dark'">
+    <div class="container">
+        <x-page-header :title="__('message.edit')" :iconClass="'bi bi-pencil-square text-dark'">
             <x-slot:left>
-                <a href="{{ route('positions.index') }}" class="btn btn-outline-secondary">
-                    <i class="bi bi-arrow-left"></i> {{ __('message.back') }}
-                </a>
+                <x-btn-back :route="route('positions.index')" />
             </x-slot:left>
         </x-page-header>
 
@@ -31,12 +29,8 @@
                             </div>
 
                             <div class="mt-4 d-flex justify-content-end gap-2">
-                                <a href="{{ route('positions.index') }}" class="btn btn-outline-secondary">
-                                    <i class="bi bi-x-lg"></i> {{ __('message.cancel') }}
-                                </a>
-                                <button type="submit" class="btn btn-outline-success">
-                                    <i class="bi bi-save"></i> {{ __('message.save_changes') }}
-                                </button>
+                                <x-btn-cancel :route="route('positions.index')" />
+                                <x-btn-save />
                             </div>
                         </form>
                     </div>

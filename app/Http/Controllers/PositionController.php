@@ -14,6 +14,7 @@ class PositionController extends Controller
     public function index()
     {
         $positions = Position::paginate(10);
+
         return view('positions.index', compact('positions'));
     }
 
@@ -31,7 +32,8 @@ class PositionController extends Controller
     public function store(StorePositionRequest $request)
     {
         $position = Position::create($request->validated());
-        return redirect()->route('positions.index')->with('success', 'Position created successfully.');
+
+        return redirect()->route('positions.index')->with('success', __('message.created_successfully'));
     }
 
     /**
@@ -56,7 +58,8 @@ class PositionController extends Controller
     public function update(UpdatePositionRequest $request, Position $position)
     {
         $position->update($request->validated());
-        return redirect()->route('positions.index')->with('success', 'Position updated successfully.');
+
+        return redirect()->route('positions.index')->with('success', __('message.updated_successfully'));
     }
 
     /**
@@ -65,7 +68,8 @@ class PositionController extends Controller
     public function destroy(Position $position)
     {
         $position->delete();
-        return redirect()->route('positions.index')->with('success', 'Position deleted successfully.');
+
+        return redirect()->route('positions.index')->with('success', __('message.deleted_successfully'));
     }
 
     /**
@@ -74,6 +78,7 @@ class PositionController extends Controller
     public function trashed()
     {
         $positions = Position::onlyTrashed()->paginate(10);
+
         return view('positions.trashed', compact('positions'));
     }
 
@@ -84,7 +89,8 @@ class PositionController extends Controller
     {
         $position = Position::onlyTrashed()->findOrFail($id);
         $position->restore();
-        return redirect()->route('positions.trashed')->with('success', 'Position restored successfully.');
+
+        return redirect()->route('positions.trashed')->with('success', __('message.restored_successfully'));
     }
 
     /**
@@ -94,6 +100,7 @@ class PositionController extends Controller
     {
         $position = Position::onlyTrashed()->findOrFail($id);
         $position->forceDelete();
-        return redirect()->route('positions.trashed')->with('success', 'Position permanently deleted successfully.');
+
+        return redirect()->route('positions.trashed')->with('success', __('message.permanently_deleted'));
     }
 }

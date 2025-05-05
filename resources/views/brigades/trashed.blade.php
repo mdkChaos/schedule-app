@@ -44,8 +44,6 @@
         </div>
 
         {{-- Pagination --}}
-        <div class="d-flex justify-content-center mt-4">
-            {{ $brigades->links() }}
-        </div>
+        {{ $brigades->links() }}
     </div>
 @endsection

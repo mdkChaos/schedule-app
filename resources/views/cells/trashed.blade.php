@@ -46,8 +46,6 @@
             </table>
         </div>
         {{-- Pagination --}}
-        <div class="d-flex justify-content-center mt-4">
-            {{ $deletedCells->links() }}
-        </div>
+        {{ $deletedCells->links() }}
     </div>
 @endsection
