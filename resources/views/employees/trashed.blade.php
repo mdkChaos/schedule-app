@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="container">
-        <x-page-header :title="__('message.trashed')" :iconClass="'bi bi-person-badge text-danger'">
+        <x-page-header :title="__('message.trashed')" :iconClass="'bi bi-trash3 text-danger'">
             <x-slot:left>
                 <x-btn-back :route="route('employees.index')" />
             </x-slot:left>
