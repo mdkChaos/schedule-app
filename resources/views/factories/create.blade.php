@@ -1,12 +1,8 @@
-@extends('layouts.admin')
-
-@section('title', __('message.create'))
-
-@section('content')
+<x-admin-layout :title="__('message.factories')">
     <div class="container">
         <x-page-header :title="__('message.create')" :iconClass="'bi bi-plus-circle text-primary'">
             <x-slot:left>
-                <x-btn-back :route="route('factories.index')" />
+                <x-btn-link class="btn-outline-secondary" :icon="'bi-arrow-left'" :message="__('message.back')" :route="route('factories.index')" />
             </x-slot:left>
         </x-page-header>
 
@@ -28,8 +24,11 @@
                             </div>
 
                             <div class="mt-4 d-flex justify-content-end gap-2">
-                                <x-btn-cancel :route="route('factories.index')" />
-                                <x-btn-create />
+                                <x-btn-link class="btn-outline-secondary" :icon="'bi-x-lg'" :message="__('message.cancel')"
+                                    :route="route('factories.index')" />
+                                <x-button class="btn-outline-success">
+                                    <i class="bi bi-check-circle"></i> {{ __('message.create') }}
+                                </x-button>
                             </div>
                         </form>
                     </div>
@@ -37,4 +36,4 @@
             </div>
         </div>
     </div>
-@endsection
+</x-admin-layout>

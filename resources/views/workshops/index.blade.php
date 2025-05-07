@@ -1,16 +1,12 @@
-@extends('layouts.admin')
-
-@section('title', __('message.workshops'))
-
-@section('content')
+<x-admin-layout :title="__('message.workshops')">
     <div class="container">
         <x-page-header :title="__('message.workshops')" :iconClass="'bi bi-gear-wide-connected text-success'">
             <x-slot:left>
-                <x-btn-back :route="route('admin.dashboard')" />
+                <x-btn-link class="btn-outline-secondary" :icon="'bi-arrow-left'" :message="__('message.back')" :route="route('admin.dashboard')" />
             </x-slot:left>
             <x-slot:right>
-                <x-btn-add :route="route('workshops.create')" />
-                <x-btn-trashed :route="route('workshops.trashed')" />
+                <x-btn-link class="btn-outline-primary" :icon="'bi-plus-lg'" :message="__('message.add')" :route="route('workshops.create')" />
+                <x-btn-link class="btn-outline-danger" :icon="'bi-trash3'" :message="__('message.trashed')" :route="route('workshops.trashed')" />
             </x-slot:right>
         </x-page-header>
 
@@ -36,8 +32,10 @@
 
                             {{-- Action Buttons --}}
                             <td class="text-end">
-                                <x-btn-view :route="route('workshops.show', $workshop)" />
-                                <x-btn-edit :route="route('workshops.edit', $workshop)" />
+                                <x-btn-link class="btn-outline-secondary" :icon="'bi-eye'" :message="__('message.view')"
+                                    :route="route('workshops.show', $workshop)" />
+                                <x-btn-link class="btn-outline-success" :icon="'bi-pencil'" :message="__('message.edit')"
+                                    :route="route('workshops.edit', $workshop)" />
                                 <x-btn-delete :route="route('workshops.destroy', $workshop)" />
                             </td>
                         </tr>
@@ -53,4 +51,4 @@
         {{-- Pagination --}}
         {{ $workshops->links() }}
     </div>
-@endsection
+</x-admin-layout>

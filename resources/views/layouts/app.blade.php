@@ -10,7 +10,9 @@
         :itemStyle="'btn-outline-dark'" :itemText="'Admin'" />
 
     {{-- Main --}}
-    <x-main />
+    <x-main>
+        {{ $slot }}
+    </x-main>
 
     {{-- Footer --}}
     <x-footer />

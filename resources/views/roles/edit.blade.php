@@ -1,12 +1,8 @@
-@extends('layouts.admin')
-
-@section('title', __('message.edit'))
-
-@section('content')
+<x-admin-layout :title="__('message.roles')">
     <div class="container">
         <x-page-header :title="__('message.edit')" :iconClass="'bi bi-pencil-square text-primary'">
             <x-slot:left>
-                <x-btn-back :route="route('roles.index')" />
+                <x-btn-link class="btn-outline-secondary" :icon="'bi-arrow-left'" :message="__('message.back')" :route="route('roles.index')" />
             </x-slot:left>
             <x-slot:right>
             </x-slot:right>
@@ -30,14 +26,26 @@
                                 @enderror
                             </div>
 
-                            <div class="mt-4 d-flex justify-content-end gap-2">
-                                <x-btn-cancel :route="route('roles.index')" />
-                                <x-btn-save />
-                            </div>
+                            <div class="mb-3">
+                                <label for="level" class="form-label fw-semibold">{{ __('message.level') }}</label>
+                                <input type="number" name="level" id="level"
+                                    class="form-control @error('level') is-invalid @enderror"
+                                    value="{{ old('level', $role->level) }}" required>
+                                @error('level')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+
+                                <div class="mt-4 d-flex justify-content-end gap-2">
+                                    <x-btn-link class="btn-outline-secondary" :icon="'bi-x-lg'" :message="__('message.cancel')"
+                                        :route="route('roles.index')" />
+                                    <x-button class="btn-outline-success">
+                                        <i class="bi bi-save"></i> {{ __('message.save') }}
+                                    </x-button>
+                                </div>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-@endsection
+</x-admin-layout>

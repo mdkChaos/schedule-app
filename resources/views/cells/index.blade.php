@@ -1,16 +1,12 @@
-@extends('layouts.admin')
-
-@section('title', __('message.cells'))
-
-@section('content')
+<x-admin-layout :title="__('message.cells')">
     <div class="container">
         <x-page-header :title="__('message.cells')" :iconClass="'bi bi-grid text-info'">
             <x-slot:left>
-                <x-btn-back :route="route('admin.dashboard')" />
+                <x-btn-link class="btn-outline-secondary" :icon="'bi-arrow-left'" :message="__('message.back')" :route="route('admin.dashboard')" />
             </x-slot:left>
             <x-slot:right>
-                <x-btn-add :route="route('cells.create')" />
-                <x-btn-trashed :route="route('cells.trashed')" />
+                <x-btn-link class="btn-outline-primary" :icon="'bi-plus-lg'" :message="__('message.add')" :route="route('cells.create')" />
+                <x-btn-link class="btn-outline-danger" :icon="'bi-trash3'" :message="__('message.trashed')" :route="route('cells.trashed')" />
             </x-slot:right>
         </x-page-header>
 
@@ -35,8 +31,10 @@
                             <td>{{ $cell->department->name ?? '—' }}</td>
 
                             <td class="text-end">
-                                <x-btn-view :route="route('cells.show', $cell)" />
-                                <x-btn-edit :route="route('cells.edit', $cell)" />
+                                <x-btn-link class="btn-outline-secondary" :icon="'bi-eye'" :message="__('message.view')"
+                                    :route="route('cells.show', $cell)" />
+                                <x-btn-link class="btn-outline-success" :icon="'bi-pencil'" :message="__('message.edit')"
+                                    :route="route('cells.edit', $cell)" />
                                 <x-btn-delete :route="route('cells.destroy', $cell)" />
                             </td>
                         </tr>
@@ -52,4 +50,4 @@
         {{-- Pagination --}}
         {{ $cells->links() }}
     </div>
-@endsection
+</x-admin-layout>

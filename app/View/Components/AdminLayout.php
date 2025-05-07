@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class BtnSave extends Component
+class AdminLayout extends Component
 {
     /**
      * Create a new component instance.
@@ -21,6 +21,6 @@ class BtnSave extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.btn-save');
+        return view('layouts.admin');
     }
 }

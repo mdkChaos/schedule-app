@@ -1,16 +1,12 @@
-@extends('layouts.admin')
-
-@section('title', __('message.roles'))
-
-@section('content')
+<x-admin-layout :title="__('message.roles')">
     <div class="container">
         <x-page-header :title="__('message.roles')" :iconClass="'bi bi-shield-lock text-primary'">
             <x-slot:left>
-                <x-btn-back :route="route('admin.dashboard')" />
+                <x-btn-link class="btn-outline-secondary" :icon="'bi-arrow-left'" :message="__('message.back')" :route="route('admin.dashboard')" />
             </x-slot:left>
             <x-slot:right>
-                <x-btn-add :route="route('roles.create')" />
-                <x-btn-trashed :route="route('roles.trashed')" />
+                <x-btn-link class="btn-outline-primary" :icon="'bi-plus-lg'" :message="__('message.add')" :route="route('roles.create')" />
+                <x-btn-link class="btn-outline-danger" :icon="'bi-trash3'" :message="__('message.trashed')" :route="route('roles.trashed')" />
             </x-slot:right>
         </x-page-header>
 
@@ -24,6 +20,7 @@
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">{{ __('message.name') }}</th>
+                        <th scope="col">{{ __('message.level') }}</th>
                         <th scope="col" class="text-end">{{ __('message.actions') }}</th>
                     </tr>
                 </thead>
@@ -32,11 +29,14 @@
                         <tr>
                             <td>{{ $role->id }}</td>
                             <td>{{ $role->name }}</td>
+                            <td>{{ $role->level }}</td>
 
                             {{-- Action Buttons --}}
                             <td class="text-end">
-                                <x-btn-view :route="route('roles.show', $role)" />
-                                <x-btn-edit :route="route('roles.edit', $role)" />
+                                <x-btn-link class="btn-outline-secondary" :icon="'bi-eye'" :message="__('message.view')"
+                                    :route="route('roles.show', $role)" />
+                                <x-btn-link class="btn-outline-success" :icon="'bi-pencil'" :message="__('message.edit')"
+                                    :route="route('roles.edit', $role)" />
                                 <x-btn-delete :route="route('roles.destroy', $role)" />
                             </td>
 
@@ -53,4 +53,4 @@
         {{-- Pagination --}}
         {{ $roles->links() }}
     </div>
-@endsection
+</x-admin-layout>

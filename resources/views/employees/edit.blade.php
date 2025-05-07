@@ -1,13 +1,8 @@
-{{-- filepath: resources/views/employees/edit.blade.php --}}
-@extends('layouts.admin')
-
-@section('title', __('message.edit'))
-
-@section('content')
+<x-admin-layout :title="__('message.employees')">
     <div class="container">
         <x-page-header :title="__('message.edit')" :iconClass="'bi bi-pencil-square text-danger'">
             <x-slot:left>
-                <x-btn-back :route="route('employees.index')" />
+                <x-btn-link class="btn-outline-secondary" :icon="'bi-arrow-left'" :message="__('message.back')" :route="route('employees.index')" />
             </x-slot:left>
         </x-page-header>
 
@@ -31,7 +26,8 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="name" class="form-label fw-semibold">{{ __('message.first_name') }}</label>
+                                <label for="name"
+                                    class="form-label fw-semibold">{{ __('message.first_name') }}</label>
                                 <input type="text" name="name" id="name"
                                     class="form-control @error('name') is-invalid @enderror"
                                     value="{{ old('name', $employee->name) }}" required>
@@ -78,8 +74,11 @@
                             </div>
 
                             <div class="mt-4 d-flex justify-content-end gap-2">
-                                <x-btn-cancel :route="route('employees.index')" />
-                                <x-btn-save />
+                                <x-btn-link class="btn-outline-secondary" :icon="'bi-x-lg'" :message="__('message.cancel')"
+                                    :route="route('employees.index')" />
+                                <x-button class="btn-outline-success">
+                                    <i class="bi bi-save"></i> {{ __('message.save') }}
+                                </x-button>
                             </div>
                         </form>
                     </div>
@@ -87,4 +86,4 @@
             </div>
         </div>
     </div>
-@endsection
+</x-admin-layout>

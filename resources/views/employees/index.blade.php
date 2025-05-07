@@ -1,16 +1,12 @@
-@extends('layouts.admin')
-
-@section('title', __('message.employees'))
-
-@section('content')
+<x-admin-layout :title="__('message.employees')">
     <div class="container">
         <x-page-header :title="__('message.employees')" :iconClass="'bi bi-person-badge text-danger'">
             <x-slot:left>
-                <x-btn-back :route="route('admin.dashboard')" />
+                <x-btn-link class="btn-outline-secondary" :icon="'bi-arrow-left'" :message="__('message.back')" :route="route('admin.dashboard')" />
             </x-slot:left>
             <x-slot:right>
-                <x-btn-add :route="route('employees.create')" />
-                <x-btn-trashed :route="route('employees.trashed')" />
+                <x-btn-link class="btn-outline-primary" :icon="'bi-plus-lg'" :message="__('message.add')" :route="route('employees.create')" />
+                <x-btn-link class="btn-outline-danger" :icon="'bi-trash3'" :message="__('message.trashed')" :route="route('employees.trashed')" />
             </x-slot:right>
         </x-page-header>
 
@@ -40,8 +36,10 @@
                             <td>{{ $employee->email }}</td>
                             <td>{{ $employee->role?->name }}</td>
                             <td class="text-end">
-                                <x-btn-view :route="route('employees.show', $employee)" />
-                                <x-btn-edit :route="route('employees.edit', $employee)" />
+                                <x-btn-link class="btn-outline-secondary" :icon="'bi-eye'" :message="__('message.view')"
+                                    :route="route('employees.show', $employee)" />
+                                <x-btn-link class="btn-outline-success" :icon="'bi-pencil'" :message="__('message.edit')"
+                                    :route="route('employees.edit', $employee)" />
                                 <x-btn-delete :route="route('employees.destroy', $employee)" />
                             </td>
                         </tr>
@@ -57,4 +55,4 @@
         {{-- Pagination --}}
         {{ $employees->links() }}
     </div>
-@endsection
+</x-admin-layout>

@@ -1,12 +1,8 @@
-@extends('layouts.admin')
-
-@section('title', __('message.trashed'))
-
-@section('content')
+<x-admin-layout :title="__('message.roles')">
     <div class="container">
         <x-page-header :title="__('message.trashed')" :iconClass="'bi bi-trash3 text-danger'">
             <x-slot:left>
-                <x-btn-back :route="route('roles.index')" />
+                <x-btn-link class="btn-outline-secondary" :icon="'bi-arrow-left'" :message="__('message.back')" :route="route('roles.index')" />
             </x-slot:left>
         </x-page-header>
 
@@ -18,6 +14,7 @@
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">{{ __('message.name') }}</th>
+                        <th scope="col">{{ __('message.level') }}</th>
                         <th scope="col">{{ __('message.deleted') }}</th>
                         <th scope="col" class="text-end">{{ __('message.actions') }}</th>
                     </tr>
@@ -27,6 +24,7 @@
                         <tr>
                             <td>{{ $role->id }}</td>
                             <td>{{ $role->name }}</td>
+                            <td>{{ $role->level }}</td>
                             <td>{{ $role->deleted_at->format('d.m.Y H:i') }}</td>
 
                             {{-- Action Buttons --}}
@@ -48,4 +46,4 @@
         {{-- Pagination --}}
         {{ $roles->links() }}
     </div>
-@endsection
+</x-admin-layout>

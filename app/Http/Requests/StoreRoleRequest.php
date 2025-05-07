@@ -23,6 +23,7 @@ class StoreRoleRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255|unique:roles,name',
+            'level' => 'required|integer|min:0|max:255',
         ];
     }
 
@@ -35,6 +36,8 @@ class StoreRoleRequest extends FormRequest
     {
         return [
             'name.unique' => __('message.this_name_already_exists'),
+            'level.min' => __('message.level_range'),
+            'level.max' => __('message.level_range'),
         ];
     }
 }

@@ -1,16 +1,12 @@
-@extends('layouts.admin')
-
-@section('title', __('message.shifts'))
-
-@section('content')
+<x-admin-layout :title="__('message.shifts')">
     <div class="container">
         <x-page-header :title="__('message.shifts')" :iconClass="'bi bi-calendar text-danger'">
             <x-slot:left>
-                <x-btn-back :route="route('admin.dashboard')" />
+                <x-btn-link class="btn-outline-secondary" :icon="'bi-arrow-left'" :message="__('message.back')" :route="route('admin.dashboard')" />
             </x-slot:left>
             <x-slot:right>
-                <x-btn-add :route="route('shifts.create')" />
-                <x-btn-trashed :route="route('shifts.trashed')" />
+                <x-btn-link class="btn-outline-primary" :icon="'bi-plus-lg'" :message="__('message.add')" :route="route('shifts.create')" />
+                <x-btn-link class="btn-outline-danger" :icon="'bi-trash3'" :message="__('message.trashed')" :route="route('shifts.trashed')" />
             </x-slot:right>
         </x-page-header>
 
@@ -35,8 +31,10 @@
 
                             {{-- Action Buttons --}}
                             <td class="text-end">
-                                <x-btn-view :route="route('shifts.show', $shift)" />
-                                <x-btn-edit :route="route('shifts.edit', $shift)" />
+                                <x-btn-link class="btn-outline-secondary" :icon="'bi-eye'" :message="__('message.view')"
+                                    :route="route('shifts.show', $shift)" />
+                                <x-btn-link class="btn-outline-success" :icon="'bi-pencil'" :message="__('message.edit')"
+                                    :route="route('shifts.edit', $shift)" />
                                 <x-btn-delete :route="route('shifts.destroy', $shift)" />
                             </td>
 
@@ -53,4 +51,4 @@
         {{-- Pagination --}}
         {{ $shifts->links() }}
     </div>
-@endsection
+</x-admin-layout>

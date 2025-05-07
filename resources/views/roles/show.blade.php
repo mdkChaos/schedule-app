@@ -1,15 +1,11 @@
-@extends('layouts.admin')
-
-@section('title', $role->name)
-
-@section('content')
+<x-admin-layout :title="__('message.roles')">
     <div class="container">
         <x-page-header :title="$role->name" :iconClass="'bi bi-building text-primary'">
             <x-slot:left>
-                <x-btn-back :route="route('roles.index')" />
+                <x-btn-link class="btn-outline-secondary" :icon="'bi-arrow-left'" :message="__('message.back')" :route="route('roles.index')" />
             </x-slot:left>
             <x-slot:right>
-                <x-btn-edit :route="route('roles.edit', $role)" />
+                <x-btn-link class="btn-outline-success" :icon="'bi-pencil'" :message="__('message.edit')" :route="route('roles.edit', $role)" />
                 <x-btn-delete :route="route('roles.destroy', $role)" />
             </x-slot:right>
         </x-page-header>
@@ -31,6 +27,10 @@
                                 <dd class="col-sm-8 mb-0">{{ $role->name }}</dd>
                             </div>
                             <div class="row align-items-center border-bottom py-2">
+                                <dt class="col-sm-4">{{ __('message.level') }}</dt>
+                                <dd class="col-sm-8 mb-0">{{ $role->level }}</dd>
+                            </div>
+                            <div class="row align-items-center border-bottom py-2">
                                 <dt class="col-sm-4">{{ __('message.created') }}</dt>
                                 <dd class="col-sm-8 mb-0">{{ $role->created_at->format('d.m.Y H:i') }}</dd>
                             </div>
@@ -44,4 +44,4 @@
             </div>
         </div>
     </div>
-@endsection
+</x-admin-layout>

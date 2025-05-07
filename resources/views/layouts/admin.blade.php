@@ -1,8 +1,10 @@
+@props(['title'])
+
 <!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}" data-bs-theme="ligth">
+<html lang="{{ app()->getLocale() }}" data-bs-theme="light">
 
 {{-- Head --}}
-<x-head :title="__('message.admin_panel')" />
+<x-head :title="$title ?? __('message.admin_panel')" />
 
 <body class="d-flex flex-column min-vh-100" style="font-family: 'Nunito', Arial, sans-serif;">
     {{-- Navigation --}}
@@ -10,7 +12,9 @@
         :itemStyle="'btn-outline-light'" :itemText="__('message.schedule')" />
 
     {{-- Main --}}
-    <x-main />
+    <x-main>
+        {{ $slot }}
+    </x-main>
 
     {{-- Footer --}}
     <x-footer />

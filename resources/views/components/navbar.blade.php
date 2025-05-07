@@ -17,6 +17,22 @@
                 <li class="nav-item d-flex align-items-center ms-2">
                     <x-language-switch />
                 </li>
+                @guest
+                    <li class="nav-item ms-2">
+                        <a href="{{ route('login') }}" class="btn btn-outline-primary btn-sm">
+                            <i class="bi bi-box-arrow-in-right"></i> {{ __('message.login') }}
+                        </a>
+                    </li>
+                @else
+                    <li class="nav-item ms-2">
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <button type="submit" class="btn btn-outline-danger btn-sm">
+                                <i class="bi bi-box-arrow-right"></i> {{ __('message.logout') }}
+                            </button>
+                        </form>
+                    </li>
+                @endguest
             </ul>
         </div>
     </div>

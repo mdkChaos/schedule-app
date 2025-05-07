@@ -1,12 +1,8 @@
-@extends('layouts.admin')
-
-@section('title', __('message.trashed'))
-
-@section('content')
+<x-admin-layout :title="__('message.workshops')">
     <div class="container">
         <x-page-header :title="__('message.trashed')" :iconClass="'bi bi-trash3 text-danger'">
             <x-slot:left>
-                <x-btn-back :route="route('workshops.index')" />
+                <x-btn-link class="btn-outline-secondary" :icon="'bi-arrow-left'" :message="__('message.back')" :route="route('workshops.index')" />
             </x-slot:left>
         </x-page-header>
 
@@ -48,4 +44,4 @@
         {{-- Pagination --}}
         {{ $deletedWorkshops->links() }}
     </div>
-@endsection
+</x-admin-layout>

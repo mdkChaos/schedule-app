@@ -1,15 +1,11 @@
-@extends('layouts.admin')
-
-@section('title', $employee->employee_code)
-
-@section('content')
+<x-admin-layout :title="__('message.employees')">
     <div class="container">
         <x-page-header :title="$employee->employee_code" :iconClass="'bi bi-person-badge text-danger'">
             <x-slot:left>
-                <x-btn-back :route="route('employees.index')" />
+                <x-btn-link class="btn-outline-secondary" :icon="'bi-arrow-left'" :message="__('message.back')" :route="route('employees.index')" />
             </x-slot:left>
             <x-slot:right>
-                <x-btn-edit :route="route('employees.edit', $employee)" />
+                <x-btn-link class="btn-outline-success" :icon="'bi-pencil'" :message="__('message.edit')" :route="route('employees.edit', $employee)" />
                 <x-btn-delete :route="route('employees.destroy', $employee)" />
             </x-slot:right>
         </x-page-header>
@@ -60,4 +56,4 @@
             </div>
         </div>
     </div>
-@endsection
+</x-admin-layout>

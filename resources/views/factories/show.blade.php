@@ -1,15 +1,11 @@
-@extends('layouts.admin')
-
-@section('title', $factory->name)
-
-@section('content')
+<x-admin-layout :title="__('message.factories')">
     <div class="container">
         <x-page-header :title="$factory->name" :iconClass="'bi bi-building text-primary'">
             <x-slot:left>
-                <x-btn-back :route="route('factories.index')" />
+                <x-btn-link class="btn-outline-secondary" :icon="'bi-arrow-left'" :message="__('message.back')" :route="route('factories.index')" />
             </x-slot:left>
             <x-slot:right>
-                <x-btn-edit :route="route('factories.edit', $factory)" />
+                <x-btn-link class="btn-outline-success" :icon="'bi-pencil'" :message="__('message.edit')" :route="route('factories.edit', $factory)" />
                 <x-btn-delete :route="route('factories.destroy', $factory)" />
             </x-slot:right>
         </x-page-header>
@@ -44,4 +40,4 @@
             </div>
         </div>
     </div>
-@endsection
+</x-admin-layout>

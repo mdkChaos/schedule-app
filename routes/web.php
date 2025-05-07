@@ -11,9 +11,11 @@ use App\Http\Controllers\PositionController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\ShiftController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\ProfileController;
 
 Route::view('/', 'index')->name('index');
 
+// Route::view('/admin', 'admin.dashboard')->middleware(['auth', 'verified'])->name('admin.dashboard');
 Route::view('/admin', 'admin.dashboard')->name('admin.dashboard');
 
 Route::post('language-switch', [LocaleController::class, 'switchLanguage'])->name('language.switch');
@@ -117,3 +119,11 @@ Route::controller(EmployeeController::class)
         Route::delete('{id}/force-delete', 'forceDelete')->name('forceDelete');
     });
 Route::resource('employees', EmployeeController::class);
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+require __DIR__ . '/auth.php';

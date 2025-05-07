@@ -1,10 +1,6 @@
-@extends('layouts.admin')
-
-@section('title', __('message.admin_panel'))
-
-@section('content')
-    <div class="py-5">
-        <div class="text-center mb-5">
+<x-admin-layout>
+    <div class="container">
+        <div class="text-center">
             <h1 class="display-4 fw-bold mb-3">{{ __('message.admin_panel') }}</h1>
         </div>
         <div class="row justify-content-center g-4">
@@ -18,7 +14,8 @@
             <x-dashboard-card icon="bi bi-diagram-3" iconColor="warning" :title="__('message.departments')" :text="__('message.departments_management')"
                 :route="route('departments.index')" />
 
-            <x-dashboard-card icon="bi bi-grid" iconColor="info" :title="__('message.cells')" :text="__('message.cells_management')" :route="route('cells.index')" />
+            <x-dashboard-card icon="bi bi-grid" iconColor="info" :title="__('message.cells')" :text="__('message.cells_management')"
+                :route="route('cells.index')" />
 
             <x-dashboard-card icon="bi bi-people" iconColor="secondary" :title="__('message.brigades')" :text="__('message.brigades_management')"
                 :route="route('brigades.index')" />
@@ -43,4 +40,4 @@
             box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, .15) !important;
         }
     </style>
-@endsection
+</x-admin-layout>
