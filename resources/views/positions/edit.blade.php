@@ -2,7 +2,7 @@
     <div class="container">
         <x-page-header :title="__('message.edit')" :iconClass="'bi bi-pencil-square text-dark'">
             <x-slot:left>
-                <x-btn-link class="btn-outline-secondary" :icon="'bi-arrow-left'" :message="__('message.back')" :route="route('positions.index')" />
+                <x-btn-link class="me-1 btn-outline-secondary" :icon="'bi-arrow-left'" :message="__('message.back')" :route="route('positions.index')" />
             </x-slot:left>
         </x-page-header>
 
@@ -25,7 +25,7 @@
                             </div>
 
                             <div class="mt-4 d-flex justify-content-end gap-2">
-                                <x-btn-link class="btn-outline-secondary" :icon="'bi-x-lg'" :message="__('message.cancel')"
+                                <x-btn-link class="me-1 btn-outline-secondary" :icon="'bi-x-lg'" :message="__('message.cancel')"
                                     :route="route('positions.index')" />
                                 <x-button class="btn-outline-success">
                                     <i class="bi bi-save"></i> {{ __('message.save') }}

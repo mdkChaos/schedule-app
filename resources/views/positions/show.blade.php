@@ -2,10 +2,10 @@
     <div class="container">
         <x-page-header :title="$position->name" :iconClass="'bi bi-person-vcard text-dark'">
             <x-slot:left>
-                <x-btn-link class="btn-outline-secondary" :icon="'bi-arrow-left'" :message="__('message.back')" :route="route('positions.index')" />
+                <x-btn-link class="me-1 btn-outline-secondary" :icon="'bi-arrow-left'" :message="__('message.back')" :route="route('positions.index')" />
             </x-slot:left>
             <x-slot:right>
-                <x-btn-link class="btn-outline-success" :icon="'bi-pencil'" :message="__('message.edit')" :route="route('positions.edit', $position)" />
+                <x-btn-link class="me-1 btn-outline-success" :icon="'bi-pencil'" :message="__('message.edit')" :route="route('positions.edit', $position)" />
                 <x-btn-delete :route="route('positions.destroy', $position)" />
             </x-slot:right>
         </x-page-header>

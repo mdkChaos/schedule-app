@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreEmployeeRequest;
 use App\Http\Requests\UpdateEmployeeRequest;
-use App\Models\Role;
 use App\Models\Employee;
 
 class EmployeeController extends Controller
@@ -24,9 +23,7 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        $roles = Role::all();
-
-        return view('employees.create', compact('roles'));
+        return view('employees.create');
     }
 
     /**
@@ -54,9 +51,7 @@ class EmployeeController extends Controller
      */
     public function edit(Employee $employee)
     {
-        $roles = Role::all();
-
-        return view('employees.edit', compact('employee', 'roles'));
+        return view('employees.edit', compact('employee'));
     }
 
     /**

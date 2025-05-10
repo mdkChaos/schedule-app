@@ -2,10 +2,10 @@
     <div class="container">
         <x-page-header :title="$workshop->name" :iconClass="'bi bi-gear-wide-connected text-success'">
             <x-slot:left>
-                <x-btn-link class="btn-outline-secondary" :icon="'bi-arrow-left'" :message="__('message.back')" :route="route('workshops.index')" />
+                <x-btn-link class="me-1 btn-outline-secondary" :icon="'bi-arrow-left'" :message="__('message.back')" :route="route('workshops.index')" />
             </x-slot:left>
             <x-slot:right>
-                <x-btn-link class="btn-outline-success" :icon="'bi-pencil'" :message="__('message.edit')" :route="route('workshops.edit', $workshop)" />
+                <x-btn-link class="me-1 btn-outline-success" :icon="'bi-pencil'" :message="__('message.edit')" :route="route('workshops.edit', $workshop)" />
                 <x-btn-delete :route="route('workshops.destroy', $workshop)" />
             </x-slot:right>
         </x-page-header>

@@ -22,24 +22,8 @@ class StoreEmployeeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'employee_code' => 'required|string|max:255|unique:users',
             'name' => 'required|string|max:255',
             'surname' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'role_id' => 'nullable|exists:roles,id',
-        ];
-    }
-
-    /**
-     * Get the custom messages for the validation rules.
-     *
-     * @return array<string, string>
-     */
-    public function messages(): array
-    {
-        return [
-            'employee_code.unique' => __('message.this_name_already_exists'),
-            'email.unique' => __('message.this_name_already_exists'),
         ];
     }
 }

@@ -2,7 +2,7 @@
     <div class="container">
         <x-page-header :title="__('message.trashed')" :iconClass="'bi bi-trash3 text-danger'">
             <x-slot:left>
-                <x-btn-link class="btn-outline-secondary" :icon="'bi-arrow-left'" :message="__('message.back')" :route="route('factories.index')" />
+                <x-btn-link class="me-1 btn-outline-secondary" :icon="'bi-arrow-left'" :message="__('message.back')" :route="route('factories.index')" />
             </x-slot:left>
         </x-page-header>
 

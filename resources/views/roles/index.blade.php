@@ -2,11 +2,11 @@
     <div class="container">
         <x-page-header :title="__('message.roles')" :iconClass="'bi bi-shield-lock text-primary'">
             <x-slot:left>
-                <x-btn-link class="btn-outline-secondary" :icon="'bi-arrow-left'" :message="__('message.back')" :route="route('admin.dashboard')" />
+                <x-btn-link class="me-1 btn-outline-secondary" :icon="'bi-arrow-left'" :message="__('message.back')" :route="route('admin.dashboard')" />
             </x-slot:left>
             <x-slot:right>
-                <x-btn-link class="btn-outline-primary" :icon="'bi-plus-lg'" :message="__('message.add')" :route="route('roles.create')" />
-                <x-btn-link class="btn-outline-danger" :icon="'bi-trash3'" :message="__('message.trashed')" :route="route('roles.trashed')" />
+                <x-btn-link class="me-1 btn-outline-primary" :icon="'bi-plus-lg'" :message="__('message.add')" :route="route('roles.create')" />
+                <x-btn-link class="me-1 btn-outline-danger" :icon="'bi-trash3'" :message="__('message.trashed')" :route="route('roles.trashed')" />
             </x-slot:right>
         </x-page-header>
 
@@ -33,9 +33,9 @@
 
                             {{-- Action Buttons --}}
                             <td class="text-end">
-                                <x-btn-link class="btn-outline-secondary" :icon="'bi-eye'" :message="__('message.view')"
+                                <x-btn-link class="me-1 btn-outline-secondary" :icon="'bi-eye'" :message="__('message.view')"
                                     :route="route('roles.show', $role)" />
-                                <x-btn-link class="btn-outline-success" :icon="'bi-pencil'" :message="__('message.edit')"
+                                <x-btn-link class="me-1 btn-outline-success" :icon="'bi-pencil'" :message="__('message.edit')"
                                     :route="route('roles.edit', $role)" />
                                 <x-btn-delete :route="route('roles.destroy', $role)" />
                             </td>

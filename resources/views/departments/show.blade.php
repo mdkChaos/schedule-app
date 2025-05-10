@@ -2,10 +2,10 @@
     <div class="container">
         <x-page-header :title="$department->name" :iconClass="'bi bi-diagram-3 text-warning'">
             <x-slot:left>
-                <x-btn-link class="btn-outline-secondary" :icon="'bi-arrow-left'" :message="__('message.back')" :route="route('departments.index')" />
+                <x-btn-link class="me-1 btn-outline-secondary" :icon="'bi-arrow-left'" :message="__('message.back')" :route="route('departments.index')" />
             </x-slot:left>
             <x-slot:right>
-                <x-btn-link class="btn-outline-success" :icon="'bi-pencil'" :message="__('message.edit')" :route="route('departments.edit', $department)" />
+                <x-btn-link class="me-1 btn-outline-success" :icon="'bi-pencil'" :message="__('message.edit')" :route="route('departments.edit', $department)" />
                 <x-btn-delete :route="route('departments.destroy', $department)" />
             </x-slot:right>
         </x-page-header>

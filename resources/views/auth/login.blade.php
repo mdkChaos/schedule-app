@@ -17,10 +17,10 @@
 
                             <!-- Email Address -->
                             <div class="mb-3">
-                                <x-label for="email" :value="__('message.email')" class="form-label fw-semibold" />
-                                <x-input id="email" type="email" name="email" class="form-control"
-                                    :value="old('email')" required autofocus autocomplete="username" />
-                                <x-input-error :messages="$errors->get('email')" />
+                                <x-label for="login" :value="__('message.log_in')" class="form-label fw-semibold" />
+                                <x-input id="login" type="text" name="login" class="form-control"
+                                    :value="old('login')" required autofocus autocomplete="username" />
+                                <x-input-error :messages="$errors->get('login')" />
                             </div>
 
                             <!-- Password -->
@@ -37,18 +37,17 @@
                                         :value="old('remember')" />
                                     <x-label for="remember_me" class="form-check-label" :value="__('message.remember_me')" />
                                 </div>
-                                @if (Route::has('password.request'))
-                                    <a class="text-decoration-underline text-secondary small"
-                                        href="{{ route('password.request') }}">
-                                        {{ __('message.forgot_your_password') }}
-                                    </a>
-                                @endif
                             </div>
 
-                            <div class="d-grid">
+                            <div class="d-grid mb-3">
                                 <x-button class="btn-outline-primary px-4 py-2">
                                     <i class="bi bi-box-arrow-in-right me-1"></i> {{ __('message.login') }}
                                 </x-button>
+                            </div>
+
+                            <div class="d-grid">
+                                <x-btn-link class="btn-outline-secondary px-4 py-2" route="{{ route('register') }}"
+                                    icon="bi bi-person-plus" message="{{ __('message.register') }}" />
                             </div>
                         </form>
                     </div>

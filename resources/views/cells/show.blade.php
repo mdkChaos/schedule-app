@@ -2,10 +2,10 @@
     <div class="container">
         <x-page-header :title="$cell->name" :iconClass="'bi bi-grid text-info'">
             <x-slot:left>
-                <x-btn-link class="btn-outline-secondary" :icon="'bi-arrow-left'" :message="__('message.back')" :route="route('cells.index')" />
+                <x-btn-link class="me-1 btn-outline-secondary" :icon="'bi-arrow-left'" :message="__('message.back')" :route="route('cells.index')" />
             </x-slot:left>
             <x-slot:right>
-                <x-btn-link class="btn-outline-success" :icon="'bi-pencil'" :message="__('message.edit')" :route="route('cells.edit', $cell)" />
+                <x-btn-link class="me-1 btn-outline-success" :icon="'bi-pencil'" :message="__('message.edit')" :route="route('cells.edit', $cell)" />
                 <x-btn-delete :route="route('cells.destroy', $cell)" />
             </x-slot:right>
         </x-page-header>

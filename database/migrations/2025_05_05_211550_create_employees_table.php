@@ -13,11 +13,8 @@ return new class extends Migration
     {
         Schema::create('employees', function (Blueprint $table) {
             $table->id();
-            $table->string('employee_code')->unique();
             $table->string('name');
             $table->string('surname');
-            $table->string('email')->unique();
-            $table->foreignId('role_id')->nullable()->constrained('roles')->nullOnDelete();
             $table->timestamps();
             $table->softDeletes();
         });

@@ -8,8 +8,8 @@
 
 <body class="d-flex flex-column min-vh-100" style="font-family: 'Nunito', Arial, sans-serif;">
     {{-- Navigation --}}
-    <x-navbar :navStyle="'navbar-dark bg-dark'" :logoUrl="route('admin.dashboard')" :logoText="__('message.admin_panel')" :logoStyle="'bi bi-speedometer2'" :itemUrl="route('index')"
-        :itemStyle="'btn-outline-light'" :itemText="__('message.schedule')" />
+    <x-navbar :navStyle="'navbar-light bg-light'" :logoUrl="route('admin.dashboard')" :logoText="__('message.admin_panel')" :logoStyle="'bi bi-speedometer2'" :itemUrl="route('index')"
+        :itemStyle="'btn-outline-dark'" :itemText="__('message.schedule')" />
 
     {{-- Main --}}
     <x-main>
