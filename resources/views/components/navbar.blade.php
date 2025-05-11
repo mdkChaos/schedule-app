@@ -24,21 +24,24 @@
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
 
-                            @if (!empty($itemUrl) && !empty($itemText))
-                                <li>
-                                    <a href="{{ $itemUrl }}" class="dropdown-item">
-                                        {{ $itemText }}
-                                    </a>
-                                </li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                            @endif
+                            @role('Manager')
+                                @if (!empty($itemUrl) && !empty($itemText))
+                                    <li>
+                                        <a href="{{ $itemUrl }}" class="dropdown-item">
+                                            {{ $itemText }}
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                @endif
+                            @endrole
 
-                            {{-- Сюди можна додати інші посилання, наприклад, на Профіль --}}
-                            {{-- <li><a class="dropdown-item" href="#"><i class="bi bi-person-badge me-1"></i> Мій профіль</a></li> --}}
-                            {{-- <li><hr class="dropdown-divider"></li> --}}
-
+                            <li>
+                                <a class="dropdown-item" href="{{ route('password.change') }}">
+                                    <i class="bi bi-key me-1"></i> {{ __('message.change_password') }}
+                                </a>
+                            </li>
                             <li>
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
@@ -51,10 +54,6 @@
                     </li>
                 @endauth
 
-                <li class="nav-item ms-lg-2">
-                    <x-language-switch />
-                </li>
-
                 @guest
                     <li class="nav-item ms-lg-2">
                         <a href="{{ route('login') }}" class="btn btn-outline-primary btn-sm">
@@ -62,6 +61,10 @@
                         </a>
                     </li>
                 @endguest
+
+                <li class="nav-item ms-lg-2">
+                    <x-language-switch />
+                </li>
             </ul>
         </div>
     </div>

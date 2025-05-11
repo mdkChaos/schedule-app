@@ -20,7 +20,7 @@ class UpdateFactoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|max:255|unique:factories,name,' . $this->factory->id,
+            'name' => 'required|string|max:255|unique:factories,name,' . $this->route('factory')->id,
         ];
     }
 

@@ -22,7 +22,7 @@ class UpdateCellRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|max:255|unique:cells,name,' . $this->cell->id,
+            'name' => 'required|string|max:255|unique:cells,name,' . $this->route('cell')->id,
             'department_id' => 'required|exists:departments,id',
         ];
     }

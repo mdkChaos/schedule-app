@@ -3,8 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules\Password;
 
-class UpdateBrigadeRequest extends FormRequest
+class UpdatePasswordRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,18 +23,8 @@ class UpdateBrigadeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|max:255|unique:brigades,name,' . $this->route('brigade')->id,
-        ];
-    }
-
-    /**
-     * Custom error messages.
-     */
-    public function messages(): array
-    {
-        return [
-            'name.required' => 'Brigade name is required.',
-            'name.unique' => __('message.this_name_already_exists'),
+            'current_password' => ['required', 'current_password'],
+            'password' => ['required', 'confirmed', Password::defaults()],
         ];
     }
 }

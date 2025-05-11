@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUserRequest;
 use App\Models\Role;
 use App\Models\User;
-use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -36,8 +35,6 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($validated['password']),
             'role_id' => $roleId
         ]);
-
-        event(new Registered($user));
 
         Auth::login($user);
 

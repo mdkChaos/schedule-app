@@ -22,7 +22,7 @@ class UpdateWorkshopRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|max:255|unique:workshops,name,' . $this->workshop->id,
+            'name' => 'required|string|max:255|unique:workshops,name,' . $this->route('workshop')->id,
             'factory_id' => 'required|exists:factories,id',
         ];
     }
