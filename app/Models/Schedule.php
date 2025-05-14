@@ -13,17 +13,17 @@ class Schedule extends Model
 
     protected $fillable = [
         'date',
+        'employee_id',
         'shift_id',
-        'user_id',
         'description',
     ];
 
     /**
-     * Get the user that owns the schedule.
+     * Get the employee that owns the schedule.
      */
-    public function user(): BelongsTo
+    public function employee(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Employee::class);
     }
 
     /**

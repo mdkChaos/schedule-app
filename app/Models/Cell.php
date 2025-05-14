@@ -25,11 +25,8 @@ class Cell extends Model
         return $this->belongsTo(Department::class);
     }
 
-    /**
-     * Get the users for the cell.
-     */
-    public function users(): HasMany
+    public function employeeHistory(): HasMany
     {
-        return $this->hasMany(User::class);
+        return $this->hasMany(EmployeeCell::class);
     }
 }

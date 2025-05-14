@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('surname');
+            $table->foreignId('position_id')->constrained()->restrictOnDelete();
             $table->timestamps();
             $table->softDeletes();
         });

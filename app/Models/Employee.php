@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -19,13 +20,24 @@ class Employee extends Model
     protected $fillable = [
         'name',
         'surname',
+        'position_id'
     ];
 
-    /**
-     * Get the schedules associated with the user.
-     *
-     * @return HasMany
-     */
+    public function position(): BelongsTo
+    {
+        return $this->belongsTo(Position::class);
+    }
+
+    public function cellHistory(): HasMany
+    {
+        return $this->hasMany(EmployeeCell::class);
+    }
+
+    public function brigadeHistory(): HasMany
+    {
+        return $this->hasMany(EmployeeBrigade::class);
+    }
+
     public function schedules(): HasMany
     {
         return $this->hasMany(Schedule::class);

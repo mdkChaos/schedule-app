@@ -14,17 +14,17 @@ return new class extends Migration
         Schema::create('schedules', function (Blueprint $table) {
             $table->id();
             $table->date('date');
-            $table->foreignId('shift_id')
-                ->constrained('shifts')
+            $table->foreignId('employee_id')
+                ->constrained()
                 ->restrictOnDelete();
-            $table->foreignId('user_id')
-                ->constrained('users')
+            $table->foreignId('shift_id')
+                ->constrained()
                 ->restrictOnDelete();
             $table->string('description')->nullable();
             $table->timestamps();
             $table->softDeletes();
 
-            $table->unique(['user_id', 'date']);
+            $table->unique(['employee_id', 'date']);
         });
     }
 

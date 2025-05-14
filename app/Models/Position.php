@@ -15,11 +15,8 @@ class Position extends Model
         'name',
     ];
 
-    /**
-     * Get the users for the position.
-     */
-    public function users(): HasMany
+    public function employees(): HasMany
     {
-        return $this->hasMany(User::class);
+        return $this->hasMany(Employee::class);
     }
 }

@@ -14,8 +14,7 @@ return new class extends Migration
         Schema::create('workshops', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
-            $table->foreignId('factory_id')
-                ->constrained('factories');
+            $table->foreignId('factory_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
             $table->softDeletes();
         });
