@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Employee extends Model
@@ -41,5 +42,19 @@ class Employee extends Model
     public function schedules(): HasMany
     {
         return $this->hasMany(Schedule::class);
+    }
+
+    public function currentCell(): HasOne
+    {
+        return $this->hasOne(EmployeeCell::class)
+            ->whereNull('end_date')
+            ->latest('start_date');
+    }
+
+    public function currentBrigade(): HasOne
+    {
+        return $this->hasOne(EmployeeBrigade::class)
+            ->whereNull('end_date')
+            ->latest('start_date');
     }
 }

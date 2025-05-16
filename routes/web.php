@@ -19,13 +19,6 @@ Route::view('/', 'index')->name('index');
 
 Route::post('language-switch', [LocaleController::class, 'switchLanguage'])->name('language.switch');
 
-Route::middleware(['role:Manager'])->group(function () {
-    Route::view('/admin', 'admin.dashboard')->name('admin.dashboard');
-
-    // Employee (CRUD)
-    Route::resource('employees', EmployeeController::class);
-});
-
 Route::middleware(['role:Admin'])->group(function () {
     // Factories (CRUD + trashed)
     Route::controller(FactoryController::class)
@@ -113,6 +106,13 @@ Route::middleware(['role:Admin'])->group(function () {
             Route::post('{id}/restore', 'restore')->name('restore');
             Route::delete('{id}/force-delete', 'forceDelete')->name('forceDelete');
         });
+});
+
+Route::middleware(['role:Manager'])->group(function () {
+    Route::view('/admin', 'admin.dashboard')->name('admin.dashboard');
+
+    // Employee (CRUD)
+    Route::resource('employees', EmployeeController::class);
 });
 
 Route::middleware(['role:Super Admin'])->group(function () {

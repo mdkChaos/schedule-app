@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreEmployeeRequest;
 use App\Http\Requests\UpdateEmployeeRequest;
 use App\Models\Employee;
+use App\Models\Position;
 
 class EmployeeController extends Controller
 {
@@ -13,7 +14,7 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $employees = Employee::paginate(10);
+        $employees = Employee::with(['currentCell.cell', 'currentBrigade.brigade'])->paginate(10);
 
         return view('employees.index', compact('employees'));
     }
@@ -23,7 +24,9 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        return view('employees.create');
+        $positions = Position::all();
+
+        return view('employees.create', compact('positions'));
     }
 
     /**
@@ -43,6 +46,11 @@ class EmployeeController extends Controller
      */
     public function show(Employee $employee)
     {
+        $employee->load([
+            'currentBrigade.brigade',
+            'currentCell.cell',
+        ]);
+
         return view('employees.show', compact('employee'));
     }
 
@@ -51,7 +59,9 @@ class EmployeeController extends Controller
      */
     public function edit(Employee $employee)
     {
-        return view('employees.edit', compact('employee'));
+        $positions = Position::all();
+
+        return view('employees.edit', compact('employee', 'positions'));
     }
 
     /**
@@ -81,7 +91,7 @@ class EmployeeController extends Controller
      */
     public function trashed()
     {
-        $employees = Employee::onlyTrashed()->paginate(10);
+        $employees = Employee::with(['currentCell.cell', 'currentBrigade.brigade'])->onlyTrashed()->paginate(10);
 
         return view('employees.trashed', compact('employees'));
     }

@@ -30,6 +30,21 @@
                                 <dt class="col-sm-4">{{ __('message.surname') }}</dt>
                                 <dd class="col-sm-8 mb-0">{{ $employee->surname }}</dd>
                             </div>
+
+                            <div class="row align-items-center border-bottom py-2">
+                                <dt class="col-sm-4">{{ __('message.brigade') }}</dt>
+                                <dd class="col-sm-8 mb-0">
+                                    {{ $employee->currentBrigade?->brigade?->name ?? __('message.not_found') }}
+                                </dd>
+                            </div>
+
+                            <div class="row align-items-center border-bottom py-2">
+                                <dt class="col-sm-4">{{ __('message.cell') }}</dt>
+                                <dd class="col-sm-8 mb-0">
+                                    {{ $employee->currentCell?->cell?->name ?? __('message.not_found') }}
+                                </dd>
+                            </div>
+
                             <div class="row align-items-center border-bottom py-2">
                                 <dt class="col-sm-4">{{ __('message.created') }}</dt>
                                 <dd class="col-sm-8 mb-0">{{ $employee->created_at->format('d.m.Y H:i') }}</dd>

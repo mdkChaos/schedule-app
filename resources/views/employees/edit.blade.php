@@ -15,24 +15,32 @@
                             @method('PUT')
 
                             <div class="mb-3">
-                                <label for="name"
-                                    class="form-label fw-semibold">{{ __('message.first_name') }}</label>
-                                <input type="text" name="name" id="name"
-                                    class="form-control @error('name') is-invalid @enderror"
-                                    value="{{ old('name', $employee->name) }}" required>
-                                @error('name')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
+                                <x-label for="name" :value="__('message.first_name')" class="form-label fw-semibold" />
+                                <x-input id="name" type="text" name="name" class="form-control"
+                                    :value="old('name', $employee->name)" required autofocus autocomplete="name" />
+                                <x-input-error :messages="$errors->get('name')" />
                             </div>
 
                             <div class="mb-3">
-                                <label for="surname" class="form-label fw-semibold">{{ __('message.surname') }}</label>
-                                <input type="text" name="surname" id="surname"
-                                    class="form-control @error('surname') is-invalid @enderror"
-                                    value="{{ old('surname', $employee->surname) }}" required>
-                                @error('surname')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
+                                <x-label for="surname" :value="__('message.surname')" class="form-label fw-semibold" />
+                                <x-input id="surname" type="text" name="surname" class="form-control"
+                                    :value="old('surname', $employee->surname)" required autofocus autocomplete="surname" />
+                                <x-input-error :messages="$errors->get('surname')" />
+                            </div>
+
+                            <div class="mb-3">
+                                <x-label for="position_id" :value="__('message.position')" class="form-label fw-semibold" />
+                                <select name="position_id" id="position_id"
+                                    class="form-select @error('position_id') is-invalid @enderror" required>
+                                    <option value="" disabled selected>{{ __('message.choose') }}</option>
+                                    @foreach ($positions as $position)
+                                        <option value="{{ $position->id }}"
+                                            {{ old('position_id', $employee->position_id) == $position->id ? 'selected' : '' }}>
+                                            {{ $position->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                <x-input-error :messages="$errors->get('position_id')" />
                             </div>
 
                             <div class="mt-4 d-flex justify-content-end gap-2">

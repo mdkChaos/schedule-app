@@ -20,6 +20,9 @@
                         <th scope="col">#</th>
                         <th scope="col">{{ __('message.first_name') }}</th>
                         <th scope="col">{{ __('message.surname') }}</th>
+                        <th scope="col">{{ __('message.position') }}</th>
+                        <th scope="col">{{ __('message.cell') }}</th>
+                        <th scope="col">{{ __('message.brigade') }}</th>
                         <th scope="col" class="text-end">{{ __('message.actions') }}</th>
                     </tr>
                 </thead>
@@ -29,6 +32,9 @@
                             <td>{{ $employee->id }}</td>
                             <td>{{ $employee->name }}</td>
                             <td>{{ $employee->surname }}</td>
+                            <td>{{ $employee->position->name }}</td>
+                            <td>{{ $employee->currentCell?->cell?->name ?? '—' }}</td>
+                            <td>{{ $employee->currentBrigade?->brigade?->name ?? '—' }}</td>
                             <td class="text-end">
                                 <x-btn-link class="me-1 btn-outline-secondary" :icon="'bi-eye'" :message="__('message.view')"
                                     :route="route('employees.show', $employee)" />
