@@ -25,6 +25,8 @@ class StoreEmployeeRequest extends FormRequest
             'name' => ['required', 'string', 'max:255'],
             'surname' => ['required', 'string', 'max:255'],
             'position_id' => ['required', 'exists:positions,id'],
+            'cell_id' => ['required', 'exists:cells,id'],
+            'brigade_id' => ['required', 'exists:brigades,id'],
         ];
     }
 }

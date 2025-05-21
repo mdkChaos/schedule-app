@@ -19,14 +19,21 @@ class Cell extends Model
 
     /**
      * Get the department that owns the cell.
+     * 
+     * @return BelongsTo
      */
     public function department(): BelongsTo
     {
         return $this->belongsTo(Department::class);
     }
 
-    public function employeeHistory(): HasMany
+    /**
+     * Get the employees for the cell.
+     * 
+     * @return HasMany
+     */
+    public function employees(): HasMany
     {
-        return $this->hasMany(EmployeeCell::class);
+        return $this->hasMany(Employee::class);
     }
 }

@@ -21,40 +21,48 @@ class Employee extends Model
     protected $fillable = [
         'name',
         'surname',
-        'position_id'
+        'position_id',
+        'cell_id',
+        'brigade_id',
     ];
 
+    /**
+     * Get the position that owns the employee.
+     * 
+     * @return BelongsTo
+     */
     public function position(): BelongsTo
     {
         return $this->belongsTo(Position::class);
     }
 
-    public function cellHistory(): HasMany
+    /**
+     * Get the brigade that owns the employee.
+     * 
+     * @return BelongsTo
+     */
+    public function brigade(): BelongsTo
     {
-        return $this->hasMany(EmployeeCell::class);
+        return $this->belongsTo(Brigade::class);
     }
 
-    public function brigadeHistory(): HasMany
+    /**
+     * Get the cell that owns the employee.
+     * 
+     * @return BelongsTo
+     */
+    public function cell(): BelongsTo
     {
-        return $this->hasMany(EmployeeBrigade::class);
+        return $this->belongsTo(Cell::class);
     }
 
+    /**
+     * Get the schedules for the employee.
+     * 
+     * @return HasMany
+     */
     public function schedules(): HasMany
     {
         return $this->hasMany(Schedule::class);
-    }
-
-    public function currentCell(): HasOne
-    {
-        return $this->hasOne(EmployeeCell::class)
-            ->whereNull('end_date')
-            ->latest('start_date');
-    }
-
-    public function currentBrigade(): HasOne
-    {
-        return $this->hasOne(EmployeeBrigade::class)
-            ->whereNull('end_date')
-            ->latest('start_date');
     }
 }

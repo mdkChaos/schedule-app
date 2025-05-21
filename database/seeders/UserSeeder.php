@@ -14,14 +14,39 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        $role = Role::where('name', 'Super Admin')->first();
+        $roles = Role::pluck('id', 'name');
 
-        User::firstOrCreate(
-            ['login' => 'Super Admin'],
+        $users = [
             [
-                'password' => Hash::make('admin123'),
-                'role_id' => $role->id,
-            ]
-        );
+                'login' => 'User',
+                'password' => 'user123',
+                'role' => 'User',
+            ],
+            [
+                'login' => 'Manager',
+                'password' => 'manager123',
+                'role' => 'Manager',
+            ],
+            [
+                'login' => 'Admin',
+                'password' => 'admin123',
+                'role' => 'Admin',
+            ],
+            [
+                'login' => 'Super Admin',
+                'password' => 'superadmin123',
+                'role' => 'Super Admin',
+            ],
+        ];
+
+        foreach ($users as $user) {
+            User::firstOrCreate(
+                ['login' => $user['login']],
+                [
+                    'password' => Hash::make($user['password']),
+                    'role_id' => $roles[$user['role']],
+                ]
+            );
+        }
     }
 }

@@ -19,6 +19,8 @@ class Workshop extends Model
 
     /**
      * Get the factory that owns the workshop.
+     * 
+     * @return BelongsTo
      */
     public function factory(): BelongsTo
     {
@@ -27,6 +29,8 @@ class Workshop extends Model
 
     /**
      * Get the departments for the workshop.
+     * 
+     * @return HasMany
      */
     public function departments(): HasMany
     {

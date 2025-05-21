@@ -43,6 +43,36 @@
                                 <x-input-error :messages="$errors->get('position_id')" />
                             </div>
 
+                            <div class="mb-3">
+                                <x-label for="cell_id" :value="__('message.cell')" class="form-label fw-semibold" />
+                                <select name="cell_id" id="cell_id"
+                                    class="form-select @error('cell_id') is-invalid @enderror" required>
+                                    <option value="" disabled selected>{{ __('message.choose') }}</option>
+                                    @foreach ($cells as $cell)
+                                        <option value="{{ $cell->id }}"
+                                            {{ old('cell_id', $employee->cell_id) == $cell->id ? 'selected' : '' }}>
+                                            {{ $cell->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                <x-input-error :messages="$errors->get('cell_id')" />
+                            </div>
+
+                            <div class="mb-3">
+                                <x-label for="brigade_id" :value="__('message.brigade')" class="form-label fw-semibold" />
+                                <select name="brigade_id" id="brigade_id"
+                                    class="form-select @error('brigade_id') is-invalid @enderror" required>
+                                    <option value="" disabled selected>{{ __('message.choose') }}</option>
+                                    @foreach ($brigades as $brigade)
+                                        <option value="{{ $brigade->id }}"
+                                            {{ old('brigade_id', $employee->brigade_id) == $brigade->id ? 'selected' : '' }}>
+                                            {{ $brigade->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                <x-input-error :messages="$errors->get('brigade_id')" />
+                            </div>
+
                             <div class="mt-4 d-flex justify-content-end gap-2">
                                 <x-btn-link class="me-1 btn-outline-secondary" :icon="'bi-x-lg'" :message="__('message.cancel')"
                                     :route="route('employees.index')" />

@@ -15,8 +15,13 @@ class Brigade extends Model
         'name',
     ];
 
-    public function employeeHistory(): HasMany
+    /**
+     * Get the employees for the brigade.
+     * 
+     * @return HasMany
+     */
+    public function employees(): HasMany
     {
-        return $this->hasMany(EmployeeBrigade::class);
+        return $this->hasMany(Employee::class);
     }
 }

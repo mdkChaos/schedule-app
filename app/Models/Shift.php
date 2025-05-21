@@ -17,6 +17,8 @@ class Shift extends Model
 
     /**
      * Get the schedules for the shift.
+     * 
+     * @return HasMany
      */
     public function schedules(): HasMany
     {

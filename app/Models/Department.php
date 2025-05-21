@@ -19,6 +19,8 @@ class Department extends Model
 
     /**
      * Get the workshop that owns the department.
+     * 
+     * @return BelongsTo
      */
     public function workshop(): BelongsTo
     {
@@ -27,6 +29,8 @@ class Department extends Model
 
     /**
      * Get the cells for the department.
+     * 
+     * @return HasMany
      */
     public function cells(): HasMany
     {

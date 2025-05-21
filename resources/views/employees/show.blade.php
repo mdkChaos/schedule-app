@@ -32,16 +32,16 @@
                             </div>
 
                             <div class="row align-items-center border-bottom py-2">
-                                <dt class="col-sm-4">{{ __('message.brigade') }}</dt>
+                                <dt class="col-sm-4">{{ __('message.cell') }}</dt>
                                 <dd class="col-sm-8 mb-0">
-                                    {{ $employee->currentBrigade?->brigade?->name ?? __('message.not_found') }}
+                                    {{ $employee->cell->name }}
                                 </dd>
                             </div>
 
                             <div class="row align-items-center border-bottom py-2">
-                                <dt class="col-sm-4">{{ __('message.cell') }}</dt>
+                                <dt class="col-sm-4">{{ __('message.brigade') }}</dt>
                                 <dd class="col-sm-8 mb-0">
-                                    {{ $employee->currentCell?->cell?->name ?? __('message.not_found') }}
+                                    {{ $employee->brigade->name }}
                                 </dd>
                             </div>
 

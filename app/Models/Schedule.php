@@ -20,6 +20,8 @@ class Schedule extends Model
 
     /**
      * Get the employee that owns the schedule.
+     * 
+     * @return BelongsTo
      */
     public function employee(): BelongsTo
     {
@@ -28,6 +30,8 @@ class Schedule extends Model
 
     /**
      * Get the shift that owns the schedule.
+     * 
+     * @return BelongsTo
      */
     public function shift(): BelongsTo
     {

@@ -33,8 +33,8 @@
                             <td>{{ $employee->name }}</td>
                             <td>{{ $employee->surname }}</td>
                             <td>{{ $employee->position->name }}</td>
-                            <td>{{ $employee->currentCell?->cell?->name ?? '—' }}</td>
-                            <td>{{ $employee->currentBrigade?->brigade?->name ?? '—' }}</td>
+                            <td>{{ $employee->cell->name }}</td>
+                            <td>{{ $employee->brigade->name }}</td>
                             <td class="text-end">
                                 <x-btn-link class="me-1 btn-outline-secondary" :icon="'bi-eye'" :message="__('message.view')"
                                     :route="route('employees.show', $employee)" />

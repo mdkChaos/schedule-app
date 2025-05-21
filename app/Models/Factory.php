@@ -17,6 +17,8 @@ class Factory extends Model
 
     /**
      * Get the workshops for the factory.
+     * 
+     * @return HasMany
      */
     public function workshops(): HasMany
     {

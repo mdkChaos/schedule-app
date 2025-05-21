@@ -18,6 +18,8 @@ class Role extends Model
 
     /**
      * Get the users for the role.
+     * 
+     * @return HasMany
      */
     public function users(): HasMany
     {

@@ -16,6 +16,8 @@ return new class extends Migration
             $table->string('name');
             $table->string('surname');
             $table->foreignId('position_id')->constrained()->restrictOnDelete();
+            $table->foreignId('cell_id')->constrained()->restrictOnDelete();
+            $table->foreignId('brigade_id')->constrained()->restrictOnDelete();
             $table->timestamps();
             $table->softDeletes();
         });
