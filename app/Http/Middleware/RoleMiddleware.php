@@ -16,7 +16,7 @@ class RoleMiddleware
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next, ...$roles): Response
+    public function handle(Request $request, Closure $next, $role): Response
     {
         $user = Auth::user();
 
@@ -24,9 +24,9 @@ class RoleMiddleware
             abort(403);
         }
 
-        $minLevel = Role::whereIn('name', $roles)->pluck('level')->min();
+        $roleLevel = Role::where('name', $role)->value('level');
 
-        if ($minLevel === null || $user->role->level < $minLevel) {
+        if ($roleLevel === null || $user->role->level < $roleLevel) {
             Log::warning("Access denied for user ID: {$user->id} with level {$user->role->level}");
             abort(403);
         }

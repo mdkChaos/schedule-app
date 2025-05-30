@@ -5,13 +5,20 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreFactoryRequest;
 use App\Http\Requests\UpdateFactoryRequest;
 use App\Models\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 
 class FactoryController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(Factory::class, 'factory');
+    }
+
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): View
     {
         $factories = Factory::paginate(10);
 
@@ -21,7 +28,7 @@ class FactoryController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(): View
     {
         return view('factories.create');
     }
@@ -29,7 +36,7 @@ class FactoryController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreFactoryRequest $request)
+    public function store(StoreFactoryRequest $request): RedirectResponse
     {
         Factory::create($request->validated());
 
@@ -39,7 +46,7 @@ class FactoryController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Factory $factory)
+    public function show(Factory $factory): View
     {
         return view('factories.show', compact('factory'));
     }
@@ -47,7 +54,7 @@ class FactoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Factory $factory)
+    public function edit(Factory $factory): View
     {
         return view('factories.edit', compact('factory'));
     }
@@ -55,7 +62,7 @@ class FactoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateFactoryRequest $request, Factory $factory)
+    public function update(UpdateFactoryRequest $request, Factory $factory): RedirectResponse
     {
         $factory->update($request->validated());
 
@@ -65,14 +72,14 @@ class FactoryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Factory $factory)
+    public function destroy(Factory $factory): RedirectResponse
     {
         $factory->delete();
 
         return redirect()->route('factories.index')->with('success', __('message.deleted_successfully'));
     }
 
-    public function trashed()
+    public function trashed(): View
     {
         $deletedFactories = Factory::onlyTrashed()->paginate(10);
 
@@ -82,7 +89,7 @@ class FactoryController extends Controller
     /**
      * Restore a soft deleted factory.
      */
-    public function restore($id)
+    public function restore($id): RedirectResponse
     {
         $factory = Factory::onlyTrashed()->findOrFail($id);
         $factory->restore();
@@ -93,7 +100,7 @@ class FactoryController extends Controller
     /**
      * Permanently delete a factory.
      */
-    public function forceDelete($id)
+    public function forceDelete($id): RedirectResponse
     {
         $factory = Factory::onlyTrashed()->findOrFail($id);
         $factory->forceDelete();
